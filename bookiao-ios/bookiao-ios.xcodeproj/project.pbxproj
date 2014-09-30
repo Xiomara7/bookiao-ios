@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A4C372B19DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C372919DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld */; };
+		0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C373119DA6DFF009AD8DD /* Images.xcassets */; };
+		0A4C373519DA6DFF009AD8DD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C373319DA6DFF009AD8DD /* LaunchScreen.xib */; };
+		0A4C374119DA6DFF009AD8DD /* bookiao_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */; };
+		0A4C374C19DA6EE6009AD8DD /* AppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374A19DA6EE6009AD8DD /* AppointmentViewController.swift */; };
+		0A4C374D19DA6EE6009AD8DD /* AppointmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C374B19DA6EE6009AD8DD /* AppointmentViewController.xib */; };
+		0A4C375019DA7198009AD8DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374E19DA7198009AD8DD /* ViewController.swift */; };
+		0A4C375119DA7198009AD8DD /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C374F19DA7198009AD8DD /* ViewController.xib */; };
+		0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C375519DA726B009AD8DD /* SettingsViewController.swift */; };
+		0A4C375819DA726B009AD8DD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C375619DA726B009AD8DD /* SettingsViewController.xib */; };
+		0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378A19DA7340009AD8DD /* AppDelegate.swift */; };
+		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
+		0A4C378F19DA738A009AD8DD /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C378D19DA738A009AD8DD /* HistoryViewController.xib */; };
+		0A4C379319DA77CB009AD8DD /* Start Here.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C379219DA77CB009AD8DD /* Start Here.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A4C373B19DA6DFF009AD8DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A4C371A19DA6DFF009AD8DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A4C372119DA6DFF009AD8DD;
+			remoteInfo = "bookiao-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A4C372219DA6DFF009AD8DD /* bookiao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bookiao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A4C372619DA6DFF009AD8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A4C372A19DA6DFF009AD8DD /* bookiao_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bookiao_ios.xcdatamodel; sourceTree = "<group>"; };
+		0A4C373119DA6DFF009AD8DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0A4C373419DA6DFF009AD8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0A4C373A19DA6DFF009AD8DD /* bookiao-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "bookiao-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A4C373F19DA6DFF009AD8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookiao_iosTests.swift; sourceTree = "<group>"; };
+		0A4C374A19DA6EE6009AD8DD /* AppointmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppointmentViewController.swift; path = "bookiao-ios/AppointmentViewController.swift"; sourceTree = "<group>"; };
+		0A4C374B19DA6EE6009AD8DD /* AppointmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppointmentViewController.xib; path = "bookiao-ios/AppointmentViewController.xib"; sourceTree = "<group>"; };
+		0A4C374E19DA7198009AD8DD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A4C374F19DA7198009AD8DD /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		0A4C375519DA726B009AD8DD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0A4C375619DA726B009AD8DD /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		0A4C378A19DA7340009AD8DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		0A4C378D19DA738A009AD8DD /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		0A4C379219DA77CB009AD8DD /* Start Here.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start Here.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A4C371F19DA6DFF009AD8DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A4C373719DA6DFF009AD8DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A4C371919DA6DFF009AD8DD = {
+			isa = PBXGroup;
+			children = (
+				0A4C379219DA77CB009AD8DD /* Start Here.png */,
+				0A4C378A19DA7340009AD8DD /* AppDelegate.swift */,
+				0A4C375419DA7228009AD8DD /* Controllers */,
+				0A4C375319DA721A009AD8DD /* Views */,
+				0A4C372419DA6DFF009AD8DD /* bookiao-ios */,
+				0A4C373D19DA6DFF009AD8DD /* bookiao-iosTests */,
+				0A4C372319DA6DFF009AD8DD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0A4C372319DA6DFF009AD8DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C372219DA6DFF009AD8DD /* bookiao-ios.app */,
+				0A4C373A19DA6DFF009AD8DD /* bookiao-iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A4C372419DA6DFF009AD8DD /* bookiao-ios */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C373119DA6DFF009AD8DD /* Images.xcassets */,
+				0A4C373319DA6DFF009AD8DD /* LaunchScreen.xib */,
+				0A4C372919DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld */,
+				0A4C372519DA6DFF009AD8DD /* Supporting Files */,
+			);
+			path = "bookiao-ios";
+			sourceTree = "<group>";
+		};
+		0A4C372519DA6DFF009AD8DD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C372619DA6DFF009AD8DD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0A4C373D19DA6DFF009AD8DD /* bookiao-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */,
+				0A4C373E19DA6DFF009AD8DD /* Supporting Files */,
+			);
+			path = "bookiao-iosTests";
+			sourceTree = "<group>";
+		};
+		0A4C373E19DA6DFF009AD8DD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C373F19DA6DFF009AD8DD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0A4C375319DA721A009AD8DD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C378D19DA738A009AD8DD /* HistoryViewController.xib */,
+				0A4C375619DA726B009AD8DD /* SettingsViewController.xib */,
+				0A4C374B19DA6EE6009AD8DD /* AppointmentViewController.xib */,
+				0A4C374F19DA7198009AD8DD /* ViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		0A4C375419DA7228009AD8DD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C374E19DA7198009AD8DD /* ViewController.swift */,
+				0A4C375519DA726B009AD8DD /* SettingsViewController.swift */,
+				0A4C374A19DA6EE6009AD8DD /* AppointmentViewController.swift */,
+				0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A4C372119DA6DFF009AD8DD /* bookiao-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A4C374419DA6DFF009AD8DD /* Build configuration list for PBXNativeTarget "bookiao-ios" */;
+			buildPhases = (
+				0A4C371E19DA6DFF009AD8DD /* Sources */,
+				0A4C371F19DA6DFF009AD8DD /* Frameworks */,
+				0A4C372019DA6DFF009AD8DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "bookiao-ios";
+			productName = "bookiao-ios";
+			productReference = 0A4C372219DA6DFF009AD8DD /* bookiao-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0A4C373919DA6DFF009AD8DD /* bookiao-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A4C374719DA6DFF009AD8DD /* Build configuration list for PBXNativeTarget "bookiao-iosTests" */;
+			buildPhases = (
+				0A4C373619DA6DFF009AD8DD /* Sources */,
+				0A4C373719DA6DFF009AD8DD /* Frameworks */,
+				0A4C373819DA6DFF009AD8DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A4C373C19DA6DFF009AD8DD /* PBXTargetDependency */,
+			);
+			name = "bookiao-iosTests";
+			productName = "bookiao-iosTests";
+			productReference = 0A4C373A19DA6DFF009AD8DD /* bookiao-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A4C371A19DA6DFF009AD8DD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = UPRRP;
+				TargetAttributes = {
+					0A4C372119DA6DFF009AD8DD = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					0A4C373919DA6DFF009AD8DD = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 0A4C372119DA6DFF009AD8DD;
+					};
+				};
+			};
+			buildConfigurationList = 0A4C371D19DA6DFF009AD8DD /* Build configuration list for PBXProject "bookiao-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0A4C371919DA6DFF009AD8DD;
+			productRefGroup = 0A4C372319DA6DFF009AD8DD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A4C372119DA6DFF009AD8DD /* bookiao-ios */,
+				0A4C373919DA6DFF009AD8DD /* bookiao-iosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A4C372019DA6DFF009AD8DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A4C374D19DA6EE6009AD8DD /* AppointmentViewController.xib in Resources */,
+				0A4C373519DA6DFF009AD8DD /* LaunchScreen.xib in Resources */,
+				0A4C375119DA7198009AD8DD /* ViewController.xib in Resources */,
+				0A4C379319DA77CB009AD8DD /* Start Here.png in Resources */,
+				0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */,
+				0A4C375819DA726B009AD8DD /* SettingsViewController.xib in Resources */,
+				0A4C378F19DA738A009AD8DD /* HistoryViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A4C373819DA6DFF009AD8DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A4C371E19DA6DFF009AD8DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A4C374C19DA6EE6009AD8DD /* AppointmentViewController.swift in Sources */,
+				0A4C372B19DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld in Sources */,
+				0A4C375019DA7198009AD8DD /* ViewController.swift in Sources */,
+				0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */,
+				0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */,
+				0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A4C373619DA6DFF009AD8DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A4C374119DA6DFF009AD8DD /* bookiao_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0A4C373C19DA6DFF009AD8DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A4C372119DA6DFF009AD8DD /* bookiao-ios */;
+			targetProxy = 0A4C373B19DA6DFF009AD8DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0A4C373319DA6DFF009AD8DD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A4C373419DA6DFF009AD8DD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0A4C374219DA6DFF009AD8DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0A4C374319DA6DFF009AD8DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0A4C374519DA6DFF009AD8DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "bookiao-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0A4C374619DA6DFF009AD8DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "bookiao-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0A4C374819DA6DFF009AD8DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "bookiao-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bookiao-ios.app/bookiao-ios";
+			};
+			name = Debug;
+		};
+		0A4C374919DA6DFF009AD8DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "bookiao-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bookiao-ios.app/bookiao-ios";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A4C371D19DA6DFF009AD8DD /* Build configuration list for PBXProject "bookiao-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A4C374219DA6DFF009AD8DD /* Debug */,
+				0A4C374319DA6DFF009AD8DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A4C374419DA6DFF009AD8DD /* Build configuration list for PBXNativeTarget "bookiao-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A4C374519DA6DFF009AD8DD /* Debug */,
+				0A4C374619DA6DFF009AD8DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0A4C374719DA6DFF009AD8DD /* Build configuration list for PBXNativeTarget "bookiao-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A4C374819DA6DFF009AD8DD /* Debug */,
+				0A4C374919DA6DFF009AD8DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0A4C372919DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0A4C372A19DA6DFF009AD8DD /* bookiao_ios.xcdatamodel */,
+			);
+			currentVersion = 0A4C372A19DA6DFF009AD8DD /* bookiao_ios.xcdatamodel */;
+			path = bookiao_ios.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 0A4C371A19DA6DFF009AD8DD /* Project object */;
+}
