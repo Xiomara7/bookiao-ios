@@ -13,14 +13,13 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var navigation: UINavigationController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        let appointments = AppointmentViewController(nibName: "AppointmentViewController", bundle: nil)
+
+        let appointments = AppointmentsViewController(nibName: "AppointmentsViewController", bundle: nil)
         let history = HistoryViewController(nibName: "HistoryViewController", bundle: nil)
-        let settings = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
+        let settings = SettingsViewController(nibName: "SettingsViewController", bundle: nil)   
+        
         
         appointments.title = "Citas"
         history.title = "Historial"
@@ -36,8 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var tabBarAppearance = UITabBar.appearance()
         tabBar.viewControllers = controllers
         tabBarAppearance.tintColor = UIColor.greenColor()
+        let navigationController = UINavigationController(rootViewController: tabBar)
         
-        self.window?.rootViewController = tabBar
+        self.window?.rootViewController = navigationController
         
         
         return true

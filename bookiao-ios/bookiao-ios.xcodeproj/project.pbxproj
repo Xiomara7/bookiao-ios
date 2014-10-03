@@ -11,8 +11,6 @@
 		0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C373119DA6DFF009AD8DD /* Images.xcassets */; };
 		0A4C373519DA6DFF009AD8DD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C373319DA6DFF009AD8DD /* LaunchScreen.xib */; };
 		0A4C374119DA6DFF009AD8DD /* bookiao_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */; };
-		0A4C374C19DA6EE6009AD8DD /* AppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374A19DA6EE6009AD8DD /* AppointmentViewController.swift */; };
-		0A4C374D19DA6EE6009AD8DD /* AppointmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C374B19DA6EE6009AD8DD /* AppointmentViewController.xib */; };
 		0A4C375019DA7198009AD8DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374E19DA7198009AD8DD /* ViewController.swift */; };
 		0A4C375119DA7198009AD8DD /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C374F19DA7198009AD8DD /* ViewController.xib */; };
 		0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C375519DA726B009AD8DD /* SettingsViewController.swift */; };
@@ -20,7 +18,9 @@
 		0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378A19DA7340009AD8DD /* AppDelegate.swift */; };
 		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
 		0A4C378F19DA738A009AD8DD /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C378D19DA738A009AD8DD /* HistoryViewController.xib */; };
-		0A4C379319DA77CB009AD8DD /* Start Here.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C379219DA77CB009AD8DD /* Start Here.png */; };
+		0A5F89FF19DB5E3600877A91 /* git.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0A5F89FE19DB5E3600877A91 /* git.jpeg */; };
+		0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */; };
+		0AD4219F19DE2717002CE4B2 /* AppointmentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4219D19DE2717002CE4B2 /* AppointmentsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +42,6 @@
 		0A4C373A19DA6DFF009AD8DD /* bookiao-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "bookiao-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4C373F19DA6DFF009AD8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookiao_iosTests.swift; sourceTree = "<group>"; };
-		0A4C374A19DA6EE6009AD8DD /* AppointmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppointmentViewController.swift; path = "bookiao-ios/AppointmentViewController.swift"; sourceTree = "<group>"; };
-		0A4C374B19DA6EE6009AD8DD /* AppointmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppointmentViewController.xib; path = "bookiao-ios/AppointmentViewController.xib"; sourceTree = "<group>"; };
 		0A4C374E19DA7198009AD8DD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A4C374F19DA7198009AD8DD /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		0A4C375519DA726B009AD8DD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -51,7 +49,9 @@
 		0A4C378A19DA7340009AD8DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0A4C378D19DA738A009AD8DD /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
-		0A4C379219DA77CB009AD8DD /* Start Here.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start Here.png"; sourceTree = "<group>"; };
+		0A5F89FE19DB5E3600877A91 /* git.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = git.jpeg; sourceTree = "<group>"; };
+		0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
+		0AD4219D19DE2717002CE4B2 /* AppointmentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +75,8 @@
 		0A4C371919DA6DFF009AD8DD = {
 			isa = PBXGroup;
 			children = (
-				0A4C379219DA77CB009AD8DD /* Start Here.png */,
 				0A4C378A19DA7340009AD8DD /* AppDelegate.swift */,
+				0A5F89F719DB55BE00877A91 /* Imgs */,
 				0A4C375419DA7228009AD8DD /* Controllers */,
 				0A4C375319DA721A009AD8DD /* Views */,
 				0A4C372419DA6DFF009AD8DD /* bookiao-ios */,
@@ -134,8 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				0A4C378D19DA738A009AD8DD /* HistoryViewController.xib */,
+				0AD4219D19DE2717002CE4B2 /* AppointmentsViewController.xib */,
 				0A4C375619DA726B009AD8DD /* SettingsViewController.xib */,
-				0A4C374B19DA6EE6009AD8DD /* AppointmentViewController.xib */,
 				0A4C374F19DA7198009AD8DD /* ViewController.xib */,
 			);
 			name = Views;
@@ -145,11 +145,19 @@
 			isa = PBXGroup;
 			children = (
 				0A4C374E19DA7198009AD8DD /* ViewController.swift */,
+				0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */,
 				0A4C375519DA726B009AD8DD /* SettingsViewController.swift */,
-				0A4C374A19DA6EE6009AD8DD /* AppointmentViewController.swift */,
 				0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		0A5F89F719DB55BE00877A91 /* Imgs */ = {
+			isa = PBXGroup;
+			children = (
+				0A5F89FE19DB5E3600877A91 /* git.jpeg */,
+			);
+			name = Imgs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,11 +240,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A4C374D19DA6EE6009AD8DD /* AppointmentViewController.xib in Resources */,
 				0A4C373519DA6DFF009AD8DD /* LaunchScreen.xib in Resources */,
+				0AD4219F19DE2717002CE4B2 /* AppointmentsViewController.xib in Resources */,
 				0A4C375119DA7198009AD8DD /* ViewController.xib in Resources */,
-				0A4C379319DA77CB009AD8DD /* Start Here.png in Resources */,
 				0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */,
+				0A5F89FF19DB5E3600877A91 /* git.jpeg in Resources */,
 				0A4C375819DA726B009AD8DD /* SettingsViewController.xib in Resources */,
 				0A4C378F19DA738A009AD8DD /* HistoryViewController.xib in Resources */,
 			);
@@ -256,11 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A4C374C19DA6EE6009AD8DD /* AppointmentViewController.swift in Sources */,
 				0A4C372B19DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld in Sources */,
 				0A4C375019DA7198009AD8DD /* ViewController.swift in Sources */,
 				0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */,
 				0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */,
+				0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */,
 				0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +453,7 @@
 				0A4C374619DA6DFF009AD8DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A4C374719DA6DFF009AD8DD /* Build configuration list for PBXNativeTarget "bookiao-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -453,6 +462,7 @@
 				0A4C374919DA6DFF009AD8DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
