@@ -18,26 +18,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let appointments = AppointmentsViewController(nibName: "AppointmentsViewController", bundle: nil)
         let history = HistoryViewController(nibName: "HistoryViewController", bundle: nil)
-        let settings = SettingsViewController(nibName: "SettingsViewController", bundle: nil)   
+        let profile = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        
+        let citasTextLabel    = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Bookmarks, tag: 0)
+        let historyTextLabel  = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.History, tag: 1)
+        let settingsTextLabel = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 2)
         
         
-        appointments.title = "Citas"
-        history.title = "Historial"
-        settings.title = "Ajustes"
+        appointments.tabBarItem = citasTextLabel
+        history.tabBarItem = historyTextLabel
+        profile.tabBarItem = settingsTextLabel
         
-        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-15, -15))
-        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-15, -15))
-        settings.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-15, -15))
+        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-5, -5))
+        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-5, -5))
+        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-5, -5))
         
-        let controllers = [appointments, history, settings]
+        let controllers = [appointments, history, profile]
         
         let tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
         tabBar.viewControllers = controllers
-        tabBarAppearance.tintColor = UIColor.greenColor()
+        tabBarAppearance.tintColor = UIColor.grayColor()
         let navigationController = UINavigationController(rootViewController: tabBar)
         
-        self.window?.rootViewController = navigationController
+        self.window?.rootViewController = tabBar
         
         
         return true
