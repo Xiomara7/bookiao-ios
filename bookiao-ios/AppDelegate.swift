@@ -15,15 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-        let appointments = AppointmentsViewController(nibName: "AppointmentsViewController", bundle: nil)
-        let history = HistoryViewController(nibName: "HistoryViewController", bundle: nil)
-        let profile = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        let customDesign = CustomDesign()
+        let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
+        let history = HistoryViewController(nibName: nil,   bundle: nil)
+        let profile = ProfileViewController(nibName: nil, bundle: nil)
         
         let citasTextLabel    = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Bookmarks, tag: 0)
         let historyTextLabel  = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.History, tag: 1)
         let settingsTextLabel = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 2)
         
+        citasTextLabel.title = "Citas"
         
         appointments.tabBarItem = citasTextLabel
         history.tabBarItem = historyTextLabel
@@ -38,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
         tabBar.viewControllers = controllers
-        tabBarAppearance.tintColor = UIColor.grayColor()
+        tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x93D946)
+        
         let navigationController = UINavigationController(rootViewController: tabBar)
         
         self.window?.rootViewController = tabBar

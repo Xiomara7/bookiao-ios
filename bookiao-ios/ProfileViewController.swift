@@ -11,10 +11,12 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView: UITableView!
-    
+    var headerView: UIView!
     var dataSource: [[String: String]] = []
+    var customDesign = CustomDesign()
     
     var names = ["Nombre", "Posición", "Trabajo", "Horas de trabajo", "Lugar"]
+    var info  = ["Christian Rodríguez", "Barbero", "Tony's Barber", "5:00 pm"]
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -25,13 +27,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func loadView() {
-        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 480.0))
+        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 500.0))
         self.view.backgroundColor = UIColor.whiteColor()
         
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.grayColor()
+        tableView.tintColor = UIColor.whiteColor()
+        tableView.backgroundColor = customDesign.UIColorFromRGB(0x93D946)
+        
         self.view.addSubview(tableView)
     }
     
@@ -41,13 +45,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // MARK: - Private Methods
+
     
     func updateDataSource() {
         var rows = [[String: String]]()
         
         for index in 0..<4 {
             var sum = (index + 1) * 5 * 6
-            rows.append(["text": names[index], "detail": "Hace \(sum) minutos"])
+            rows.append(["text": names[index], "detail": info[index]])
         }
         
         dataSource = rows
@@ -57,48 +62,71 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - UITableViewDataSource Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if section == 0{
+            return 1
+        }
+        else {
+            return 4
+        }
     }
     
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let CellIdentifier = "Cell"
         
         var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell!
         if cell == nil {
             
-            cell = UITableViewCell(style: .Default, reuseIdentifier:CellIdentifier)
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier:CellIdentifier)
         }
         
         let dictionary = dataSource[indexPath.row]
         
         let cellFrame = CGRectMake(100.0, 100.0, 320.0, 200.0)
+        if indexPath.section == 1 {
+            cell.frame = cellFrame
+            cell.textLabel!.numberOfLines = 0
+            cell.textLabel?.text = dictionary["text"]
+            cell.detailTextLabel?.text = dictionary["detail"]
         
-        cell.frame = cellFrame
-        cell.textLabel!.numberOfLines = 0
-        cell.textLabel?.text = dictionary["text"]
-        cell.detailTextLabel?.text = dictionary["detail"]
-        
-        cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
-        cell.textLabel!.font = UIFont.systemFontOfSize(16.0)
-        cell.textLabel!.numberOfLines = 0
-        
+            cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
+            cell.textLabel!.font = UIFont.systemFontOfSize(12.0)
+            cell.textLabel!.numberOfLines = 0
+        }
+        else if indexPath.section == 0 {
+            cell.backgroundColor = UIColor.grayColor()
+        }
         return cell
     }
     
+//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 0 {
+//            self.headerView = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 500.0))
+//            self.headerView.backgroundColor = UIColor.grayColor()
+//        }
+//        else if section == 1 {
+//            self.headerView = UIView(frame: CGRectMake(0.0, 0.0, 0.0, 0.0))
+//            self.headerView.backgroundColor = UIColor.grayColor()
+//        }
+//        
+//        return self.headerView
+//        
+//    }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Perfil"
-    }
     
     // MARK: UITableViewDelegate Methods
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80.0
+        if indexPath.section == 0 {
+            return 100.0
+        }
+        else {
+            return 80.0
+        }
     }
     
 }

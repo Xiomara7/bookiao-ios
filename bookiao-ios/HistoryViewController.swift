@@ -11,10 +11,9 @@ import UIKit
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView: UITableView!
-    
     var dataSource: [[String: String]] = []
-    
     var names = ["Christian Rodríguez", "Alex Santos", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
+    var customDesign = CustomDesign()
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -31,7 +30,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.grayColor()
+        tableView.backgroundColor = customDesign.UIColorFromRGB(0x93D946)
         self.view.addSubview(tableView)
     }
     
@@ -67,31 +66,36 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as CustomCellHistory!
         if cell == nil {
 
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier:CellIdentifier)
+            cell = CustomCellHistory(reuseIdentifier: "Cell")
         }
         
         let dictionary = dataSource[indexPath.row]
         
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
         
-        cell.frame = cellFrame
-        cell.textLabel!.numberOfLines = 0
-        cell.textLabel?.text = dictionary["text"]
-        cell.detailTextLabel?.text = dictionary["detail"]
-
+        let check = UIImage(named: "check.png")
+        
+        cell.titleLabel.text = self.names[indexPath.row]
+        cell.subtitleLabel.text = dictionary["detail"]
+        
         cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
         cell.textLabel!.numberOfLines = 0
+        
+        cell.selectionStyle = .Default
+        cell.accessoryType = .None
+        
+        cell.setNeedsUpdateConstraints()
         
         return cell
     }
 
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Histoial"
+        return "Historial"
     }
     
     func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {

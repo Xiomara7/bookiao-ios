@@ -8,13 +8,14 @@
 
 import UIKit
 
+
 class AppointmentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
     var tableView: UITableView!
-    
     var dataSource: [[String: String]] = []
-    
     var names = ["Alex Santos", "Christian Rodríguez", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
+    var prices = ["$14", "$8", "$22", "$12", "$10"]
+    var customDesign = CustomDesign()
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -32,7 +33,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.grayColor()
+        tableView.backgroundColor = customDesign.UIColorFromRGB(0x93D946)
         tableView.tintColor = UIColor.whiteColor()
         tableView.showsVerticalScrollIndicator = true
         tableView.separatorColor = UIColor.grayColor()
@@ -67,6 +68,8 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         return 1
     }
     
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -74,34 +77,38 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as CustomCell!
         if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier:CellIdentifier)
+            cell = CustomCell(reuseIdentifier: "Cell")
         }
         
         let dictionary = dataSource[indexPath.row]
         
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
         
-        cell.frame = cellFrame
-        cell.textLabel!.numberOfLines = 0
-        cell.textLabel?.text = dictionary["text"]
-        cell.detailTextLabel?.text = dictionary["detail"]
+        cell.priceLabel.text = self.prices[indexPath.row]
+        cell.titleLabel.text = self.names[indexPath.row]
+        cell.subtitleLabel.text = dictionary["detail"]
+
         
         cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
         cell.textLabel!.numberOfLines = 0
         
+        cell.selectionStyle = .Default
+        cell.accessoryType = .None
+        
+        cell.setNeedsUpdateConstraints()
+        
         return cell
     }
     
-    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Citas"
+        return "Hogar"
     }
-    
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "The footer is aligned to the left"
+
+ func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0
     }
     
     // MARK: UITableViewDelegate Methods
