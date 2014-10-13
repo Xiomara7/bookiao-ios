@@ -15,8 +15,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     var dataSource: [[String: String]] = []
     var customDesign = CustomDesign()
     
-    var names = ["Nombre", "Posición", "Trabajo", "Horas de trabajo", "Lugar"]
-    var info  = ["Christian Rodríguez", "Barbero", "Tony's Barber", "5:00 pm"]
+    var info = ["Nombre", "Posición", "Trabajo", "Horas de trabajo", "Lugar"]
+    var fields  = ["Christian Rodríguez", "Barbero", "DMC", "8:00 am - 5:00 pm"]
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -33,8 +33,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tintColor = UIColor.whiteColor()
-        tableView.backgroundColor = customDesign.UIColorFromRGB(0x93D946)
+        tableView.tableHeaderView?.backgroundColor = customDesign.UIColorFromRGB(0x343333)
         
         self.view.addSubview(tableView)
     }
@@ -52,7 +51,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         
         for index in 0..<4 {
             var sum = (index + 1) * 5 * 6
-            rows.append(["text": names[index], "detail": info[index]])
+            rows.append(["text": info[index], "detail": fields[index]])
         }
         
         dataSource = rows
@@ -78,28 +77,42 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell!
+        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as CustomCellProfile!
         if cell == nil {
             
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier:CellIdentifier)
+            cell = CustomCellProfile(reuseIdentifier: "Cell")
         }
         
         let dictionary = dataSource[indexPath.row]
         
-        let cellFrame = CGRectMake(100.0, 100.0, 320.0, 200.0)
+        //let cellFrame = CGRectMake(100.0, 100.0, 320.0, 200.0)
         if indexPath.section == 1 {
-            cell.frame = cellFrame
-            cell.textLabel!.numberOfLines = 0
-            cell.textLabel?.text = dictionary["text"]
-            cell.detailTextLabel?.text = dictionary["detail"]
-        
+            cell.titleLabel.text = self.info[indexPath.row]
+            cell.infoField.placeholder = self.fields[indexPath.row]
+            
+            
             cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
-            cell.textLabel!.font = UIFont.systemFontOfSize(12.0)
+            cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
             cell.textLabel!.numberOfLines = 0
+            
+            cell.selectionStyle = .Default
+            cell.accessoryType = .None
+            
+            cell.setNeedsUpdateConstraints()
         }
         else if indexPath.section == 0 {
-            cell.backgroundColor = UIColor.grayColor()
+            cell.backgroundColor = customDesign.UIColorFromRGB(0x343333)
         }
+        
+        cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
+        cell.textLabel!.numberOfLines = 0
+        
+        cell.selectionStyle = .Default
+        cell.accessoryType = .None
+        
+        cell.setNeedsUpdateConstraints()
+        
         return cell
     }
     
@@ -122,10 +135,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 100.0
+            return 170.0
         }
         else {
-            return 80.0
+            return 65.0
         }
     }
     

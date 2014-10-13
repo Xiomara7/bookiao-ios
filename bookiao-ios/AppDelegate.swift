@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x93D946)
         
         let navigationController = UINavigationController(rootViewController: tabBar)
-        
+        let postImage = UIImage(named: "book.png")
         self.window?.rootViewController = tabBar
         
         
