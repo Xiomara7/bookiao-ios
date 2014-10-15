@@ -20,7 +20,7 @@ class CustomCellProfileBanner: UITableViewCell {
     let titleLabel: UILabel!
     let infoLabel: UILabel!
     let profilePic: UIImageView!
-    
+    let circleView: CircleView!
     class var defaultHeight: CGFloat {
     return 84.0
     }
@@ -50,10 +50,13 @@ class CustomCellProfileBanner: UITableViewCell {
         
         contentView.addSubview(infoLabel)
         
-        let picture = UIImage(named: "xio.png")
-        profilePic = UIImageView(image: picture)
+//        let picture = UIImage(named: "xio.png")
+//        profilePic = UIImageView(image: picture)
+//        
+//        contentView.addSubview(profilePic)
         
-        contentView.addSubview(profilePic)
+        circleView = CircleView()
+        contentView.addSubview(circleView)
         
     }
     
@@ -66,9 +69,11 @@ class CustomCellProfileBanner: UITableViewCell {
         infoLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding)
         infoLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
-        profilePic.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding + 10.0)
-        profilePic.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.rightPadding)
+//        profilePic.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding + 10.0)
+//        profilePic.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.rightPadding)
         
+        circleView.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
+        circleView.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.rightPadding)
         
         
         //        titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: titleLabel, withOffset: 2.0)

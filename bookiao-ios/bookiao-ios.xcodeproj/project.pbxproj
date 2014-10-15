@@ -19,6 +19,7 @@
 		0A01A7BD19E4D5410026B7E4 /* CustomCellProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7BC19E4D5410026B7E4 /* CustomCellProfile.swift */; };
 		0A01A7BF19E4D97C0026B7E4 /* CustomCellProfileBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7BE19E4D97C0026B7E4 /* CustomCellProfileBanner.swift */; };
 		0A01A7C319E4E3F90026B7E4 /* xio.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A01A7C219E4E3F90026B7E4 /* xio.png */; };
+		0A01A7C519EC266F0026B7E4 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7C419EC266F0026B7E4 /* CircleView.swift */; };
 		0A4C372B19DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C372919DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld */; };
 		0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C373119DA6DFF009AD8DD /* Images.xcassets */; };
 		0A4C374119DA6DFF009AD8DD /* bookiao_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */; };
@@ -59,6 +60,7 @@
 		0A01A7BC19E4D5410026B7E4 /* CustomCellProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellProfile.swift; sourceTree = "<group>"; };
 		0A01A7BE19E4D97C0026B7E4 /* CustomCellProfileBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellProfileBanner.swift; sourceTree = "<group>"; };
 		0A01A7C219E4E3F90026B7E4 /* xio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xio.png; sourceTree = "<group>"; };
+		0A01A7C419EC266F0026B7E4 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		0A4C372219DA6DFF009AD8DD /* bookiao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bookiao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4C372619DA6DFF009AD8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A4C372A19DA6DFF009AD8DD /* bookiao_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bookiao_ios.xcdatamodel; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				0A01A79119E330A70026B7E4 /* CustomCell.swift */,
+				0A01A7C419EC266F0026B7E4 /* CircleView.swift */,
 				0A01A7BC19E4D5410026B7E4 /* CustomCellProfile.swift */,
 				0A01A7B619E4CD930026B7E4 /* CustomCellHistory.swift */,
 				0A01A7BE19E4D97C0026B7E4 /* CustomCellProfileBanner.swift */,
@@ -309,6 +312,7 @@
 				0A01A7A319E38FAF0026B7E4 /* NSArray+PureLayout.m in Sources */,
 				0A01A7BF19E4D97C0026B7E4 /* CustomCellProfileBanner.swift in Sources */,
 				0A01A7A219E38FAF0026B7E4 /* ALView+PureLayout.m in Sources */,
+				0A01A7C519EC266F0026B7E4 /* CircleView.swift in Sources */,
 				0A01A77719DF7D6F0026B7E4 /* ProfileViewController.swift in Sources */,
 				0A01A7B719E4CD930026B7E4 /* CustomCellHistory.swift in Sources */,
 				0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */,
