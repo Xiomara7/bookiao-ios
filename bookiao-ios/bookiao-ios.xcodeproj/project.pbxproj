@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A01075119F1C45B004C2056 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01075019F1C45B004C2056 /* LoginViewController.swift */; };
+		0A01075919F215C8004C2056 /* backg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A01075819F215C8004C2056 /* backg.png */; };
 		0A01A77719DF7D6F0026B7E4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A77519DF7D6F0026B7E4 /* ProfileViewController.swift */; };
 		0A01A79219E330A70026B7E4 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A79119E330A70026B7E4 /* CustomCell.swift */; };
 		0A01A7A219E38FAF0026B7E4 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A79A19E38FAF0026B7E4 /* ALView+PureLayout.m */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A01075019F1C45B004C2056 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0A01075819F215C8004C2056 /* backg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backg.png; sourceTree = "<group>"; };
 		0A01A77519DF7D6F0026B7E4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0A01A79119E330A70026B7E4 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0A01A79819E38FAE0026B7E4 /* bookiao-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bookiao-ios-Bridging-Header.h"; path = "../bookiao-ios-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 				0A01A77519DF7D6F0026B7E4 /* ProfileViewController.swift */,
 				0A4C375519DA726B009AD8DD /* SettingsViewController.swift */,
 				0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */,
+				0A01075019F1C45B004C2056 /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				0A01A7BA19E4D2C80026B7E4 /* book.png */,
+				0A01075819F215C8004C2056 /* backg.png */,
 				0A01A7C219E4E3F90026B7E4 /* xio.png */,
 				0A01A7B819E4CEBD0026B7E4 /* check.png */,
 			);
@@ -284,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A01A7B919E4CEBD0026B7E4 /* check.png in Resources */,
+				0A01075919F215C8004C2056 /* backg.png in Resources */,
 				0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */,
 				0A01A7C319E4E3F90026B7E4 /* xio.png in Resources */,
 				0A01A7BB19E4D2C80026B7E4 /* book.png in Resources */,
@@ -317,6 +324,7 @@
 				0A01A7B719E4CD930026B7E4 /* CustomCellHistory.swift in Sources */,
 				0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */,
 				0A01A7BD19E4D5410026B7E4 /* CustomCellProfile.swift in Sources */,
+				0A01075119F1C45B004C2056 /* LoginViewController.swift in Sources */,
 				0A01A79219E330A70026B7E4 /* CustomCell.swift in Sources */,
 				0A01A7AF19E4A0000026B7E4 /* CustomDesign.swift in Sources */,
 				0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */,

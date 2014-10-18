@@ -20,7 +20,7 @@ class CustomCellProfileBanner: UITableViewCell {
     let titleLabel: UILabel!
     let infoLabel: UILabel!
     let profilePic: UIImageView!
-    let circleView: CircleView!
+    let circleView: UIView!
     class var defaultHeight: CGFloat {
     return 84.0
     }
@@ -55,7 +55,7 @@ class CustomCellProfileBanner: UITableViewCell {
 //        
 //        contentView.addSubview(profilePic)
         
-        circleView = CircleView()
+        circleView = CircleView(frame: CGRectZero)
         contentView.addSubview(circleView)
         
     }

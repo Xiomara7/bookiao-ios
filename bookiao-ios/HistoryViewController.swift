@@ -31,6 +31,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = customDesign.UIColorFromRGB(0x93D946)
+        tableView.headerViewForSection(0)?.tintColor = UIColor.whiteColor()
         self.view.addSubview(tableView)
     }
     

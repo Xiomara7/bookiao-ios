@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
         let history = HistoryViewController(nibName: nil,   bundle: nil)
         let profile = ProfileViewController(nibName: nil, bundle: nil)
-        
+        let login   = LoginViewController(nibName: nil, bundle: nil)
         let citasTextLabel    = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Bookmarks, tag: 0)
         let historyTextLabel  = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.History, tag: 1)
         let settingsTextLabel = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 2)
@@ -41,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBar.viewControllers = controllers
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x93D946)
         
-        let navigationController = UINavigationController(rootViewController: tabBar)
+        let navigationController = UINavigationController(rootViewController:login)
         let postImage = UIImage(named: "book.png")
-        self.window?.rootViewController = tabBar
+        self.window?.rootViewController = login
         
         
         return true
