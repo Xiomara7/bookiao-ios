@@ -33,12 +33,33 @@ class LoginViewController: UIViewController {
         button.setTitle("Ingreso", forState: UIControlState.Normal)
         button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
+        var nameLabel: UILabel = UILabel()
+        nameLabel.frame = CGRectMake(130, 300, 220, 40)
+        nameLabel.tintColor = UIColor.whiteColor()
+        nameLabel.text = "Bookiao"
+        
+        var emailtxtField: UITextField = UITextField()
+        emailtxtField.frame = CGRectMake(130, 420, 220, 40)
+        emailtxtField.backgroundColor = UIColor.whiteColor()
+        emailtxtField.tintColor = UIColor.grayColor()
+        emailtxtField.placeholder = "Correo electrónico"
+        
+        var passwdtxtField: UITextField = UITextField()
+        passwdtxtField.frame = CGRectMake(130, 370, 220, 40)
+        passwdtxtField.backgroundColor = UIColor.whiteColor()
+        passwdtxtField.tintColor = UIColor.grayColor()
+        passwdtxtField.placeholder = "Contraseña"
+        
         self.view.addSubview(button)
+        self.view.addSubview(emailtxtField)
+        self.view.addSubview(passwdtxtField)
     }
     
     func buttonAction(sender:UIButton!)
     {
         println("Button tapped")
+        delegate
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var tabBar: UITabBarController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let customDesign = CustomDesign()
@@ -36,14 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let controllers = [appointments, history, profile]
         
-        let tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
-        tabBar.viewControllers = controllers
+        self.tabBar?.viewControllers = controllers
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x93D946)
         
         let navigationController = UINavigationController(rootViewController:login)
         let postImage = UIImage(named: "book.png")
-        self.window?.rootViewController = login
+        self.window?.rootViewController = navigationController
         
         
         return true
