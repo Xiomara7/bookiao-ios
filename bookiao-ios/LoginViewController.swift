@@ -35,8 +35,8 @@ class LoginViewController: UIViewController {
         
         var nameLabel: UILabel = UILabel()
         nameLabel.frame = CGRectMake(130, 300, 220, 40)
-        nameLabel.tintColor = UIColor.whiteColor()
         nameLabel.text = "Bookiao"
+        nameLabel.tintColor = UIColor.whiteColor()
         
         var emailtxtField: UITextField = UITextField()
         emailtxtField.frame = CGRectMake(130, 420, 220, 40)
@@ -53,12 +53,12 @@ class LoginViewController: UIViewController {
         self.view.addSubview(button)
         self.view.addSubview(emailtxtField)
         self.view.addSubview(passwdtxtField)
+        self.view.addSubview(nameLabel)
     }
     
     func buttonAction(sender:UIButton!)
     {
         println("Button tapped")
-        delegate
         
     }
     
