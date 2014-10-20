@@ -36,14 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-5, -5))
         
         let controllers = [appointments, history, profile]
-        
+        var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
-        self.tabBar?.viewControllers = controllers
+        tabBar.viewControllers = controllers
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x93D946)
         
-        let navigationController = UINavigationController(rootViewController:login)
+        let navigationController = UINavigationController(rootViewController:tabBar)
         let postImage = UIImage(named: "book.png")
-        self.window?.rootViewController = navigationController
+        self.window?.rootViewController = tabBar
         
         
         return true
