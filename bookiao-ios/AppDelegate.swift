@@ -14,35 +14,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var tabBar: UITabBarController?
+    var navigationController: UINavigationController?
+    var viewCont: UIViewController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let customDesign = CustomDesign()
         let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
-        let history = HistoryViewController(nibName: nil,   bundle: nil)
+        let history = HistoryViewController(nibName: nil, bundle: nil)
         let profile = ProfileViewController(nibName: nil, bundle: nil)
         let login   = LoginViewController(nibName: nil, bundle: nil)
-        let citasTextLabel    = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Bookmarks, tag: 0)
-        let historyTextLabel  = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.History, tag: 1)
-        let settingsTextLabel = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 2)
+        let citasTextLabel    = UITabBarItem(title: "", image: UIImage(named: "booking.png"), tag: 0)
+        let historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
+        let settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
         
-        citasTextLabel.title = "Citas"
+        self.viewCont = AppointmentsViewController(nibName: nil, bundle: nil)
         
         appointments.tabBarItem = citasTextLabel
         history.tabBarItem = historyTextLabel
         profile.tabBarItem = settingsTextLabel
         
-        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-5, -5))
-        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-5, -5))
-        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-5, -5))
+        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-20, -20))
+        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-20, -20))
+        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-20, -20))
         
         let controllers = [appointments, history, profile]
         var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
+        
         tabBar.viewControllers = controllers
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
+        //tabBarAppearance.backgroundColor = UIColor.blackColor()
         
-        let navigationController = UINavigationController(rootViewController:tabBar)
-        let postImage = UIImage(named: "book.png")
+        self.navigationController = UINavigationController(rootViewController:tabBar)
+        
         self.window?.rootViewController = tabBar
         
         

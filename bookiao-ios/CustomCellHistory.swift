@@ -62,7 +62,9 @@ class CustomCellHistory: UITableViewCell {
         let imageR = UIImage(named: "check.png")
         imageRight = UIImageView(image: imageR)
         
+        
         contentView.addSubview(imageRight)
+        
         
         
     }
@@ -78,8 +80,8 @@ class CustomCellHistory: UITableViewCell {
         priceLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
         priceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: Config.rightPadding)
         
-        imageRight.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding)
-        imageRight.autoPinEdgeToSuperviewEdge(.Right, withInset: Config.rightPadding)
+        imageRight.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding - 30)
+        imageRight.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
         
         //        titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: titleLabel, withOffset: 2.0)
         //        priceLabel.autoPinEdge(.Right, toEdge: .Left, ofView: priceLabel, withOffset:-2.0)

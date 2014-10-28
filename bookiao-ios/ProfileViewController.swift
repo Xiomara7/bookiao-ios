@@ -35,6 +35,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.tableHeaderView?.backgroundColor = customDesign.UIColorFromRGB(0x00B287)
         
+        self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
+        
         self.view.addSubview(tableView)
     }
     

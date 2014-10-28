@@ -24,7 +24,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func loadView() {
-        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 480.0))
+        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 530))
         self.view.backgroundColor = UIColor.whiteColor()
         
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)
@@ -32,6 +32,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.backgroundColor = customDesign.UIColorFromRGB(0x00B287)
         tableView.headerViewForSection(0)?.tintColor = UIColor.whiteColor()
+        
+        self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
+        
         self.view.addSubview(tableView)
     }
     
@@ -106,7 +109,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: UITableViewDelegate Methods
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100.0
+        return 95.0
     }
     
 }

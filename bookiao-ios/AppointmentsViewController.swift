@@ -26,7 +26,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func loadView() {
-        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 480.0))
+        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 530.0))
         self.view.backgroundColor = UIColor.whiteColor()
         let tableAppearance = UITableView.appearance()
         
@@ -39,6 +39,8 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         tableView.separatorColor = UIColor.grayColor()
         
         tableView.headerViewForSection(0)?.tintColor = .whiteColor()
+        
+        self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
         self.view.addSubview(tableView)
     }
@@ -89,7 +91,6 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         cell.priceLabel.text = self.prices[indexPath.row]
         cell.titleLabel.text = self.names[indexPath.row]
         cell.subtitleLabel.text = dictionary["detail"]
-
         
         cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
@@ -97,6 +98,9 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         
         cell.selectionStyle = .Default
         cell.accessoryType = .None
+        
+        
+        cell.frame.origin.y = 4
         
         cell.setNeedsUpdateConstraints()
         
@@ -114,7 +118,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: UITableViewDelegate Methods
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100.0
+        return 95.0
     }
     
 }
