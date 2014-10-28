@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
         tabBar.viewControllers = controllers
-        tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x93D946)
+        tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         
         let navigationController = UINavigationController(rootViewController:tabBar)
         let postImage = UIImage(named: "book.png")
