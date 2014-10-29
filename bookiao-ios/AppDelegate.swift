@@ -33,9 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         history.tabBarItem = historyTextLabel
         profile.tabBarItem = settingsTextLabel
         
-        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-20, -20))
-        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-20, -20))
-        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(-20, -20))
+        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -500))
+        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
+        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
         
         let controllers = [appointments, history, profile]
         var tabBar = UITabBarController()

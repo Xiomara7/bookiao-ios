@@ -24,7 +24,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func loadView() {
-        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 530))
+        self.view = UIView(frame: CGRectMake(0.0, 0.0, 330.0, 530.0))
         self.view.backgroundColor = UIColor.whiteColor()
         
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)

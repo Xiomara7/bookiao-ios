@@ -26,6 +26,7 @@
 		0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378A19DA7340009AD8DD /* AppDelegate.swift */; };
 		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
 		0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */; };
+		0ADB9E941A006010007F5539 /* json-swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADB9E931A006010007F5539 /* json-swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		0A4C378A19DA7340009AD8DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
+		0ADB9E931A006010007F5539 /* json-swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "json-swift.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				0A4C378A19DA7340009AD8DD /* AppDelegate.swift */,
+				0ADB9E931A006010007F5539 /* json-swift.swift */,
 				0A01A79719E38F880026B7E4 /* PureLayout */,
 				0A4C375419DA7228009AD8DD /* Controllers */,
 				0A4C375319DA721A009AD8DD /* Views */,
@@ -290,6 +293,7 @@
 				0A4C372B19DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld in Sources */,
 				0A4C375019DA7198009AD8DD /* ViewController.swift in Sources */,
 				0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */,
+				0ADB9E941A006010007F5539 /* json-swift.swift in Sources */,
 				0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */,
 				0A01A7A419E38FAF0026B7E4 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				0A01A7A319E38FAF0026B7E4 /* NSArray+PureLayout.m in Sources */,

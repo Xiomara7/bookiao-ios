@@ -26,15 +26,6 @@ class LoginViewController: UIViewController {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0x224656)
         super.viewDidLoad()
         
-//        var nameLabel: UILabel = UILabel()
-//        var labelapp = UILabel.appearance()
-//        nameLabel.frame = CGRectMake(110, 70, 160, 45)
-//        nameLabel.text = "Bookiao"
-//        labelapp.text = "Bookiao"
-//        nameLabel.tintColor = UIColor.whiteColor()
-//        labelapp.font = UIFont.systemFontOfSize(40.0)
-//        labelapp.tintColor = customDesign.UIColorFromRGB(0xffffff)
-        
         let nameLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         nameLabel.frame = CGRectMake(100, 70, 160, 45)
         nameLabel.backgroundColor = customDesign.UIColorFromRGB(0x224656)

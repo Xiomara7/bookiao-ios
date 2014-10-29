@@ -26,7 +26,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func loadView() {
-        self.view = UIView(frame: CGRectMake(0.0, 0.0, 380.0, 530.0))
+        self.view = UIView(frame: CGRectMake(0.0, 0.0, 330.0, 530.0))
         self.view.backgroundColor = UIColor.whiteColor()
         let tableAppearance = UITableView.appearance()
         
