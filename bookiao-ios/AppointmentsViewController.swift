@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class AppointmentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tableView: UITableView!
@@ -16,7 +15,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     var names = ["Alex Santos", "Christian Rodríguez", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
     var prices = ["$14", "$8", "$22", "$12", "$10"]
     var customDesign = CustomDesign()
-    
+
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -29,6 +28,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         self.view = UIView(frame: CGRectMake(0.0, 0.0, 330.0, 530.0))
         self.view.backgroundColor = UIColor.whiteColor()
         let tableAppearance = UITableView.appearance()
+        let postButton = UIBarButtonItem(image: UIImage(named: "post"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapConnect"))
         
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)
         tableView.dataSource = self
@@ -37,12 +37,13 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         tableView.tintColor = UIColor.whiteColor()
         tableView.showsVerticalScrollIndicator = true
         tableView.separatorColor = UIColor.grayColor()
-        
         tableView.headerViewForSection(0)?.tintColor = .whiteColor()
         
+        self.navigationController?.navigationItem.rightBarButtonItem = postButton
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
         self.view.addSubview(tableView)
+        
     }
     
     override func viewDidLoad() {

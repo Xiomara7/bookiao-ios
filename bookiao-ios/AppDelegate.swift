@@ -27,12 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
         let settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
         
-        self.viewCont = AppointmentsViewController(nibName: nil, bundle: nil)
-        
         appointments.tabBarItem = citasTextLabel
         history.tabBarItem = historyTextLabel
         profile.tabBarItem = settingsTextLabel
-        
+    
         appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -500))
         history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
         profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
@@ -40,17 +38,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controllers = [appointments, history, profile]
         var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
-        
+        var img = UIImage(named: "post")
+        var postButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapConnect"))
         tabBar.viewControllers = controllers
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         //tabBarAppearance.backgroundColor = UIColor.blackColor()
         
-        self.navigationController = UINavigationController(rootViewController:tabBar)
+        let navigationController = UINavigationController(rootViewController:tabBar)
+        navigationController.navigationItem.rightBarButtonItem = postButton
         
-        self.window?.rootViewController = tabBar
-        
+        self.window?.rootViewController = login
         
         return true
+    }
+    
+    func didTapConnect(sender: AnyObject) {
+        
     }
     
     func applicationWillResignActive(application: UIApplication) {

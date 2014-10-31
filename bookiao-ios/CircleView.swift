@@ -14,14 +14,11 @@ class CircleView: UIView {
         // Initialization code
     }
     
-    
-
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    override func drawRect(rect: CGRect)
-    {
+    override func drawRect(rect: CGRect) {
         var startAngle: Float = 360.0
         var endAngle: Float = 0.0
         
@@ -55,7 +52,8 @@ class CircleView: UIView {
         
         // Draw the arc
         CGContextDrawPath(context, kCGPathStroke) // or kCGPathFillStroke to fill and stroke the circle
-        
+
     }
+
 
 }

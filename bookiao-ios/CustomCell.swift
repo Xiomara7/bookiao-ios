@@ -59,7 +59,6 @@ class CustomCell: UITableViewCell {
         contentView.addSubview(priceLabel)
         
         
-        
     }
     
     override func updateConstraints() {

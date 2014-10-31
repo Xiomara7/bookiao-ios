@@ -1,31 +1,16 @@
 //
-//  ProfileViewController.swift
+//  ProfileDesign.swift
 //  bookiao-ios
 //
-//  Created by Xiomara on 10/17/14.
+//  Created by Xiomara on 10/29/14.
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileDesign {
     
-    var customDesign = CustomDesign()
-    
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override func viewDidLoad() {
-        self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
-        super.viewDidLoad()
-        
+    func getNameTextField() -> UITextField {
         var nametxtField: UITextField = UITextField()
         var nameApp = UITextField.appearance()
         nametxtField.frame = CGRectMake(20, 205, 275, 40)
@@ -34,7 +19,12 @@ class ProfileViewController: UIViewController {
         nametxtField.font = UIFont.systemFontOfSize(14.0)
         nametxtField.textAlignment = .Center
         nametxtField.placeholder = "Nombre"
-        
+    
+        return nametxtField
+    
+    }
+
+    func getPlaceTextField() -> UITextField {
         var placetxtField: UITextField = UITextField()
         placetxtField.frame = CGRectMake(20, 260, 275, 40)
         placetxtField.backgroundColor = UIColor.whiteColor()
@@ -43,6 +33,11 @@ class ProfileViewController: UIViewController {
         placetxtField.textAlignment = .Center
         placetxtField.placeholder = "Negocio"
         
+        return placetxtField
+    
+    }
+
+    func getPositionTxtField() -> UITextField {
         var positiontxtField: UITextField = UITextField()
         positiontxtField.frame = CGRectMake(20, 315, 275, 40)
         positiontxtField.backgroundColor = UIColor.whiteColor()
@@ -51,6 +46,10 @@ class ProfileViewController: UIViewController {
         positiontxtField.textAlignment = .Center
         positiontxtField.placeholder = "Posición"
         
+        return positiontxtField
+    }
+    
+    func getStartTime() -> UITextField {
         var startTimetxtField: UITextField = UITextField()
         startTimetxtField.frame = CGRectMake(20, 370, 120, 40)
         startTimetxtField.backgroundColor = UIColor.whiteColor()
@@ -59,6 +58,10 @@ class ProfileViewController: UIViewController {
         startTimetxtField.textAlignment = .Center
         startTimetxtField.placeholder = "Entrada"
         
+        return startTimetxtField
+    }
+    
+    func getEndTime() -> UITextField {
         var endTimetxtField: UITextField = UITextField()
         endTimetxtField.frame = CGRectMake(175, 370, 120, 40)
         endTimetxtField.backgroundColor = UIColor.whiteColor()
@@ -67,6 +70,11 @@ class ProfileViewController: UIViewController {
         endTimetxtField.textAlignment = .Center
         endTimetxtField.placeholder = "Salida"
         
+        return endTimetxtField
+    }
+    
+    func getRegistroButton() -> UIButton {
+        let customDesign     = CustomDesign()
         let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         registroButton.frame = CGRectMake(20, 440, 275, 45)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
@@ -75,22 +83,6 @@ class ProfileViewController: UIViewController {
         registroButton.setTitle("Grabar", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(nametxtField)
-        self.view.addSubview(placetxtField)
-        self.view.addSubview(positiontxtField)
-        self.view.addSubview(startTimetxtField)
-        self.view.addSubview(endTimetxtField)
-        self.view.addSubview(registroButton)
-    }
-    
-    func buttonAction(sender:UIButton!)
-    {
-        println("Button tapped")
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        return registroButton
     }
 }

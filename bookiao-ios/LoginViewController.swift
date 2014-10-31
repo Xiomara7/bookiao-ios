@@ -81,10 +81,36 @@ class LoginViewController: UIViewController {
         self.view.addSubview(nuevoLabel)
     }
     
-    func buttonAction(sender:UIButton!)
-    {
+    func buttonAction(sender:UIButton!) {
         println("Button tapped")
-        
+        var request = NSMutableURLRequest(URL: NSURL(string: "https://bookiao-api.herokuapp.com/businesses/"))
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        var params = ["email":"test@test.com", "name":"Xio desde el iPhone", "phone_number": "7879413774", "manager_name":"Xio", "location":"Arrope :)"] as Dictionary
+
+        var err: NSError?
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)\n\n")
+
+            var err: NSError?
+            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+
+            if((err) != nil) {
+                println(err!.localizedDescription)
+            }
+            else {
+                var success = json["response"] as? String
+                println("Succes: \(success)")
+                dispatch_async(dispatch_get_main_queue(), {
+                })
+            }
+        })
+        task.resume()
     }
     
     override func didReceiveMemoryWarning() {
