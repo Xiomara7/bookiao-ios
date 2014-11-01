@@ -76,14 +76,14 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             cell = CustomCellHistory(reuseIdentifier: "Cell")
         }
         
-        let dictionary = dataSource[indexPath.row]
+//        let dictionary = dataSource[indexPath.row]
         
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
         
         let check = UIImage(named: "check.png")
         
-        cell.titleLabel.text = self.names[indexPath.row]
-        cell.subtitleLabel.text = dictionary["detail"]
+//        cell.titleLabel.text = self.names[indexPath.row]
+//        cell.subtitleLabel.text = dictionary["detail"]
         
         cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
@@ -102,9 +102,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         return "Historial"
     }
     
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return "The footer is aligned to the left"
-    }
+//    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        return "The footer is aligned to the left"
+//    }
     
     // MARK: UITableViewDelegate Methods
     
