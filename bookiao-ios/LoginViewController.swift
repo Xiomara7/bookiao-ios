@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
 import UIKit
+import CoreData
 
 class LoginViewController: UIViewController {
     
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
         ingresoButton.tintColor = UIColor.whiteColor()
         ingresoButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
         ingresoButton.setTitle("Ingreso", forState: UIControlState.Normal)
-        ingresoButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        ingresoButton.addTarget(self, action: "buttonActionLogin:", forControlEvents: UIControlEvents.TouchUpInside)
         
         let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         registroButton.frame = CGRectMake(20, 440, 280, 45)
@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
         registroButton.tintColor = UIColor.whiteColor()
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
         registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        registroButton.addTarget(self, action: "buttonActionRegister:", forControlEvents: UIControlEvents.TouchUpInside)
 
         let nuevoLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         nuevoLabel.frame = CGRectMake(20, 390, 280, 45)
@@ -81,7 +81,16 @@ class LoginViewController: UIViewController {
         self.view.addSubview(nuevoLabel)
     }
     
-    func buttonAction(sender:UIButton!) {
+    func buttonAction(sender:UIButton!){
+        println("false button")
+    }
+    
+    func buttonActionLogin(sender:UIButton!){
+        let appView = ViewController(nibName: nil, bundle: nil)
+        self.presentViewController(appView, animated: true, completion: nil)
+    }
+    
+    func buttonActionRegister(sender:UIButton!) {
         println("Button tapped")
 //        var request = NSMutableURLRequest(URL: NSURL(string: "https://bookiao-api.herokuapp.com/businesses/"))
 //        var session = NSURLSession.sharedSession()

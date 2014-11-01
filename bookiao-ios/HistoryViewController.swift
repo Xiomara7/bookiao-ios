@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -102,14 +103,12 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         return "Historial"
     }
     
-//    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        return "The footer is aligned to the left"
-//    }
-    
-    // MARK: UITableViewDelegate Methods
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 95.0
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println("Hello")
     }
     
 }

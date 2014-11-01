@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AppointmentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -112,7 +113,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         return "Hogar"
     }
 
- func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0
     }
     
@@ -121,5 +122,11 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 95.0
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println("Hello")
+    }
+    
+    
     
 }

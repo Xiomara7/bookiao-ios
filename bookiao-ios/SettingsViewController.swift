@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class SettingsViewController: UIViewController {

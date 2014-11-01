@@ -27,6 +27,9 @@
 		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
 		0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */; };
 		0ADB9E941A006010007F5539 /* json-swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADB9E931A006010007F5539 /* json-swift.swift */; };
+		0AFEB8721A0570070095A951 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8711A0570070095A951 /* ClientViewController.swift */; };
+		0AFEB8741A0570160095A951 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8731A0570160095A951 /* BusinessViewController.swift */; };
+		0AFEB8761A05702A0095A951 /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */; };
 		0AFEC6111A018D8200B1B823 /* ProfileDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6101A018D8200B1B823 /* ProfileDesign.swift */; };
 		0AFEC6131A019A6800B1B823 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6121A019A6800B1B823 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +76,9 @@
 		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
 		0ADB9E931A006010007F5539 /* json-swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "json-swift.swift"; path = "../json-swift.swift"; sourceTree = "<group>"; };
+		0AFEB8711A0570070095A951 /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
+		0AFEB8731A0570160095A951 /* BusinessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
+		0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewController.swift; sourceTree = "<group>"; };
 		0AFEC6101A018D8200B1B823 /* ProfileDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDesign.swift; sourceTree = "<group>"; };
 		0AFEC6121A019A6800B1B823 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,9 +196,12 @@
 			children = (
 				0A4C374E19DA7198009AD8DD /* ViewController.swift */,
 				0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */,
+				0AFEB8711A0570070095A951 /* ClientViewController.swift */,
 				0A01A77519DF7D6F0026B7E4 /* ProfileViewController.swift */,
+				0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */,
 				0A4C375519DA726B009AD8DD /* SettingsViewController.swift */,
 				0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */,
+				0AFEB8731A0570160095A951 /* BusinessViewController.swift */,
 				0AFEC6121A019A6800B1B823 /* RegisterViewController.swift */,
 				0A01075019F1C45B004C2056 /* LoginViewController.swift */,
 			);
@@ -313,6 +322,7 @@
 				0A01A7A419E38FAF0026B7E4 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				0A01A7A319E38FAF0026B7E4 /* NSArray+PureLayout.m in Sources */,
 				0A01A7BF19E4D97C0026B7E4 /* CustomCellProfileBanner.swift in Sources */,
+				0AFEB8721A0570070095A951 /* ClientViewController.swift in Sources */,
 				0A01A7A219E38FAF0026B7E4 /* ALView+PureLayout.m in Sources */,
 				0A01A7C519EC266F0026B7E4 /* CircleView.swift in Sources */,
 				0A01A77719DF7D6F0026B7E4 /* ProfileViewController.swift in Sources */,
@@ -321,9 +331,11 @@
 				0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */,
 				0A01A7BD19E4D5410026B7E4 /* CustomCellProfile.swift in Sources */,
 				0A01075119F1C45B004C2056 /* LoginViewController.swift in Sources */,
+				0AFEB8761A05702A0095A951 /* EmployeeViewController.swift in Sources */,
 				0A01A79219E330A70026B7E4 /* CustomCell.swift in Sources */,
 				0A01A7AF19E4A0000026B7E4 /* CustomDesign.swift in Sources */,
 				0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */,
+				0AFEB8741A0570160095A951 /* BusinessViewController.swift in Sources */,
 				0AFEC6111A018D8200B1B823 /* ProfileDesign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
