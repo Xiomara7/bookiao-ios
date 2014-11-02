@@ -6,10 +6,6 @@
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
-import Foundation
-import UIKit
-import CoreData
-
 class RegisterViewController: UIViewController {
     var customDesign = CustomDesign()
     
@@ -42,14 +38,23 @@ class RegisterViewController: UIViewController {
         business.tabBarItem = businessIcon
         
         let controllers = [business, employee, client]
-        tabBar.viewControllers = controllers
+        self.tabBarController?.viewControllers = controllers
         
     }
     
-    func buttonAction(sender:UIButton!)
-    {
-        println("Button tapped")
-        
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
+        if item == 0{
+            println("hello")
+        }
+        if item == 1{
+            println(" knkj")
+        }
+        if item == 2{
+            println("kjsn")
+        }
+        if item == 3{
+            println("kdkls")
+        }
     }
     
     override func didReceiveMemoryWarning() {

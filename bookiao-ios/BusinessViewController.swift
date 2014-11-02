@@ -6,9 +6,6 @@
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
-import Foundation
-import UIKit
-import CoreData
 
 class BusinessViewController: UIViewController {
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
@@ -108,6 +105,11 @@ class BusinessViewController: UIViewController {
 
         
         // Do any additional setup after loading the view.
+    }
+    
+    func buttonAction(sender:UIButton!) {
+        println("Button tapped")
+        
     }
     
     override func didReceiveMemoryWarning() {

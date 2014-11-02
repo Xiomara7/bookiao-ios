@@ -13,9 +13,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var tabBar: UITabBarController?
-    var navigationController: UINavigationController?
-    var viewCont: UIViewController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 //        let customDesign = CustomDesign()

@@ -6,10 +6,6 @@
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
-import Foundation
-import UIKit
-import CoreData
-
 class EmployeeViewController: UIViewController {
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -113,5 +109,10 @@ class EmployeeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func buttonAction(sender:UIButton!) {
+        println("Button tapped")
+        
     }
 }
