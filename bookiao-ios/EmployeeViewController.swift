@@ -27,7 +27,7 @@ class EmployeeViewController: UIViewController {
         placetxtField.tintColor = UIColor.grayColor()
         placetxtField.font = UIFont.systemFontOfSize(14.0)
         placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "Negocio"
+        placetxtField.placeholder = "ESTE ES EMPLOYEE"
         
         var emailtxtField: UITextField = UITextField()
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)

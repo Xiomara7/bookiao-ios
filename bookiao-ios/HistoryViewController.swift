@@ -24,7 +24,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         super.init(coder: aDecoder)
     }
     
-    override func loadView() {
+    override func viewDidLoad() {
+    
         self.view = UIView(frame: CGRectMake(0.0, 0.0, 330.0, 530.0))
         self.view.backgroundColor = UIColor.whiteColor()
         
@@ -37,11 +38,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
         self.view.addSubview(tableView)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.updateDataSource()
     }
     
     // MARK: - Private Methods

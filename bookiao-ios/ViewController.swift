@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let customDesign = CustomDesign()
         let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
         let history = HistoryViewController(nibName: nil, bundle: nil)
@@ -35,7 +34,7 @@ class ViewController: UIViewController {
         history.tabBarItem = historyTextLabel
         profile.tabBarItem = settingsTextLabel
         
-        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -500))
+        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
         history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
         profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
         
@@ -43,10 +42,14 @@ class ViewController: UIViewController {
         var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
         var img = UIImage(named: "post")
-        var postButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapConnect"))
+        let postButton = UIBarButtonItem(image: UIImage(named: "post"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapConnect"))
+        let navBar = UINavigationController(rootViewController: tabBar)
+        navBar.navigationItem.rightBarButtonItem = postButton
+        navBar.navigationBar.backgroundColor = customDesign.UIColorFromRGB(0x00B287)
+        
         tabBar.viewControllers = controllers
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
-        
+        self.view.addSubview(navBar.view)
         self.view.addSubview(tabBar.view)
 
         // Do any additional setup after loading the view.
@@ -57,5 +60,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
+        println(item)
+    }
 
 }

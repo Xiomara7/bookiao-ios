@@ -27,7 +27,7 @@ class BusinessViewController: UIViewController {
         placetxtField.tintColor = UIColor.grayColor()
         placetxtField.font = UIFont.systemFontOfSize(14.0)
         placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "Negocio"
+        placetxtField.placeholder = "ESTE ES BUSINESS"
         
         var emailtxtField: UITextField = UITextField()
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
@@ -85,13 +85,13 @@ class BusinessViewController: UIViewController {
         endTimetxtField.textAlignment = .Center
         endTimetxtField.placeholder = "Cierra"
         
-        let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        registroButton.frame = CGRectMake(20, 440, 275, 45)
-        registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
-        registroButton.tintColor = UIColor.whiteColor()
-        registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        var rButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        rButton.frame = CGRectMake(20, 440, 275, 45)
+        rButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
+        rButton.tintColor = UIColor.whiteColor()
+        rButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
+        rButton.setTitle("Registrarme", forState: UIControlState.Normal)
+        rButton.addTarget(self, action: "buttonActionBusiness:", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(emailtxtField)
         self.view.addSubview(placetxtField)
@@ -99,7 +99,7 @@ class BusinessViewController: UIViewController {
         self.view.addSubview(startTimetxtField)
         self.view.addSubview(localTxtField)
         self.view.addSubview(endTimetxtField)
-        self.view.addSubview(registroButton)
+        self.view.addSubview(rButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
 
@@ -107,7 +107,7 @@ class BusinessViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func buttonAction(sender:UIButton!) {
+    func buttonActionBusiness(sender:UIButton!) {
         println("Button tapped")
         
     }

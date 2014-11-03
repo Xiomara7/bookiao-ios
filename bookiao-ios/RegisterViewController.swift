@@ -21,40 +21,30 @@ class RegisterViewController: UIViewController {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
         
-        let tabBar = UITabBarController()
+        var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         
-        let client   = ClientViewController(nibName: nil, bundle: nil)
-        let employee = EmployeeViewController(nibName: nil, bundle: nil)
-        let business = BusinessViewController(nibName: nil, bundle: nil)
+        var client   = ClientViewController(nibName: nil, bundle: nil)
+        var employee = EmployeeViewController(nibName: nil, bundle: nil)
+        var business = BusinessViewController(nibName: nil, bundle: nil)
         
-        let clientIcon = UITabBarItem(title: "cliente", image: UIImage(named: "cliente.png"), tag: 0)
-        let employeeIcon = UITabBarItem(title: "empleado", image: UIImage(named: "empleado.png"), tag: 1)
-        let businessIcon = UITabBarItem(title: "negocio", image: UIImage(named: "negocio.png"), tag: 2)
+        var clientIcon = UITabBarItem(title: "cliente", image: UIImage(named: "cliente.png"), tag: 0)
+        var employeeIcon = UITabBarItem(title: "empleado", image: UIImage(named: "empleado.png"), tag: 1)
+        var businessIcon = UITabBarItem(title: "negocio", image: UIImage(named: "negocio.png"), tag: 2)
         
         client.tabBarItem = clientIcon
         employee.tabBarItem = employeeIcon
         business.tabBarItem = businessIcon
         
-        let controllers = [business, employee, client]
-        self.tabBarController?.viewControllers = controllers
+        var controllers = [business, employee, client]
+        tabBar.viewControllers = controllers
+        self.view.addSubview(tabBar.view)
         
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
-        if item == 0{
-            println("hello")
-        }
-        if item == 1{
-            println(" knkj")
-        }
-        if item == 2{
-            println("kjsn")
-        }
-        if item == 3{
-            println("kdkls")
-        }
+        println(item)
     }
     
     override func didReceiveMemoryWarning() {
