@@ -85,9 +85,9 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         cell.titleLabel.text = self.names[indexPath.row]
         cell.subtitleLabel.text = "la cita comienza en \(time[indexPath.row]) minutos"
         
-        cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
-        cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
-        cell.textLabel!.numberOfLines = 0
+        cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cell.textLabel.font = UIFont.systemFontOfSize(20.0)
+        cell.textLabel.numberOfLines = 0
         
         cell.selectionStyle = .Default
         cell.accessoryType = .None

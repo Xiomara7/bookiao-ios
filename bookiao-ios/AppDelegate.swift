@@ -15,32 +15,72 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        var login   = LoginViewController(nibName: nil, bundle: nil)
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        if let window = window {
+            var login   = LoginViewController(nibName: nil, bundle: nil)
+            
+            let customDesign = CustomDesign()
+            let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
+            let history = HistoryViewController(nibName: nil, bundle: nil)
+            let profile = ProfileViewController(nibName: nil, bundle: nil)
+            let citasTextLabel    = UITabBarItem(title: "", image: UIImage(named: "booking.png"), tag: 0)
+            let historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
+            let settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
+            
+            appointments.tabBarItem = citasTextLabel
+            history.tabBarItem = historyTextLabel
+            profile.tabBarItem = settingsTextLabel
+            
+            appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
+            history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
+            profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
+            
+            let controllers = [appointments, history, profile]
+            var tabBar = UITabBarController()
+            var tabAppearence = UITabBar.appearance()
+            tabAppearence.tintColor = customDesign.UIColorFromRGB(0x00B287)
+            tabBar.viewControllers  = controllers
+            window.backgroundColor = UIColor.whiteColor()
+            window.makeKeyAndVisible()
+            window.rootViewController = login
+        }
         
-        let customDesign = CustomDesign()
-        let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
-        let history = HistoryViewController(nibName: nil, bundle: nil)
-        let profile = ProfileViewController(nibName: nil, bundle: nil)
-        let citasTextLabel    = UITabBarItem(title: "", image: UIImage(named: "booking.png"), tag: 0)
-        let historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
-        let settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
+        /*
+            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            if let window = window {
+                window.backgroundColor = UIColor.whiteColor()
+                window.makeKeyAndVisible()
+                window.rootViewController = LoginViewController(nibName: nil, bundle: nil)
+            }
+//        let customDesign = CustomDesign()
+//        let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
+//        let history = HistoryViewController(nibName: nil, bundle: nil)
+//        let profile = ProfileViewController(nibName: nil, bundle: nil)
+//        let citasTextLabel    = UITabBarItem(title: "", image: UIImage(named: "booking.png"), tag: 0)
+//        let historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
+//        let settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
+//        
+//        appointments.tabBarItem = citasTextLabel
+//        history.tabBarItem = historyTextLabel
+//        profile.tabBarItem = settingsTextLabel
+//    
+//        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -500))
+//        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
+//        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
+//        
+//        let controllers = [appointments, history, profile]
+//        var tabBar = UITabBarController()
+//        var tabBarAppearance = UITabBar.appearance()
+//        var img = UIImage(named: "post")
+//        var postButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapConnect"))
+//        tabBar.viewControllers = controllers
+//        tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
+//        //tabBarAppearance.backgroundColor = UIColor.blackColor()
+//        
+//        let navigationController = UINavigationController(rootViewController:tabBar)
+//        navigationController.navigationItem.rightBarButtonItem = postButton
         
-        appointments.tabBarItem = citasTextLabel
-        history.tabBarItem = historyTextLabel
-        profile.tabBarItem = settingsTextLabel
-        
-        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
-        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
-        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
-        
-        let controllers = [appointments, history, profile]
-        var tabBar = UITabBarController()
-        var tabAppearence = UITabBar.appearance()
-        tabAppearence.tintColor = customDesign.UIColorFromRGB(0x00B287)
-        tabBar.viewControllers  = controllers
-        
-        self.window?.rootViewController = tabBar
-        
+    */
         return true
     }
     
@@ -83,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("test", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)
+        return NSManagedObjectModel(contentsOfURL: modelURL)!
         }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
@@ -100,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError.errorWithDomain("YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
