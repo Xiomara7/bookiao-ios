@@ -14,6 +14,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     var tableView: UITableView!
     var dataSource: [[String: String]] = []
     var names = ["Christian Rodríguez", "Alex Santos", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
+    var time = ["5", "10", "15", "20", "25"]
     var customDesign = CustomDesign()
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
@@ -26,19 +27,20 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
     
-        self.view = UIView(frame: CGRectMake(0.0, 0.0, 330.0, 530.0))
+        self.view = UIView(frame: self.view.bounds)
         self.view.backgroundColor = UIColor.whiteColor()
         
         tableView = UITableView(frame: self.view.bounds, style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = customDesign.UIColorFromRGB(0x00B287)
+        tableView.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         tableView.headerViewForSection(0)?.tintColor = UIColor.whiteColor()
         
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
         self.view.addSubview(tableView)
     }
+
     
     // MARK: - Private Methods
     
@@ -61,7 +63,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 3
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -79,8 +81,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let check = UIImage(named: "check.png")
         
-//        cell.titleLabel.text = self.names[indexPath.row]
-//        cell.subtitleLabel.text = dictionary["detail"]
+        cell.titleLabel.text = names[indexPath.row]
+        cell.subtitleLabel.text = "Hace \(time[indexPath.row]) minutos"
         
         cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel!.font = UIFont.systemFontOfSize(20.0)

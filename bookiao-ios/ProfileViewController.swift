@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         
         var nametxtField: UITextField = UITextField()
         var nameApp = UITextField.appearance()
-        nametxtField.frame = CGRectMake(20, 205, 275, 40)
+        nametxtField.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
         nametxtField.backgroundColor = UIColor.whiteColor()
         nametxtField.tintColor = UIColor.grayColor()
         nametxtField.font = UIFont.systemFontOfSize(14.0)
@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
         nametxtField.placeholder = "Nombre"
         
         var placetxtField: UITextField = UITextField()
-        placetxtField.frame = CGRectMake(20, 260, 275, 40)
+        placetxtField.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
         placetxtField.backgroundColor = UIColor.whiteColor()
         placetxtField.tintColor = UIColor.grayColor()
         placetxtField.font = UIFont.systemFontOfSize(14.0)
@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
         placetxtField.placeholder = "Negocio"
         
         var positiontxtField: UITextField = UITextField()
-        positiontxtField.frame = CGRectMake(20, 315, 275, 40)
+        positiontxtField.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
         positiontxtField.backgroundColor = UIColor.whiteColor()
         positiontxtField.tintColor = UIColor.grayColor()
         positiontxtField.font = UIFont.systemFontOfSize(14.0)
@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController {
         positiontxtField.placeholder = "Posición"
         
         var startTimetxtField: UITextField = UITextField()
-        startTimetxtField.frame = CGRectMake(20, 370, 120, 40)
+        startTimetxtField.frame = CGRectMake(20, 370, self.view.bounds.width / 2 - 30 , 40)
         startTimetxtField.backgroundColor = UIColor.whiteColor()
         startTimetxtField.tintColor = UIColor.grayColor()
         startTimetxtField.font = UIFont.systemFontOfSize(14.0)
@@ -60,7 +60,7 @@ class ProfileViewController: UIViewController {
         startTimetxtField.placeholder = "Entrada"
         
         var endTimetxtField: UITextField = UITextField()
-        endTimetxtField.frame = CGRectMake(175, 370, 120, 40)
+        endTimetxtField.frame = CGRectMake(self.view.bounds.width / 2 + 10, 370, self.view.bounds.width / 2 - 30 , 40)
         endTimetxtField.backgroundColor = UIColor.whiteColor()
         endTimetxtField.font = UIFont.systemFontOfSize(14.0)
         endTimetxtField.tintColor = UIColor.grayColor()
@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController {
         endTimetxtField.placeholder = "Salida"
         
         let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        registroButton.frame = CGRectMake(20, 440, 275, 45)
+        registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.tintColor = UIColor.whiteColor()
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)

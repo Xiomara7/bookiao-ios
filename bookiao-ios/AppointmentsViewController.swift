@@ -15,6 +15,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     var dataSource: [[String: String]] = []
     var names = ["Alex Santos", "Christian Rodríguez", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
     var prices = ["$14", "$8", "$22", "$12", "$10"]
+    var time = ["5", "10", "15", "20", "25"]
     var customDesign = CustomDesign()
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
@@ -27,7 +28,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
     
-        self.view = UIView(frame: CGRectMake(0.0, 0.0, 330.0, 530.0))
+        self.view = UIView(frame: self.view.bounds)
         self.view.backgroundColor = UIColor.whiteColor()
         let tableAppearance = UITableView.appearance()
         
@@ -78,10 +79,11 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
             cell = CustomCell(reuseIdentifier: "Cell")
         }
         
-        let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
+        let cellFrame = self.view.bounds
         
         cell.priceLabel.text = self.prices[indexPath.row]
         cell.titleLabel.text = self.names[indexPath.row]
+        cell.subtitleLabel.text = "la cita comienza en \(time[indexPath.row]) minutos"
         
         cell.textLabel!.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel!.font = UIFont.systemFontOfSize(20.0)
