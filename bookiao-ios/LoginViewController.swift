@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         nameLabel.tintColor = UIColor.whiteColor()
         nameLabel.titleLabel?.font = UIFont.boldSystemFontOfSize(40.0)
         nameLabel.setTitle("Bookiao", forState: UIControlState.Normal)
-        nameLabel.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        nameLabel.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
         var emailtxtField: UITextField = UITextField()
         var emailApp = UITextField.appearance()
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
         ingresoButton.tintColor = UIColor.whiteColor()
         ingresoButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
         ingresoButton.setTitle("Ingreso", forState: UIControlState.Normal)
-        ingresoButton.addTarget(self, action: "buttonActionLogin:", forControlEvents: UIControlEvents.TouchUpInside)
+        ingresoButton.addTarget(self, action: "buttonActionLogin", forControlEvents: UIControlEvents.TouchUpInside)
         
         let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
         registroButton.tintColor = UIColor.whiteColor()
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
         registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonActionRegister:", forControlEvents: UIControlEvents.TouchUpInside)
+        registroButton.addTarget(self, action: "buttonActionRegister", forControlEvents: UIControlEvents.TouchUpInside)
 
         let nuevoLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         nuevoLabel.frame = CGRectMake(20, 390, self.view.bounds.width - 40, 40)
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
         nuevoLabel.tintColor = UIColor.whiteColor()
         nuevoLabel.titleLabel?.font = UIFont.boldSystemFontOfSize(14.0)
         nuevoLabel.setTitle("__________   Eres Nuevo?   __________", forState: UIControlState.Normal)
-        nuevoLabel.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        nuevoLabel.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(ingresoButton)
         self.view.addSubview(registroButton)
@@ -81,16 +81,16 @@ class LoginViewController: UIViewController {
         self.view.addSubview(nuevoLabel)
     }
     
-    func buttonAction(sender:UIButton!){
+    func buttonAction() {
         println("false button")
     }
     
-    func buttonActionLogin(sender:UIButton!){
+    func buttonActionLogin() {
         let appView = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(appView, animated: true, completion: nil)
     }
     
-    func buttonActionRegister(sender:UIButton!) {
+    func buttonActionRegister() {
         println("Button tapped")
 //        var request = NSMutableURLRequest(URL: NSURL(string: "https://bookiao-api.herokuapp.com/businesses/"))
 //        var session = NSURLSession.sharedSession()

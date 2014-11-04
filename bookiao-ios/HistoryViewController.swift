@@ -30,14 +30,12 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         self.view = UIView(frame: self.view.bounds)
         self.view.backgroundColor = UIColor.whiteColor()
         
-        tableView = UITableView(frame: self.view.bounds, style: .Grouped)
+        tableView = UITableView(frame: CGRectMake(0, -40, self.view.frame.width, self.view.frame.height), style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         tableView.headerViewForSection(0)?.tintColor = UIColor.whiteColor()
-        
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
-        
         self.view.addSubview(tableView)
     }
 
@@ -94,11 +92,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.setNeedsUpdateConstraints()
         
         return cell
-    }
-
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Historial"
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

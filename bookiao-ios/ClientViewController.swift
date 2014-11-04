@@ -7,13 +7,6 @@
 //
 
 class ClientViewController: UIViewController {
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         let customDesign = CustomDesign()
@@ -101,7 +94,6 @@ class ClientViewController: UIViewController {
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
-
         
         // Do any additional setup after loading the view.
     }

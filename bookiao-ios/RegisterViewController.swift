@@ -25,9 +25,9 @@ class RegisterViewController: UIViewController {
         var tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         
-        var client   = ClientViewController(nibName: nil, bundle: nil)
-        var employee = EmployeeViewController(nibName: nil, bundle: nil)
-        var business = BusinessViewController(nibName: nil, bundle: nil)
+        var client   = ClientViewController()
+        var employee = EmployeeViewController()
+        var business = BusinessViewController()
         
         var clientIcon = UITabBarItem(title: "cliente", image: UIImage(named: "cliente.png"), tag: 0)
         var employeeIcon = UITabBarItem(title: "empleado", image: UIImage(named: "empleado.png"), tag: 1)
@@ -37,9 +37,23 @@ class RegisterViewController: UIViewController {
         employee.tabBarItem = employeeIcon
         business.tabBarItem = businessIcon
         
-        var controllers = [business, employee, client]
+        let navBarClient = UINavigationController(rootViewController: client)
+        let navBarEmployee = UINavigationController(rootViewController: employee)
+        let navBarBusiness = UINavigationController(rootViewController: business)
+        
+        let button = UIBarButtonItem(title: "boton", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector("didTap"))
+        navBarBusiness.navigationItem.rightBarButtonItem = button
+        
+        var controllers = [navBarBusiness, navBarEmployee, navBarClient]
         tabBar.viewControllers = controllers
-        self.view.addSubview(tabBar.view)
+        let application = UIApplication.sharedApplication().delegate as AppDelegate
+        application.window.rootViewController = tabBar
+
+        
+        
+    }
+    
+    func didTap() {
         
     }
     

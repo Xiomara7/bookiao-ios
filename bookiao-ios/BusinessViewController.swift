@@ -8,13 +8,6 @@
 
 
 class BusinessViewController: UIViewController {
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         let customDesign = CustomDesign()
@@ -91,7 +84,7 @@ class BusinessViewController: UIViewController {
         rButton.tintColor = UIColor.whiteColor()
         rButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
         rButton.setTitle("Registrarme", forState: UIControlState.Normal)
-        rButton.addTarget(self, action: "buttonActionBusiness:", forControlEvents: UIControlEvents.TouchUpInside)
+        rButton.addTarget(self, action: "buttonActionBusiness", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(emailtxtField)
         self.view.addSubview(placetxtField)
@@ -107,7 +100,7 @@ class BusinessViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func buttonActionBusiness(sender:UIButton!) {
+    func buttonActionBusiness() {
         println("Button tapped")
         
     }

@@ -32,15 +32,14 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         self.view.backgroundColor = UIColor.whiteColor()
         let tableAppearance = UITableView.appearance()
         
-        tableView = UITableView(frame: self.view.bounds, style: .Grouped)
+        tableView = UITableView(frame: CGRectMake(0, -40, self.view.frame.width, self.view.frame.height), style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tintColor = UIColor.whiteColor()
         tableView.showsVerticalScrollIndicator = true
         tableView.separatorColor = UIColor.grayColor()
-        
+        tableView.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
-        
         self.view.addSubview(tableView)
         
     }
