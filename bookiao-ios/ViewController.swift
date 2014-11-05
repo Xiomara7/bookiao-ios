@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -41,19 +42,24 @@ class ViewController: UIViewController {
         history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
         profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
         
-        let navBarAppointment = UINavigationController(rootViewController: appointments)
-        let navBarHistory = UINavigationController(rootViewController: history)
-        let navBarprofile = UINavigationController(rootViewController: profile)
-        
-        let controllers = [navBarAppointment, navBarHistory, navBarprofile]
+        let controllers = [appointments, history, profile]
         
         let tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         tabBar.viewControllers = controllers
-
+    
+        let button = UIBarButtonItem(image: UIImage(named: "post.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
+        let navBar = UINavigationController(rootViewController: tabBar)
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
+        navBar.tabBarController?.tabBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
+        navBar.navigationBar.backgroundColor = UIColor.blackColor()
+        navBar.navigationItem.rightBarButtonItem = button
+        
         let application = UIApplication.sharedApplication().delegate as AppDelegate
-        application.window.rootViewController = tabBar
+        application.window.rootViewController = navBar
         
         // Do any additional setup after loading the view.
     }

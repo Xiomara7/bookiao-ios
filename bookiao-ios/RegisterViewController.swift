@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
+import UIKit
+
 class RegisterViewController: UIViewController {
     var customDesign = CustomDesign()
     
@@ -28,33 +30,31 @@ class RegisterViewController: UIViewController {
         var client   = ClientViewController()
         var employee = EmployeeViewController()
         var business = BusinessViewController()
-        
-        var clientIcon = UITabBarItem(title: "cliente", image: UIImage(named: "cliente.png"), tag: 0)
+        var clientIcon   = UITabBarItem(title: "cliente" , image: UIImage(named: "cliente.png") , tag: 0)
         var employeeIcon = UITabBarItem(title: "empleado", image: UIImage(named: "empleado.png"), tag: 1)
-        var businessIcon = UITabBarItem(title: "negocio", image: UIImage(named: "negocio.png"), tag: 2)
+        var businessIcon = UITabBarItem(title: "negocio" , image: UIImage(named: "negocio.png") , tag: 2)
         
-        client.tabBarItem = clientIcon
         employee.tabBarItem = employeeIcon
         business.tabBarItem = businessIcon
+        client.tabBarItem   = clientIcon
         
-        let navBarClient = UINavigationController(rootViewController: client)
-        let navBarEmployee = UINavigationController(rootViewController: employee)
-        let navBarBusiness = UINavigationController(rootViewController: business)
-        
-        let button = UIBarButtonItem(title: "boton", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector("didTap"))
-        navBarBusiness.navigationItem.rightBarButtonItem = button
-        
-        var controllers = [navBarBusiness, navBarEmployee, navBarClient]
+        let postButton = UIBarButtonItem(image: UIImage(named: "post.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
+        let calendarButton = UIBarButtonItem(image: UIImage(named: "calendar.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
+        var controllers = [business, employee, client]
         tabBar.viewControllers = controllers
+        tabBar.navigationItem.title = "Registro"
+        tabBar.navigationItem.rightBarButtonItem = postButton
+        tabBar.navigationItem.leftBarButtonItem = calendarButton
+        
+        let navBar = UINavigationController(rootViewController: tabBar)
+        navBar.navigationBar.backgroundColor = UIColor.blackColor()
         let application = UIApplication.sharedApplication().delegate as AppDelegate
-        application.window.rootViewController = tabBar
+        application.window.rootViewController = navBar
 
-        
-        
     }
     
-    func didTap() {
-        
+    func tapPost() {
+        println("tappost")
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){

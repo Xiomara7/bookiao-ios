@@ -14,7 +14,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     var tableView: UITableView!
     var dataSource: [[String: String]] = []
     var names = ["Christian Rodríguez", "Alex Santos", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
-    var time = ["5", "10", "15", "20", "25"]
+    var time  = ["5", "10", "15", "20", "25"]
     var customDesign = CustomDesign()
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
@@ -30,7 +30,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         self.view = UIView(frame: self.view.bounds)
         self.view.backgroundColor = UIColor.whiteColor()
         
-        tableView = UITableView(frame: CGRectMake(0, -40, self.view.frame.width, self.view.frame.height), style: .Grouped)
+        tableView = UITableView(frame: CGRectMake(0, 20, self.view.frame.width, self.view.frame.height), style: .Grouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
@@ -38,13 +38,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         self.view.addSubview(tableView)
     }
-
     
     // MARK: - Private Methods
     
     func updateDataSource() {
         var rows = [[String: String]]()
-        
         for index in 0..<5 {
             var sum = (index + 1) * 5 * 6
             rows.append(["text": names[index], "detail": "Hace \(sum) minutos"])
@@ -68,15 +66,13 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let CellIdentifier = "Cell"
         
         var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as CustomCellHistory!
-        if cell == nil {
-
+        if  cell == nil {
             cell = CustomCellHistory(reuseIdentifier: "Cell")
         }
         
 //        let dictionary = dataSource[indexPath.row]
         
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
-        
         let check = UIImage(named: "check.png")
         
         cell.titleLabel.text = names[indexPath.row]
@@ -85,10 +81,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel.font = UIFont.systemFontOfSize(20.0)
         cell.textLabel.numberOfLines = 0
-        
         cell.selectionStyle = .Default
-        cell.accessoryType = .None
-        
+        cell.accessoryType  = .None
         cell.setNeedsUpdateConstraints()
         
         return cell

@@ -19,7 +19,7 @@ class EmployeeViewController: UIViewController {
         placetxtField.tintColor = UIColor.grayColor()
         placetxtField.font = UIFont.systemFontOfSize(14.0)
         placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "ESTE ES EMPLOYEE"
+        placetxtField.placeholder = "Nombre"
         
         var emailtxtField: UITextField = UITextField()
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
@@ -94,13 +94,19 @@ class EmployeeViewController: UIViewController {
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
-        
+
         // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.navigationItem.title = "Empleado"
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
     }
     
     func buttonAction(sender:UIButton!) {

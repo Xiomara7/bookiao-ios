@@ -20,7 +20,7 @@ class BusinessViewController: UIViewController {
         placetxtField.tintColor = UIColor.grayColor()
         placetxtField.font = UIFont.systemFontOfSize(14.0)
         placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "ESTE ES BUSINESS"
+        placetxtField.placeholder = "Nombre"
         
         var emailtxtField: UITextField = UITextField()
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
@@ -103,6 +103,12 @@ class BusinessViewController: UIViewController {
     func buttonActionBusiness() {
         println("Button tapped")
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.navigationItem.title = "Negocio"
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
     }
     
     override func didReceiveMemoryWarning() {
