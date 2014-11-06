@@ -171,7 +171,7 @@ class HTTPrequests {
     }
     
     func createEmployeeRequest(email: NSString, name: NSString, phone: NSString, business: NSString) {
-        let url = NSURL(string: "https://bookiao-api.herokuapp.com/businesses/")
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/employees/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"

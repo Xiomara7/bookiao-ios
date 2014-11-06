@@ -236,10 +236,10 @@
 		0A4C375419DA7228009AD8DD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A344A781A0AE8CA000841A2 /* HTTPrequests.swift */,
 				0A4C374E19DA7198009AD8DD /* ViewController.swift */,
 				0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */,
 				0AFEB8711A0570070095A951 /* ClientViewController.swift */,
-				0A344A781A0AE8CA000841A2 /* HTTPrequests.swift */,
 				0A01A77519DF7D6F0026B7E4 /* ProfileViewController.swift */,
 				0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */,
 				0A4C375519DA726B009AD8DD /* SettingsViewController.swift */,
