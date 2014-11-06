@@ -83,10 +83,14 @@ class ProfileViewController: UIViewController {
         self.view.addSubview(registroButton)
     }
     
-    func buttonAction(sender:UIButton!)
-    {
+    func buttonAction(sender:UIButton!){
         println("Button tapped")
         
+    }
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.navigationItem.title = "Perfil"
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
     }
     
     override func didReceiveMemoryWarning() {

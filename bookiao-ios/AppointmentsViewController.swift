@@ -44,6 +44,11 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarController?.navigationItem.title = "Citas"
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
     // MARK: - Private Methods
     
     func updateDataSource() {

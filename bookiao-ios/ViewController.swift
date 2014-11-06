@@ -15,8 +15,6 @@ class ViewController: UIViewController {
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-        
-
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -50,13 +48,17 @@ class ViewController: UIViewController {
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         tabBar.viewControllers = controllers
     
-        let button = UIBarButtonItem(image: UIImage(named: "post.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
         let navBar = UINavigationController(rootViewController: tabBar)
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         navBar.tabBarController?.tabBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         navBar.navigationBar.backgroundColor = UIColor.blackColor()
-        navBar.navigationItem.rightBarButtonItem = button
+
+        let postButton = UIBarButtonItem(image: UIImage(named: "post.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
+        let calendarButton = UIBarButtonItem(image: UIImage(named: "calendar.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPostCalendar"))
+
+        tabBar.navigationItem.rightBarButtonItem = postButton
+        tabBar.navigationItem.leftBarButtonItem = calendarButton
         
         let application = UIApplication.sharedApplication().delegate as AppDelegate
         application.window.rootViewController = navBar
@@ -67,6 +69,14 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tapPostCalendar() {
+    }
+    
+    func tapPost() {
+        let newAppointment = newAppointmentViewController(nibName: nil, bundle: nil)
+        self.presentViewController(newAppointment, animated: true, completion: nil)
     }
 
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){

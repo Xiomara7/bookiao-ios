@@ -52,10 +52,7 @@ class ClientViewController: UIViewController {
         confirmtxtField.tintColor = UIColor.grayColor()
         confirmtxtField.font = UIFont.systemFontOfSize(14.0)
         confirmtxtField.textAlignment = .Center
-        confirmtxtField.placeholder = "Confirm"
-
-        
-        
+        confirmtxtField.placeholder = "Teléfono"
         
         localTxtField.frame = (CGRectMake(20, 320, 275, 40))
         localTxtField.backgroundColor  = UIColor.whiteColor()
@@ -104,6 +101,7 @@ class ClientViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Cliente"
+
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
     }
@@ -114,38 +112,17 @@ class ClientViewController: UIViewController {
     }
     
     func buttonAction(sender:UIButton!) {
-        let url = NSURL(string: "https://bookiao-api.herokuapp.com/register/")
-        var request = NSMutableURLRequest(URL: url!)
-        var session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        var params = ["email":"test@test.com", "name":"Xio desde el iPhone", "phone_number": "7879413774","password":"09876123"] as Dictionary
-        var err: NSError?
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Application/json", forHTTPHeaderField: "Accept")
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-        println("Response: \(response)")
-        var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-        println("Body: \(strData)\n\n")
-
-        var err: NSError?
-        if !(data == nil) {
-            println(error)
-        }
-        else {
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
-
-                if((err) != nil) {
-                    println(err!.localizedDescription)
-                }
-                else {
-                    var success = json["response"] as? String
-                        println("Succes: \(success)")
-                            dispatch_async(dispatch_get_main_queue(), {
-                            })
-                    }
-                }
-            })
-            task.resume()
-        }
+        let request = HTTPrequests()
+        let name = nameTxtField.text
+        let email = emailtxtField.text
+        let phone = confirmtxtField.text
+        let password = passwordtxtField.text
+        let location = placetxtField.text
+        let manager = ""
+        let business = ""
+        let usuario = "cliente"
+        
+        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
+    }
+    
 }

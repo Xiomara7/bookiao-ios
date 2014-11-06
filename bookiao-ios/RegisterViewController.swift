@@ -38,13 +38,9 @@ class RegisterViewController: UIViewController {
         business.tabBarItem = businessIcon
         client.tabBarItem   = clientIcon
         
-        let postButton = UIBarButtonItem(image: UIImage(named: "post.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
-        let calendarButton = UIBarButtonItem(image: UIImage(named: "calendar.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
         var controllers = [business, employee, client]
         tabBar.viewControllers = controllers
         tabBar.navigationItem.title = "Registro"
-        tabBar.navigationItem.rightBarButtonItem = postButton
-        tabBar.navigationItem.leftBarButtonItem = calendarButton
         
         let navBar = UINavigationController(rootViewController: tabBar)
         navBar.navigationBar.backgroundColor = UIColor.blackColor()
@@ -56,7 +52,10 @@ class RegisterViewController: UIViewController {
     func tapPost() {
         println("tappost")
     }
-    
+
+    func tapPostCalendar() {
+        println("calendar")
+    }
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
         println(item)
     }

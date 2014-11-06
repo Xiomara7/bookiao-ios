@@ -1,13 +1,14 @@
 //
-//  EmployeeViewController.swift
+//  newAppointmentViewController.swift
 //  bookiao-ios
 //
-//  Created by Xiomara on 11/1/14.
+//  Created by Xiomara on 11/5/14.
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
-class EmployeeViewController: UIViewController {
-    
+import Foundation
+
+class newAppointmentViewController: UIViewController {
     var placetxtField: UITextField = UITextField()
     var emailtxtField: UITextField = UITextField()
     var passwordtxtField: UITextField = UITextField()
@@ -16,19 +17,31 @@ class EmployeeViewController: UIViewController {
     var localTxtField: UITextField = UITextField()
     var startTimetxtField: UITextField = UITextField()
     var endTimetxtField: UITextField = UITextField()
-    let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         let customDesign = CustomDesign()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
         
-        placetxtField.frame = CGRectMake(20, 70, 275, 40)
-        placetxtField.backgroundColor = UIColor.whiteColor()
-        placetxtField.tintColor = UIColor.grayColor()
-        placetxtField.font = UIFont.systemFontOfSize(14.0)
-        placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "Nombre"
+        
+        nameTxtField.frame = (CGRectMake(20, 70, 275, 40))
+        nameTxtField.backgroundColor = UIColor.whiteColor()
+        nameTxtField.tintColor = UIColor.grayColor()
+        nameTxtField.font = UIFont.systemFontOfSize(14.0)
+        nameTxtField.textAlignment = .Center
+        nameTxtField.placeholder = "Nombre"
+        
         
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
@@ -51,12 +64,8 @@ class EmployeeViewController: UIViewController {
         confirmtxtField.textAlignment = .Center
         confirmtxtField.placeholder = "Confirm"
         
-        nameTxtField.frame = (CGRectMake(20, 270, 275, 40))
-        nameTxtField.backgroundColor = UIColor.whiteColor()
-        nameTxtField.tintColor = UIColor.grayColor()
-        nameTxtField.font = UIFont.systemFontOfSize(14.0)
-        nameTxtField.textAlignment = .Center
-        nameTxtField.placeholder = "Nombre"
+        
+        
         
         localTxtField.frame = (CGRectMake(20, 320, 275, 40))
         localTxtField.backgroundColor  = UIColor.whiteColor()
@@ -95,33 +104,10 @@ class EmployeeViewController: UIViewController {
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
-
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.tabBarController?.navigationItem.title = "Empleado"
-        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
-    }
-    
-    func buttonAction(sender:UIButton!) {
-        let request = HTTPrequests()
-        let name = nameTxtField.text
-        let email = emailtxtField.text
-        let phone = confirmtxtField.text
-        let password = passwordtxtField.text
-        let location = placetxtField.text
-        let manager = ""
-        let business = ""
-        let usuario = "empleado"
-        
-        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
-        
     }
 }
