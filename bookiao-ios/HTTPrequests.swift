@@ -12,7 +12,7 @@ class HTTPrequests {
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
 
-    func registerRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, usuario: NSString) {
+    func registerRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, bID: Int, usuario: NSString) {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/register/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
@@ -27,7 +27,7 @@ class HTTPrequests {
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             println("Body: \(strData)\n\n")
             println("Authenticating")
-            self.authenticationRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
+            self.authenticationRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, bID: bID, usuario: usuario)
             var err: NSError?
             if !(data == nil) {
                 println(error)
@@ -49,7 +49,7 @@ class HTTPrequests {
         task.resume()
     }
     
-    func authenticationRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, usuario: NSString) {
+    func authenticationRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, bID: Int, usuario: NSString) {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/api-token-auth/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
@@ -76,7 +76,7 @@ class HTTPrequests {
             }
             if usuario == "empleado" {
                 println("is employee")
-                self.createEmployeeRequest(email, name: name, phone: phone, business: business)
+                self.createEmployeeRequest(email, name: name, phone: phone, business: bID)
             }
             var err: NSError?
             if !(data == nil) {
@@ -171,7 +171,7 @@ class HTTPrequests {
         task.resume()
     }
     
-    func createEmployeeRequest(email: NSString, name: NSString, phone: NSString, business: NSString) {
+    func createEmployeeRequest(email: NSString, name: NSString, phone: NSString, business: Int) {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/employees/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()

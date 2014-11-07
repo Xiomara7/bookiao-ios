@@ -112,7 +112,7 @@ class BusinessViewController: UIViewController {
         let business = ""
         let usuario = "negocio"
         
-        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
+        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, bID:0, usuario: usuario)
         let views = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(views, animated: true, completion: nil)
     }

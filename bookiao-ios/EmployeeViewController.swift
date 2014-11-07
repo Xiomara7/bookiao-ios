@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 UPRRP. All rights reserved.
 //
 
-class EmployeeViewController: UIViewController {
-    
+class EmployeeViewController: UIViewController, UIPickerViewDelegate {
+    let titles = ["Arrope", "Tony's Barber", "SJBarber Shop"]
+    let pickerView = UIPickerView()
+    var businessResponse: Int = Int()
     var placetxtField: UITextField = UITextField()
     var emailtxtField: UITextField = UITextField()
     var passwordtxtField: UITextField = UITextField()
@@ -96,6 +98,11 @@ class EmployeeViewController: UIViewController {
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
 
+        
+        pickerView.delegate = self
+        placetxtField.inputView = pickerView
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -112,18 +119,37 @@ class EmployeeViewController: UIViewController {
     
     func buttonAction(sender:UIButton!) {
         let request = HTTPrequests()
-        let name = nameTxtField.text
+        
+        let name  = nameTxtField.text
         let email = emailtxtField.text
         let phone = confirmtxtField.text
         let password = passwordtxtField.text
         let location = localTxtField.text
-        let manager = ""
+        let manager  = ""
         let business = placetxtField.text
-        let usuario = "empleado"
+        let businessID = businessResponse
+        let usuario  = "empleado"
         
-        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
+        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, bID: businessID,  usuario: usuario)
         let views = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(views, animated: true, completion: nil)
-        
+    }
+    // returns the number of 'columns' to display.
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+        return titles.count
+    }
+    
+    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
+        return titles[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        placetxtField.text = titles[row]
+        businessResponse = row + 1
     }
 }
