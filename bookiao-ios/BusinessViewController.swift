@@ -29,42 +29,42 @@ class BusinessViewController: UIViewController {
         placetxtField.tintColor = UIColor.grayColor()
         placetxtField.font = UIFont.systemFontOfSize(14.0)
         placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "Nombre"
+        placetxtField.placeholder = "Nombre del negocio"
         
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
         emailtxtField.tintColor = UIColor.grayColor()
         emailtxtField.font = UIFont.systemFontOfSize(14.0)
         emailtxtField.textAlignment = .Center
-        emailtxtField.placeholder = "Email"
+        emailtxtField.placeholder = "Correo Electrónico"
         
         passwordtxtField.frame = CGRectMake(20, 170, 275, 40)
         passwordtxtField.backgroundColor = UIColor.whiteColor()
         passwordtxtField.tintColor = UIColor.grayColor()
         passwordtxtField.font = UIFont.systemFontOfSize(14.0)
         passwordtxtField.textAlignment = .Center
-        passwordtxtField.placeholder = "Password"
-        
-        confirmtxtField.frame = CGRectMake(20, 220, 275, 40)
-        confirmtxtField.backgroundColor = UIColor.whiteColor()
-        confirmtxtField.tintColor = UIColor.grayColor()
-        confirmtxtField.font = UIFont.systemFontOfSize(14.0)
-        confirmtxtField.textAlignment = .Center
-        confirmtxtField.placeholder = "Confirm"
+        passwordtxtField.placeholder = "Contraseña"
         
         nameTxtField.frame = (CGRectMake(20, 270, 275, 40))
         nameTxtField.backgroundColor = UIColor.whiteColor()
         nameTxtField.tintColor = UIColor.grayColor()
         nameTxtField.font = UIFont.systemFontOfSize(14.0)
         nameTxtField.textAlignment = .Center
-        nameTxtField.placeholder = "Nombre"
+        nameTxtField.placeholder = "Nombre del dueño"
+        
+        confirmtxtField.frame = CGRectMake(20, 220, 275, 40)
+        confirmtxtField.backgroundColor = UIColor.whiteColor()
+        confirmtxtField.tintColor = UIColor.grayColor()
+        confirmtxtField.font = UIFont.systemFontOfSize(14.0)
+        confirmtxtField.textAlignment = .Center
+        confirmtxtField.placeholder = "Número telefónico"
         
         localTxtField.frame = (CGRectMake(20, 320, 275, 40))
         localTxtField.backgroundColor  = UIColor.whiteColor()
         localTxtField.tintColor = UIColor.blackColor()
         localTxtField.font = UIFont.systemFontOfSize(14.0)
         localTxtField.textAlignment = .Center
-        localTxtField.placeholder = "Localización"
+        localTxtField.placeholder = "Dirección"
         
         startTimetxtField.frame = CGRectMake(20, 370, 120, 40)
         startTimetxtField.backgroundColor = UIColor.whiteColor()
@@ -113,7 +113,8 @@ class BusinessViewController: UIViewController {
         let usuario = "negocio"
         
         request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
-        
+        let views = ViewController(nibName: nil, bundle: nil)
+        self.presentViewController(views, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {

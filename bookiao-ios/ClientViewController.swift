@@ -32,48 +32,26 @@ class ClientViewController: UIViewController {
         nameTxtField.textAlignment = .Center
         nameTxtField.placeholder = "Nombre"
 
-    
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
         emailtxtField.tintColor = UIColor.grayColor()
         emailtxtField.font = UIFont.systemFontOfSize(14.0)
         emailtxtField.textAlignment = .Center
-        emailtxtField.placeholder = "Email"
+        emailtxtField.placeholder = "Correo Electrónico"
         
         passwordtxtField.frame = CGRectMake(20, 170, 275, 40)
         passwordtxtField.backgroundColor = UIColor.whiteColor()
         passwordtxtField.tintColor = UIColor.grayColor()
         passwordtxtField.font = UIFont.systemFontOfSize(14.0)
         passwordtxtField.textAlignment = .Center
-        passwordtxtField.placeholder = "Password"
+        passwordtxtField.placeholder = "Contraseña"
         
         confirmtxtField.frame = CGRectMake(20, 220, 275, 40)
         confirmtxtField.backgroundColor = UIColor.whiteColor()
         confirmtxtField.tintColor = UIColor.grayColor()
         confirmtxtField.font = UIFont.systemFontOfSize(14.0)
         confirmtxtField.textAlignment = .Center
-        confirmtxtField.placeholder = "Teléfono"
-        
-        localTxtField.frame = (CGRectMake(20, 320, 275, 40))
-        localTxtField.backgroundColor  = UIColor.whiteColor()
-        localTxtField.tintColor = UIColor.blackColor()
-        localTxtField.font = UIFont.systemFontOfSize(14.0)
-        localTxtField.textAlignment = .Center
-        localTxtField.placeholder = "Localización"
-        
-        startTimetxtField.frame = CGRectMake(20, 370, 120, 40)
-        startTimetxtField.backgroundColor = UIColor.whiteColor()
-        startTimetxtField.tintColor = UIColor.grayColor()
-        startTimetxtField.font = UIFont.systemFontOfSize(14.0)
-        startTimetxtField.textAlignment = .Center
-        startTimetxtField.placeholder = "Abre"
-        
-        endTimetxtField.frame = CGRectMake(175, 370, 120, 40)
-        endTimetxtField.backgroundColor = UIColor.whiteColor()
-        endTimetxtField.font = UIFont.systemFontOfSize(14.0)
-        endTimetxtField.tintColor = UIColor.grayColor()
-        endTimetxtField.textAlignment = .Center
-        endTimetxtField.placeholder = "Cierra"
+        confirmtxtField.placeholder = "Número de teléfono"
         
         registroButton.frame = CGRectMake(20, 440, 275, 45)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
@@ -85,9 +63,6 @@ class ClientViewController: UIViewController {
         self.view.addSubview(emailtxtField)
         self.view.addSubview(placetxtField)
         self.view.addSubview(passwordtxtField)
-        self.view.addSubview(startTimetxtField)
-        self.view.addSubview(localTxtField)
-        self.view.addSubview(endTimetxtField)
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
@@ -117,12 +92,15 @@ class ClientViewController: UIViewController {
         let email = emailtxtField.text
         let phone = confirmtxtField.text
         let password = passwordtxtField.text
-        let location = placetxtField.text
+        let location = ""
         let manager = ""
         let business = ""
         let usuario = "cliente"
         
         request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
+        let views = ViewController(nibName: nil, bundle: nil)
+        self.presentViewController(views, animated: true, completion: nil)
+        
     }
     
 }

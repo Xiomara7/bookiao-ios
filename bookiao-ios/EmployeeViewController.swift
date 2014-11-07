@@ -23,40 +23,40 @@ class EmployeeViewController: UIViewController {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
         
-        placetxtField.frame = CGRectMake(20, 70, 275, 40)
-        placetxtField.backgroundColor = UIColor.whiteColor()
-        placetxtField.tintColor = UIColor.grayColor()
-        placetxtField.font = UIFont.systemFontOfSize(14.0)
-        placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "Nombre"
+        nameTxtField.frame = (CGRectMake(20, 70, 275, 40))
+        nameTxtField.backgroundColor = UIColor.whiteColor()
+        nameTxtField.tintColor = UIColor.grayColor()
+        nameTxtField.font = UIFont.systemFontOfSize(14.0)
+        nameTxtField.textAlignment = .Center
+        nameTxtField.placeholder = "Nombre"
         
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
         emailtxtField.tintColor = UIColor.grayColor()
         emailtxtField.font = UIFont.systemFontOfSize(14.0)
         emailtxtField.textAlignment = .Center
-        emailtxtField.placeholder = "Email"
+        emailtxtField.placeholder = "Correo electrónico"
         
         passwordtxtField.frame = CGRectMake(20, 170, 275, 40)
         passwordtxtField.backgroundColor = UIColor.whiteColor()
         passwordtxtField.tintColor = UIColor.grayColor()
         passwordtxtField.font = UIFont.systemFontOfSize(14.0)
         passwordtxtField.textAlignment = .Center
-        passwordtxtField.placeholder = "Password"
+        passwordtxtField.placeholder = "Contraseña"
         
         confirmtxtField.frame = CGRectMake(20, 220, 275, 40)
         confirmtxtField.backgroundColor = UIColor.whiteColor()
         confirmtxtField.tintColor = UIColor.grayColor()
         confirmtxtField.font = UIFont.systemFontOfSize(14.0)
         confirmtxtField.textAlignment = .Center
-        confirmtxtField.placeholder = "Confirm"
+        confirmtxtField.placeholder = "Número telefónico"
         
-        nameTxtField.frame = (CGRectMake(20, 270, 275, 40))
-        nameTxtField.backgroundColor = UIColor.whiteColor()
-        nameTxtField.tintColor = UIColor.grayColor()
-        nameTxtField.font = UIFont.systemFontOfSize(14.0)
-        nameTxtField.textAlignment = .Center
-        nameTxtField.placeholder = "Nombre"
+        placetxtField.frame = CGRectMake(20, 270, 275, 40)
+        placetxtField.backgroundColor = UIColor.whiteColor()
+        placetxtField.tintColor = UIColor.grayColor()
+        placetxtField.font = UIFont.systemFontOfSize(14.0)
+        placetxtField.textAlignment = .Center
+        placetxtField.placeholder = "Negocio"
         
         localTxtField.frame = (CGRectMake(20, 320, 275, 40))
         localTxtField.backgroundColor  = UIColor.whiteColor()
@@ -122,6 +122,8 @@ class EmployeeViewController: UIViewController {
         let usuario = "empleado"
         
         request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
+        let views = ViewController(nibName: nil, bundle: nil)
+        self.presentViewController(views, animated: true, completion: nil)
         
     }
 }
