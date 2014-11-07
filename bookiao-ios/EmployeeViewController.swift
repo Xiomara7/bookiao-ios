@@ -116,9 +116,9 @@ class EmployeeViewController: UIViewController {
         let email = emailtxtField.text
         let phone = confirmtxtField.text
         let password = passwordtxtField.text
-        let location = placetxtField.text
+        let location = localTxtField.text
         let manager = ""
-        let business = ""
+        let business = placetxtField.text
         let usuario = "empleado"
         
         request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, usuario: usuario)
