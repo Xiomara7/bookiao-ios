@@ -303,12 +303,12 @@ class HTTPrequests {
         task.resume()
     }
     
-    func createAppointment(services: NSArray, employee: Int, client: Int){
+    func createAppointment(services: NSArray, employee: Int, client: Int, date: NSString, theTime: NSString){
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
-        var params = ["id":2, "day":"2014-11-14", "time":"02:00 PM", "services": [1], "employee":1, "client":1] as Dictionary
+        var params = ["day":date, "time": theTime, "services": services, "employee":employee, "client":client] as Dictionary
         var err: NSError?
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

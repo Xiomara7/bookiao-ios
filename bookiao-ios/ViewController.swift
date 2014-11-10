@@ -78,11 +78,10 @@ class ViewController: UIViewController {
     }
     
     func tapPost() {
-//        request.createAppointment(services, employee: 0, client: 0)
         let newAppointment = newAppointmentViewController(nibName: nil, bundle: nil)
-        self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-        self.modalPresentationStyle = .CurrentContext
-        self.presentViewController(newAppointment, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.application.window.rootViewController = newAppointment
+//        self.presentViewController(newAppointment, animated: true, completion: nil)
     }
 
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){

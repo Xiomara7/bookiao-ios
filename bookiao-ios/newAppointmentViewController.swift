@@ -9,15 +9,11 @@
 import Foundation
 
 class newAppointmentViewController: UIViewController {
+    var dateTxtField:  UITextField = UITextField()
+    var timeTxtField:  UITextField = UITextField()
+    var serviceField:  UITextField = UITextField()
+    var employeeField: UITextField = UITextField()
     
-    var placetxtField: UITextField = UITextField()
-    var emailtxtField: UITextField = UITextField()
-    var passwordtxtField: UITextField = UITextField()
-    var confirmtxtField: UITextField = UITextField()
-    var nameTxtField: UITextField = UITextField()
-    var localTxtField: UITextField = UITextField()
-    var startTimetxtField: UITextField = UITextField()
-    var endTimetxtField: UITextField = UITextField()
     let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
@@ -33,75 +29,56 @@ class newAppointmentViewController: UIViewController {
         let customDesign = CustomDesign()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
-        nameTxtField.frame = (CGRectMake(20, 70, 275, 40))
-        nameTxtField.backgroundColor = UIColor.whiteColor()
-        nameTxtField.tintColor = UIColor.grayColor()
-        nameTxtField.font = UIFont.systemFontOfSize(14.0)
-        nameTxtField.textAlignment = .Center
-        nameTxtField.placeholder = "Nombre"
+        dateTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
+        dateTxtField.backgroundColor = UIColor.whiteColor()
+        dateTxtField.tintColor = UIColor.grayColor()
+        dateTxtField.font = UIFont.systemFontOfSize(14.0)
+        dateTxtField.textAlignment = .Center
+        dateTxtField.placeholder = "Fecha"
         
-        emailtxtField.frame = CGRectMake(20, 120, 275, 40)
-        emailtxtField.backgroundColor = UIColor.whiteColor()
-        emailtxtField.tintColor = UIColor.grayColor()
-        emailtxtField.font = UIFont.systemFontOfSize(14.0)
-        emailtxtField.textAlignment = .Center
-        emailtxtField.placeholder = "Email"
+        timeTxtField.frame = CGRectMake(20, 120, self.view.bounds.width - 40, 40)
+        timeTxtField.backgroundColor = UIColor.whiteColor()
+        timeTxtField.tintColor = UIColor.grayColor()
+        timeTxtField.font = UIFont.systemFontOfSize(14.0)
+        timeTxtField.textAlignment = .Center
+        timeTxtField.placeholder = "Hora"
         
-        passwordtxtField.frame = CGRectMake(20, 170, 275, 40)
-        passwordtxtField.backgroundColor = UIColor.whiteColor()
-        passwordtxtField.tintColor = UIColor.grayColor()
-        passwordtxtField.font = UIFont.systemFontOfSize(14.0)
-        passwordtxtField.textAlignment = .Center
-        passwordtxtField.placeholder = "Password"
+        serviceField.frame = CGRectMake(20, 170, self.view.bounds.width - 40, 40)
+        serviceField.backgroundColor = UIColor.whiteColor()
+        serviceField.tintColor = UIColor.grayColor()
+        serviceField.font = UIFont.systemFontOfSize(14.0)
+        serviceField.textAlignment = .Center
+        serviceField.placeholder = "Servicios"
         
-        confirmtxtField.frame = CGRectMake(20, 220, 275, 40)
-        confirmtxtField.backgroundColor = UIColor.whiteColor()
-        confirmtxtField.tintColor = UIColor.grayColor()
-        confirmtxtField.font = UIFont.systemFontOfSize(14.0)
-        confirmtxtField.textAlignment = .Center
-        confirmtxtField.placeholder = "Confirm"
+        employeeField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
+        employeeField.backgroundColor = UIColor.whiteColor()
+        employeeField.tintColor = UIColor.grayColor()
+        employeeField.font = UIFont.systemFontOfSize(14.0)
+        employeeField.textAlignment = .Center
+        employeeField.placeholder = "Empleado"
         
-        localTxtField.frame = (CGRectMake(20, 320, 275, 40))
-        localTxtField.backgroundColor  = UIColor.whiteColor()
-        localTxtField.tintColor = UIColor.blackColor()
-        localTxtField.font = UIFont.systemFontOfSize(14.0)
-        localTxtField.textAlignment = .Center
-        localTxtField.placeholder = "Localización"
-        
-        startTimetxtField.frame = CGRectMake(20, 370, 120, 40)
-        startTimetxtField.backgroundColor = UIColor.whiteColor()
-        startTimetxtField.tintColor = UIColor.grayColor()
-        startTimetxtField.font = UIFont.systemFontOfSize(14.0)
-        startTimetxtField.textAlignment = .Center
-        startTimetxtField.placeholder = "Abre"
-        
-        endTimetxtField.frame = CGRectMake(175, 370, 120, 40)
-        endTimetxtField.backgroundColor = UIColor.whiteColor()
-        endTimetxtField.font = UIFont.systemFontOfSize(14.0)
-        endTimetxtField.tintColor = UIColor.grayColor()
-        endTimetxtField.textAlignment = .Center
-        endTimetxtField.placeholder = "Cierra"
-        
-        registroButton.frame = CGRectMake(20, 440, 275, 45)
+        registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.tintColor = UIColor.whiteColor()
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        registroButton.setTitle("Crear Cita", forState: UIControlState.Normal)
+        registroButton.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(emailtxtField)
-        self.view.addSubview(placetxtField)
-        self.view.addSubview(passwordtxtField)
-        self.view.addSubview(startTimetxtField)
-        self.view.addSubview(localTxtField)
-        self.view.addSubview(endTimetxtField)
+        self.view.addSubview(dateTxtField)
+        self.view.addSubview(serviceField)
+        self.view.addSubview(timeTxtField)
+        self.view.addSubview(employeeField)
         self.view.addSubview(registroButton)
-        self.view.addSubview(confirmtxtField)
-        self.view.addSubview(nameTxtField)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func buttonAction() {
+        let request = HTTPrequests()
+        request.createAppointment([1,2], employee:employeeField.text.toInt()!, client: 1, date: dateTxtField.text, theTime: timeTxtField.text)
+        
     }
 }
