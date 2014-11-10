@@ -53,7 +53,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Historial"
-        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
     }
     

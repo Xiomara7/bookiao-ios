@@ -58,7 +58,7 @@ class newAppointmentViewController: UIViewController {
         employeeField.textAlignment = .Center
         employeeField.placeholder = "Empleado"
         
-        registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
+        registroButton.frame = CGRectMake(20, 300, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.tintColor = UIColor.whiteColor()
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
@@ -80,14 +80,18 @@ class newAppointmentViewController: UIViewController {
         let postButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
         
         self.navigationItem.leftBarButtonItem = postButton
-//        application.window.rootViewController = navBar
-        self.view.addSubview(navBar.view)
+        application.window.rootViewController = navBar
     }
     
     func dismiss() {
         let views = ViewController(nibName: nil, bundle: nil)
-//        application.window.rootViewController = views
         self.presentViewController(views, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationItem.title = "Crear Citas"
+        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
     }
     
     override func didReceiveMemoryWarning() {
@@ -98,6 +102,8 @@ class newAppointmentViewController: UIViewController {
     func buttonAction() {
         let request = HTTPrequests()
         request.createAppointment([1,2], employee:employeeField.text.toInt()!, client: 1, date: dateTxtField.text, theTime: timeTxtField.text)
+        let views = ViewController(nibName: nil, bundle: nil)
+        self.presentViewController(views, animated: true, completion: nil)
         
     }
 }

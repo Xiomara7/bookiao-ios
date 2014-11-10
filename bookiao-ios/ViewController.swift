@@ -74,18 +74,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     func tapPostCalendar() {
     }
     
     func tapPost() {
         let newAppointment = newAppointmentViewController(nibName: nil, bundle: nil)
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//        self.presentViewController(newAppointment, animated: true, completion: nil)
         self.application.window.rootViewController = newAppointment
-
     }
-
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
         println(item)
     }
