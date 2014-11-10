@@ -156,10 +156,11 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return "HELLO"
+        return self.application.titles[row]["name"] as String
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        placetxtField.text = self.application.titles[row]["name"] as String
         businessResponse = row + 1
     }
 }

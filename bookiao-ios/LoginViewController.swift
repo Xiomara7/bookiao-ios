@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
+    let requests = HTTPrequests()
     
     let nameLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     var emailtxtField: UITextField = UITextField()
@@ -76,6 +77,9 @@ class LoginViewController: UIViewController {
         nuevoLabel.titleLabel?.font = UIFont.boldSystemFontOfSize(14.0)
         nuevoLabel.setTitle("__________   Eres Nuevo?   __________", forState: UIControlState.Normal)
         nuevoLabel.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
+    
+        requests.getBusinesses()
+        requests.getClients()
         
         self.view.addSubview(ingresoButton)
         self.view.addSubview(registroButton)
@@ -93,8 +97,7 @@ class LoginViewController: UIViewController {
         let email = emailtxtField.text
         let password = passwdtxtField.text
         
-        let request = HTTPrequests()
-        request.loginRequest(email, password: password, usuario: "tipo de usuario")
+        requests.loginRequest(email, password: password, usuario: "tipo de usuario")
     }
     
     func buttonActionRegister() {

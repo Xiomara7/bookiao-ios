@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow!
     var token : NSString!
     var titles: NSArray! = []
+    var client: NSArray! = []
     var Bcount: Int!
+    var employees: NSArray! = []
+    var appointments: NSArray! = []
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {

@@ -38,9 +38,7 @@ class RegisterViewController: UIViewController {
         client.tabBarItem   = clientIcon
         business.tabBarItem = businessIcon
         employee.tabBarItem = employeeIcon
-        
-        requests.getBusinesses()
-        requests.getClients()
+    
         var controllers = [business, employee, client]
         tabBar.viewControllers = controllers
         tabBar.navigationItem.title = "Registro"
