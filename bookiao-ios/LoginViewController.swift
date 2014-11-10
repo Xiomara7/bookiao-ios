@@ -95,9 +95,6 @@ class LoginViewController: UIViewController {
         
         let request = HTTPrequests()
         request.loginRequest(email, password: password, usuario: "tipo de usuario")
-        
-        let views = ViewController(nibName: nil, bundle: nil)
-        self.presentViewController(views, animated: true, completion: nil)
     }
     
     func buttonActionRegister() {

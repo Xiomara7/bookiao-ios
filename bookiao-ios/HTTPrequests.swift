@@ -97,38 +97,50 @@ class HTTPrequests {
     
     func loginRequest(email: NSString, password: NSString, usuario: NSString) {
         var success = Bool()
+        
+        let login = LoginViewController(nibName: nil, bundle: nil)
+        let views = ViewController(nibName: nil, bundle: nil)
+        
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/api-token-auth/")
+        var params  = ["email":email,"password":password] as Dictionary
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        var params = ["email":email,"password":password] as Dictionary
         var err: NSError?
+        
+        request.HTTPMethod = "POST"
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Application/json", forHTTPHeaderField: "Accept")
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)\n\n")
+            println("Body: \(strData)")
+            var err: NSError?
             var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
             self.application.token = json["token"] as? String
-            println("Succes")
-            if usuario == "cliente" {
-                println("is client")
-            }
-            if usuario == "negocio" {
-                println("is business")
-            }
-            if usuario == "empleado" {
-                println("is employee")
-            }
-            var err: NSError?
-            if((err) != nil) {
-                println(err!.localizedDescription)
-                success = false
+            if(self.application.token == nil) {
+                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                println("Error could not parse JSON: '\(jsonStr)'")
+                login.emailtxtField.text  = ""
+                login.passwdtxtField.text = ""
+            
             }
             else {
-                success = true
+                dispatch_sync(dispatch_get_main_queue(), {
+                    login.presentViewController(views, animated: true, completion: nil)
+                })
+                if usuario == "cliente" {
+                    println("is client")
+                    login.presentViewController(views, animated: true, completion: nil)
+                }
+                if usuario == "negocio" {
+                    println("is business")
+                    login.presentViewController(views, animated: true, completion: nil)
+                }
+                if usuario == "empleado" {
+                    println("is employee")
+                    login.presentViewController(views, animated: true, completion: nil)
+                }
             }
         })
         task.resume()
@@ -277,8 +289,6 @@ class HTTPrequests {
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
             println("Body: \(strData)\n\n")
-//                        employee.titles = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)! as NSDictionary
-//                        println(employee.titles)
             var err: NSError?
             if (data == nil) {
                 println(error)
