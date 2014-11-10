@@ -14,6 +14,9 @@ class LoginViewController: UIViewController {
     
     var customDesign = CustomDesign()
     
+    
+    let application = UIApplication.sharedApplication().delegate as AppDelegate
+    
     let nameLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     var emailtxtField: UITextField = UITextField()
     var passwdtxtField: UITextField = UITextField()
@@ -92,11 +95,9 @@ class LoginViewController: UIViewController {
         
         let request = HTTPrequests()
         request.loginRequest(email, password: password, usuario: "tipo de usuario")
+        
         let views = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(views, animated: true, completion: nil)
-        
-        let appView = ViewController(nibName: nil, bundle: nil)
-        self.presentViewController(appView, animated: true, completion: nil)
     }
     
     func buttonActionRegister() {

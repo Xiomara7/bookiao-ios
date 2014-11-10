@@ -11,6 +11,8 @@ import CoreData
 import Foundation
 
 class ViewController: UIViewController {
+    
+    let request = HTTPrequests()
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -75,8 +77,11 @@ class ViewController: UIViewController {
     }
     
     func tapPost() {
+        let services: NSArray = []
+        request.createAppointment(services, employee: 0, client: 0)
         let newAppointment = newAppointmentViewController(nibName: nil, bundle: nil)
         self.presentViewController(newAppointment, animated: true, completion: nil)
+    
     }
 
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){

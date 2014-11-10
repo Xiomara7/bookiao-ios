@@ -96,6 +96,7 @@ class HTTPrequests {
     }
     
     func loginRequest(email: NSString, password: NSString, usuario: NSString) {
+        var success = Bool()
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/api-token-auth/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
@@ -122,21 +123,15 @@ class HTTPrequests {
                 println("is employee")
             }
             var err: NSError?
-            if !(data == nil) {
-                println(error)
+            if((err) != nil) {
+                println(err!.localizedDescription)
+                success = false
             }
             else {
-                if((err) != nil) {
-                    println(err!.localizedDescription)
-                }
-                else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                    })
-                }
+                success = true
             }
         })
         task.resume()
-        
     }
     
     func createClientRequest(email: NSString, name: NSString, phone: NSString) {
@@ -282,8 +277,8 @@ class HTTPrequests {
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
             println("Body: \(strData)\n\n")
-            //            employee.titles = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)! as NSDictionary
-            //            println(employee.titles)
+//                        employee.titles = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)! as NSDictionary
+//                        println(employee.titles)
             var err: NSError?
             if (data == nil) {
                 println(error)
@@ -292,6 +287,45 @@ class HTTPrequests {
                 println("got Clients")
                 dispatch_async(dispatch_get_main_queue(), {
                 })
+            }
+        })
+        task.resume()
+    }
+    
+    func createAppointment(services: NSArray, employee: Int, client: Int){
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        var params = ["id":2, "day":"2014-11-14", "time":"02:00 PM", "services": [1], "employee":1, "client":1] as Dictionary
+        var err: NSError?
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Application/json", forHTTPHeaderField: "Accept")
+        println("Token \(self.application.token)")
+        request.addValue("JWT \(self.application.token)", forHTTPHeaderField: "Authorization")
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)\n\n")
+            
+            var err: NSError?
+            if !(data == nil) {
+                println(error)
+            }
+            else {
+                var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+                
+                if((err) != nil) {
+                    println(err!.localizedDescription)
+                }
+                else {
+                    var success = json["response"] as? String
+                    println("Succes: \(success)")
+                    println("Employee created")
+                    dispatch_async(dispatch_get_main_queue(), {
+                    })
+                }
             }
         })
         task.resume()
