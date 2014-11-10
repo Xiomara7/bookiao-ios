@@ -110,7 +110,7 @@ class HTTPrequests {
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             println("Body: \(strData)\n\n")
-            
+            let response = self.getBusinesses()
             var err: NSError?
             if !(data == nil) {
                 println(error)
@@ -125,6 +125,7 @@ class HTTPrequests {
                     var success = json["response"] as? String
                     println("Succes: \(success)")
                     println("Client created")
+                    println(response)
                     dispatch_async(dispatch_get_main_queue(), {
                     })
                 }
@@ -208,4 +209,84 @@ class HTTPrequests {
         })
         task.resume()
     }
+    
+    func getBusinesses() -> NSDictionary {
+        var json = NSDictionary()
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/businesses/")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "GET"
+        var params = ["email":"email"] as Dictionary
+        var err: NSError?
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(self.application.token)", forHTTPHeaderField: "Authorization")
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)\n\n")
+            
+            var err: NSError?
+            if !(data == nil) {
+                println(error)
+            }
+            else {
+                json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+                
+                if((err) != nil) {
+                    println(err!.localizedDescription)
+                }
+                else {
+                    var success = json["response"] as? String
+                    println("Succes: \(success)")
+                    println("Business created")
+                    dispatch_async(dispatch_get_main_queue(), {
+                    })
+                }
+            }
+        })
+        task.resume()
+        return json["results"] as NSDictionary!
+    }
+    
+    func getClients() -> NSDictionary {
+        var json = NSDictionary()
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/clients/")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "GET"
+        var err: NSError?
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(self.application.token)", forHTTPHeaderField: "Authorization")
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)\n\n")
+            
+            var err: NSError?
+            if !(data == nil) {
+                println(error)
+            }
+            else {
+                json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+                
+                if((err) != nil) {
+                    println(err!.localizedDescription)
+                }
+                else {
+                    var success = json["response"] as? String
+                    println("Succes: \(success)")
+                    println("Business created")
+                    dispatch_async(dispatch_get_main_queue(), {
+                    })
+                }
+            }
+        })
+        task.resume()
+        return json["results"] as NSDictionary
+    }
+    
+    
 }

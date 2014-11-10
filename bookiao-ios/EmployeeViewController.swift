@@ -7,7 +7,8 @@
 //
 
 class EmployeeViewController: UIViewController, UIPickerViewDelegate {
-    let titles = ["Arrope", "Tony's Barber", "SJBarber Shop"]
+    var titles: NSDictionary!
+    
     let pickerView = UIPickerView()
     var businessResponse: Int = Int()
     var placetxtField: UITextField = UITextField()
@@ -25,63 +26,63 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
         
-        nameTxtField.frame = (CGRectMake(20, 70, 275, 40))
+        nameTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
         nameTxtField.backgroundColor = UIColor.whiteColor()
         nameTxtField.tintColor = UIColor.grayColor()
         nameTxtField.font = UIFont.systemFontOfSize(14.0)
         nameTxtField.textAlignment = .Center
         nameTxtField.placeholder = "Nombre"
         
-        emailtxtField.frame = CGRectMake(20, 120, 275, 40)
+        emailtxtField.frame = CGRectMake(20, 120, self.view.bounds.width - 40, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
         emailtxtField.tintColor = UIColor.grayColor()
         emailtxtField.font = UIFont.systemFontOfSize(14.0)
         emailtxtField.textAlignment = .Center
         emailtxtField.placeholder = "Correo electrónico"
         
-        passwordtxtField.frame = CGRectMake(20, 170, 275, 40)
+        passwordtxtField.frame = CGRectMake(20, 170, self.view.bounds.width - 40, 40)
         passwordtxtField.backgroundColor = UIColor.whiteColor()
         passwordtxtField.tintColor = UIColor.grayColor()
         passwordtxtField.font = UIFont.systemFontOfSize(14.0)
         passwordtxtField.textAlignment = .Center
         passwordtxtField.placeholder = "Contraseña"
         
-        confirmtxtField.frame = CGRectMake(20, 220, 275, 40)
+        confirmtxtField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
         confirmtxtField.backgroundColor = UIColor.whiteColor()
         confirmtxtField.tintColor = UIColor.grayColor()
         confirmtxtField.font = UIFont.systemFontOfSize(14.0)
         confirmtxtField.textAlignment = .Center
         confirmtxtField.placeholder = "Número telefónico"
         
-        placetxtField.frame = CGRectMake(20, 270, 275, 40)
+        placetxtField.frame = CGRectMake(20, 270, self.view.bounds.width - 40, 40)
         placetxtField.backgroundColor = UIColor.whiteColor()
         placetxtField.tintColor = UIColor.grayColor()
         placetxtField.font = UIFont.systemFontOfSize(14.0)
         placetxtField.textAlignment = .Center
         placetxtField.placeholder = "Negocio"
         
-        localTxtField.frame = (CGRectMake(20, 320, 275, 40))
+        localTxtField.frame = (CGRectMake(20, 320, self.view.bounds.width - 40, 40))
         localTxtField.backgroundColor  = UIColor.whiteColor()
         localTxtField.tintColor = UIColor.blackColor()
         localTxtField.font = UIFont.systemFontOfSize(14.0)
         localTxtField.textAlignment = .Center
         localTxtField.placeholder = "Localización"
         
-        startTimetxtField.frame = CGRectMake(20, 370, 120, 40)
+        startTimetxtField.frame = CGRectMake(20, 370, self.view.bounds.width / 2 - 30 , 40)
         startTimetxtField.backgroundColor = UIColor.whiteColor()
         startTimetxtField.tintColor = UIColor.grayColor()
         startTimetxtField.font = UIFont.systemFontOfSize(14.0)
         startTimetxtField.textAlignment = .Center
         startTimetxtField.placeholder = "Abre"
         
-        endTimetxtField.frame = CGRectMake(175, 370, 120, 40)
+        endTimetxtField.frame = CGRectMake(self.view.bounds.width / 2 + 10, 370, self.view.bounds.width / 2 - 30 , 40)
         endTimetxtField.backgroundColor = UIColor.whiteColor()
         endTimetxtField.font = UIFont.systemFontOfSize(14.0)
         endTimetxtField.tintColor = UIColor.grayColor()
         endTimetxtField.textAlignment = .Center
         endTimetxtField.placeholder = "Cierra"
         
-        registroButton.frame = CGRectMake(20, 440, 275, 45)
+        registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.tintColor = UIColor.whiteColor()
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
@@ -115,6 +116,10 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         self.tabBarController?.navigationItem.title = "Empleado"
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
+        
+        let requests = HTTPrequests()
+//        self.titles = requests.getBusinesses()
+        
     }
     
     func buttonAction(sender:UIButton!) {
@@ -145,11 +150,11 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return titles[row]
+        return titles["name"] as String
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
-        placetxtField.text = titles[row]
+        placetxtField.text = titles["name"] as String
         businessResponse = row + 1
     }
 }
