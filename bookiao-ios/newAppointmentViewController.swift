@@ -9,6 +9,7 @@
 import Foundation
 
 class newAppointmentViewController: UIViewController {
+    
     var placetxtField: UITextField = UITextField()
     var emailtxtField: UITextField = UITextField()
     var passwordtxtField: UITextField = UITextField()
@@ -21,7 +22,6 @@ class newAppointmentViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -32,8 +32,6 @@ class newAppointmentViewController: UIViewController {
         super.viewDidLoad()
         let customDesign = CustomDesign()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
-        super.viewDidLoad()
-        
         
         nameTxtField.frame = (CGRectMake(20, 70, 275, 40))
         nameTxtField.backgroundColor = UIColor.whiteColor()
@@ -41,7 +39,6 @@ class newAppointmentViewController: UIViewController {
         nameTxtField.font = UIFont.systemFontOfSize(14.0)
         nameTxtField.textAlignment = .Center
         nameTxtField.placeholder = "Nombre"
-        
         
         emailtxtField.frame = CGRectMake(20, 120, 275, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
@@ -63,9 +60,6 @@ class newAppointmentViewController: UIViewController {
         confirmtxtField.font = UIFont.systemFontOfSize(14.0)
         confirmtxtField.textAlignment = .Center
         confirmtxtField.placeholder = "Confirm"
-        
-        
-        
         
         localTxtField.frame = (CGRectMake(20, 320, 275, 40))
         localTxtField.backgroundColor  = UIColor.whiteColor()

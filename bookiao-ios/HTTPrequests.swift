@@ -127,6 +127,7 @@ class HTTPrequests {
             }
             else {
                 dispatch_sync(dispatch_get_main_queue(), {
+//                    self.application.window.rootViewController = views
                     login.presentViewController(views, animated: true, completion: nil)
                 })
                 if usuario == "cliente" {

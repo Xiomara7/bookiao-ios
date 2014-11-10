@@ -13,6 +13,7 @@ import Foundation
 class ViewController: UIViewController {
     
     let request = HTTPrequests()
+    let application = UIApplication.sharedApplication().delegate as AppDelegate
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -77,11 +78,11 @@ class ViewController: UIViewController {
     }
     
     func tapPost() {
-        let services: NSArray = []
-        request.createAppointment(services, employee: 0, client: 0)
+//        request.createAppointment(services, employee: 0, client: 0)
         let newAppointment = newAppointmentViewController(nibName: nil, bundle: nil)
+        self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        self.modalPresentationStyle = .CurrentContext
         self.presentViewController(newAppointment, animated: true, completion: nil)
-    
     }
 
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
