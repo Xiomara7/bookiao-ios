@@ -15,6 +15,7 @@ class newAppointmentViewController: UIViewController {
     var employeeField: UITextField = UITextField()
     
     let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -69,6 +70,24 @@ class newAppointmentViewController: UIViewController {
         self.view.addSubview(timeTxtField)
         self.view.addSubview(employeeField)
         self.view.addSubview(registroButton)
+        
+        let navBar = UINavigationController(rootViewController: self)
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
+        navBar.tabBarController?.tabBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
+        navBar.navigationBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
+        
+        let postButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
+        
+        self.navigationItem.leftBarButtonItem = postButton
+//        application.window.rootViewController = navBar
+        self.view.addSubview(navBar.view)
+    }
+    
+    func dismiss() {
+        let views = ViewController(nibName: nil, bundle: nil)
+//        application.window.rootViewController = views
+        self.presentViewController(views, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

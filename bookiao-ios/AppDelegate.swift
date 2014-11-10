@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
             var login = LoginViewController(nibName: nil, bundle: nil)
-    
+            
             self.window.backgroundColor = UIColor.whiteColor()
             self.window.rootViewController = login
             self.window.makeKeyAndVisible()

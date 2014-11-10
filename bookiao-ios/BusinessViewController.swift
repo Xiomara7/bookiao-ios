@@ -119,7 +119,7 @@ class BusinessViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Negocio"
-        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
     }
     
