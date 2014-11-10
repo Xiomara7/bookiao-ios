@@ -30,14 +30,17 @@ class RegisterViewController: UIViewController {
         var client   = ClientViewController()
         var employee = EmployeeViewController()
         var business = BusinessViewController()
+        var requests = HTTPrequests()
         var clientIcon   = UITabBarItem(title: "cliente" , image: UIImage(named: "cliente.png") , tag: 0)
         var employeeIcon = UITabBarItem(title: "empleado", image: UIImage(named: "empleado.png"), tag: 1)
         var businessIcon = UITabBarItem(title: "negocio" , image: UIImage(named: "negocio.png") , tag: 2)
         
-        employee.tabBarItem = employeeIcon
-        business.tabBarItem = businessIcon
         client.tabBarItem   = clientIcon
+        business.tabBarItem = businessIcon
+        employee.tabBarItem = employeeIcon
         
+        requests.getBusinesses()
+        requests.getClients()
         var controllers = [business, employee, client]
         tabBar.viewControllers = controllers
         tabBar.navigationItem.title = "Registro"

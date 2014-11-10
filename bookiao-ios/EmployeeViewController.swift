@@ -7,8 +7,17 @@
 //
 
 class EmployeeViewController: UIViewController, UIPickerViewDelegate {
-    var titles: NSDictionary!
+    let application = UIApplication.sharedApplication().delegate as AppDelegate
     
+    class Singleton {
+        class var sharedInstance : Singleton {
+            struct Static {
+                static let instance : Singleton = Singleton()
+            }
+            return Static.instance
+        }
+    }
+
     let pickerView = UIPickerView()
     var businessResponse: Int = Int()
     var placetxtField: UITextField = UITextField()
@@ -24,6 +33,7 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     override func viewDidLoad() {
         let customDesign = CustomDesign()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
+    
         super.viewDidLoad()
         
         nameTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
@@ -99,12 +109,11 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
 
-        
         pickerView.delegate = self
         placetxtField.inputView = pickerView
         
-        
         // Do any additional setup after loading the view.
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,9 +125,6 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         self.tabBarController?.navigationItem.title = "Empleado"
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
-        
-        let requests = HTTPrequests()
-//        self.titles = requests.getBusinesses()
         
     }
     
@@ -146,15 +152,14 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return titles.count
+        return self.application.Bcount
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return titles["name"] as String
+        return "HELLO"
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
-        placetxtField.text = titles["name"] as String
         businessResponse = row + 1
     }
 }

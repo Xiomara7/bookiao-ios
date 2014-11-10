@@ -14,6 +14,13 @@ class LoginViewController: UIViewController {
     
     var customDesign = CustomDesign()
     
+    let nameLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    var emailtxtField: UITextField = UITextField()
+    var passwdtxtField: UITextField = UITextField()
+    let ingresoButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let nuevoLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -26,7 +33,6 @@ class LoginViewController: UIViewController {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0x224656)
         super.viewDidLoad()
         
-        let nameLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         nameLabel.frame = CGRectMake(self.view.bounds.width / 12, 70, self.view.bounds.width - 40, 40)
         nameLabel.backgroundColor = customDesign.UIColorFromRGB(0x224656)
         nameLabel.tintColor = UIColor.whiteColor()
@@ -34,7 +40,6 @@ class LoginViewController: UIViewController {
         nameLabel.setTitle("Bookiao", forState: UIControlState.Normal)
         nameLabel.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
-        var emailtxtField: UITextField = UITextField()
         var emailApp = UITextField.appearance()
         emailtxtField.frame = CGRectMake(20, 160, self.view.bounds.width - 40, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
@@ -42,14 +47,12 @@ class LoginViewController: UIViewController {
         emailtxtField.textAlignment = .Center
         emailtxtField.placeholder = "Correo electrónico"
         
-        var passwdtxtField: UITextField = UITextField()
         passwdtxtField.frame = CGRectMake(20, 215, self.view.bounds.width - 40, 40)
         passwdtxtField.backgroundColor = UIColor.whiteColor()
         passwdtxtField.tintColor = UIColor.grayColor()
         passwdtxtField.textAlignment = .Center
         passwdtxtField.placeholder = "Contraseña"
         
-        let ingresoButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         ingresoButton.frame = CGRectMake(20, 290, self.view.bounds.width - 40, 40)
         ingresoButton.backgroundColor = customDesign.UIColorFromRGB(0x00B287)
         ingresoButton.tintColor = UIColor.whiteColor()
@@ -57,7 +60,6 @@ class LoginViewController: UIViewController {
         ingresoButton.setTitle("Ingreso", forState: UIControlState.Normal)
         ingresoButton.addTarget(self, action: "buttonActionLogin", forControlEvents: UIControlEvents.TouchUpInside)
         
-        let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.tintColor = UIColor.whiteColor()
@@ -65,7 +67,6 @@ class LoginViewController: UIViewController {
         registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonActionRegister", forControlEvents: UIControlEvents.TouchUpInside)
 
-        let nuevoLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         nuevoLabel.frame = CGRectMake(20, 390, self.view.bounds.width - 40, 40)
         nuevoLabel.backgroundColor = customDesign.UIColorFromRGB(0x224656)
         nuevoLabel.tintColor = UIColor.whiteColor()
@@ -86,6 +87,14 @@ class LoginViewController: UIViewController {
     }
     
     func buttonActionLogin() {
+        let email = emailtxtField.text
+        let password = passwdtxtField.text
+        
+        let request = HTTPrequests()
+        request.loginRequest(email, password: password, usuario: "tipo de usuario")
+        let views = ViewController(nibName: nil, bundle: nil)
+        self.presentViewController(views, animated: true, completion: nil)
+        
         let appView = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(appView, animated: true, completion: nil)
     }

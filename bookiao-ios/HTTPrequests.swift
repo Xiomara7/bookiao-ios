@@ -11,7 +11,7 @@ import Foundation
 class HTTPrequests {
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
-
+    
     func registerRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, bID: Int, usuario: NSString) {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/register/")
         var request = NSMutableURLRequest(URL: url!)
@@ -95,6 +95,50 @@ class HTTPrequests {
         task.resume()
     }
     
+    func loginRequest(email: NSString, password: NSString, usuario: NSString) {
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/api-token-auth/")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        var params = ["email":email,"password":password] as Dictionary
+        var err: NSError?
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Application/json", forHTTPHeaderField: "Accept")
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)\n\n")
+            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+            self.application.token = json["token"] as? String
+            println("Succes")
+            if usuario == "cliente" {
+                println("is client")
+            }
+            if usuario == "negocio" {
+                println("is business")
+            }
+            if usuario == "empleado" {
+                println("is employee")
+            }
+            var err: NSError?
+            if !(data == nil) {
+                println(error)
+            }
+            else {
+                if((err) != nil) {
+                    println(err!.localizedDescription)
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                    })
+                }
+            }
+        })
+        task.resume()
+        
+    }
+    
     func createClientRequest(email: NSString, name: NSString, phone: NSString) {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/clients/")
         var request = NSMutableURLRequest(URL: url!)
@@ -110,7 +154,6 @@ class HTTPrequests {
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             println("Body: \(strData)\n\n")
-            let response = self.getBusinesses()
             var err: NSError?
             if !(data == nil) {
                 println(error)
@@ -210,83 +253,48 @@ class HTTPrequests {
         task.resume()
     }
     
-    func getBusinesses() -> NSDictionary {
-        var json = NSDictionary()
+    func getBusinesses() {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/businesses/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "GET"
-        var params = ["email":"email"] as Dictionary
         var err: NSError?
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Application/json", forHTTPHeaderField: "Accept")
-        request.addValue("JWT \(self.application.token)", forHTTPHeaderField: "Authorization")
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)\n\n")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+            var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+            let jsonData = JSON(newdata["results"] as NSArray)
+            println(jsonData)
+            self.application.Bcount = newdata["count"] as Int
+
             
-            var err: NSError?
-            if !(data == nil) {
-                println(error)
-            }
-            else {
-                json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
-                
-                if((err) != nil) {
-                    println(err!.localizedDescription)
-                }
-                else {
-                    var success = json["response"] as? String
-                    println("Succes: \(success)")
-                    println("Business created")
-                    dispatch_async(dispatch_get_main_queue(), {
-                    })
-                }
-            }
         })
         task.resume()
-        return json["results"] as NSDictionary!
     }
     
-    func getClients() -> NSDictionary {
-        var json = NSDictionary()
+    func getClients() {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/clients/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "GET"
         var err: NSError?
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Application/json", forHTTPHeaderField: "Accept")
-        request.addValue("JWT \(self.application.token)", forHTTPHeaderField: "Authorization")
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
             println("Body: \(strData)\n\n")
-            
+            //            employee.titles = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err)! as NSDictionary
+            //            println(employee.titles)
             var err: NSError?
-            if !(data == nil) {
+            if (data == nil) {
                 println(error)
             }
             else {
-                json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
-                
-                if((err) != nil) {
-                    println(err!.localizedDescription)
-                }
-                else {
-                    var success = json["response"] as? String
-                    println("Succes: \(success)")
-                    println("Business created")
-                    dispatch_async(dispatch_get_main_queue(), {
-                    })
-                }
+                println("got Clients")
+                dispatch_async(dispatch_get_main_queue(), {
+                })
             }
         })
         task.resume()
-        return json["results"] as NSDictionary
     }
-    
     
 }
