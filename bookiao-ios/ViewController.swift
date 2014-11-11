@@ -59,8 +59,8 @@ class ViewController: UIViewController {
         navBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         navBar.tabBarController?.tabBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         navBar.navigationBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
-        navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics: UIBarMetrics.Default)
-        let postButton = UIBarButtonItem(image: UIImage(named: "post.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
+        navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics:.Default)
+        let postButton = UIBarButtonItem(image: UIImage(named: "post.png"), style:.Plain, target: self, action: Selector("tapPost"))
         let calendarButton = UIBarButtonItem(image: UIImage(named: "calendar.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPostCalendar"))
 
         tabBar.navigationItem.rightBarButtonItem = postButton

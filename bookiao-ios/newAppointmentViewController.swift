@@ -77,6 +77,7 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         self.view.addSubview(registroButton)
         
         let navBar = UINavigationController(rootViewController: self)
+        navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics: .Default)
         
         let postButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
         
@@ -91,8 +92,8 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.title = "Crear Citas"
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {
