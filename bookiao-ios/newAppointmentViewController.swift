@@ -8,12 +8,14 @@
 
 import Foundation
 
-class newAppointmentViewController: UIViewController {
+class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     var dateTxtField:  UITextField = UITextField()
     var timeTxtField:  UITextField = UITextField()
     var serviceField:  UITextField = UITextField()
     var employeeField: UITextField = UITextField()
+    var employeeResponse: Int = Int()
     
+    let pickerView = UIPickerView()
     let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -65,6 +67,9 @@ class newAppointmentViewController: UIViewController {
         registroButton.setTitle("Crear Cita", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
+        pickerView.delegate = self
+        employeeField.inputView = pickerView
+        
         self.view.addSubview(dateTxtField)
         self.view.addSubview(serviceField)
         self.view.addSubview(timeTxtField)
@@ -101,9 +106,30 @@ class newAppointmentViewController: UIViewController {
     
     func buttonAction() {
         let request = HTTPrequests()
+        let employeeID = employeeResponse
+        
         request.createAppointment([1,2], employee:employeeField.text.toInt()!, client: 1, date: dateTxtField.text, theTime: timeTxtField.text)
         let views = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(views, animated: true, completion: nil)
         
+    }
+    
+    // returns the number of 'columns' to display.
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+        return self.application.employees.count
+    }
+    
+    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
+        return self.application.employees[row]["name"] as String
+    }
+    
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        employeeField.text = self.application.employees[row]["name"] as String
+        employeeResponse = row + 1
     }
 }

@@ -152,7 +152,7 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return self.application.Bcount
+        return self.application.titles.count
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {

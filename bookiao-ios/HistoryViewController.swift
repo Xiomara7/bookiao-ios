@@ -13,9 +13,10 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var tableView: UITableView!
     var dataSource: [[String: String]] = []
-    var names = ["Christian Rodríguez", "Alex Santos", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
-    var time  = ["5", "10", "15", "20", "25"]
+    var names: NSArray! = []
     var customDesign = CustomDesign()
+    
+    let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -45,7 +46,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         var rows = [[String: String]]()
         for index in 0..<5 {
             var sum = (index + 1) * 5 * 6
-            rows.append(["text": names[index], "detail": "Hace \(sum) minutos"])
+            rows.append(["text": "", "detail": "Hace \(sum) minutos"])
         }
         
         dataSource = rows
@@ -64,7 +65,13 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if self.application.userInfo["userType"] as String! == "employee" {
+            return self.application.employeeAppointments.count
+        }
+        if self.application.userInfo["userType"] as String! == "client" {
+            return self.application.clientAppointments.count
+        }
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -75,13 +82,35 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             cell = CustomCellHistory(reuseIdentifier: "Cell")
         }
         
-//        let dictionary = dataSource[indexPath.row]
-        
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
         let check = UIImage(named: "check.png")
         
-        cell.titleLabel.text = names[indexPath.row]
-        cell.subtitleLabel.text = "Hace \(time[indexPath.row]) minutos"
+        if self.application.userInfo["userType"] as String! == "employee" {
+            let clientID = self.application.employeeAppointments[indexPath.row]["client"] as? Int
+            let day  = self.application.employeeAppointments[indexPath.row]["day"] as String!
+            let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
+            for index in 0..<self.application.client.count{
+                if self.application.client[index]["id"] as Int! == clientID {
+                    cell.titleLabel.text = self.application.client[index]["name"] as String!
+                }
+            }
+            cell.subtitleLabel.text = "El \(day) a las \(time)"
+        }
+        if self.application.userInfo["userType"] as String! == "client" {
+            let employeeID = self.application.clientAppointments[indexPath.row]["employee"] as? Int
+            let day  = self.application.clientAppointments[indexPath.row]["day"] as String!
+            let time = self.application.clientAppointments[indexPath.row]["time"] as String!
+            for index in 0..<self.application.employees.count{
+                if self.application.employees[index]["id"] as Int! == employeeID {
+                    cell.titleLabel.text = self.application.employees[index]["name"] as String!
+                }
+            }
+            cell.subtitleLabel.text = "El \(day) a las \(time)"
+        }
+        if self.application.userInfo["userType"] as String! == "business" {
+            cell.titleLabel.text = ""
+            cell.subtitleLabel.text = ""
+        }
         
         cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel.font = UIFont.systemFontOfSize(20.0)

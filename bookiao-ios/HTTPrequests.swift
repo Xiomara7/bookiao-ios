@@ -13,6 +13,7 @@ class HTTPrequests {
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     func registerRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, bID: Int, usuario: NSString) {
+        self.getUserInfo(email)
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/register/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
@@ -97,7 +98,6 @@ class HTTPrequests {
     
     func loginRequest(email: NSString, password: NSString, usuario: NSString) {
         var success = Bool()
-        
         let login = LoginViewController(nibName: nil, bundle: nil)
         let views = ViewController(nibName: nil, bundle: nil)
         
@@ -118,6 +118,7 @@ class HTTPrequests {
             var err: NSError?
             var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
             self.application.token = json["token"] as? String
+            self.getUserInfo(email)
             if(self.application.token == nil) {
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("Error could not parse JSON: '\(jsonStr)'")
@@ -127,21 +128,7 @@ class HTTPrequests {
             }
             else {
                 dispatch_sync(dispatch_get_main_queue(), {
-//                    self.application.window.rootViewController = views
-                    login.presentViewController(views, animated: true, completion: nil)
                 })
-                if usuario == "cliente" {
-                    println("is client")
-                    login.presentViewController(views, animated: true, completion: nil)
-                }
-                if usuario == "negocio" {
-                    println("is business")
-                    login.presentViewController(views, animated: true, completion: nil)
-                }
-                if usuario == "empleado" {
-                    println("is employee")
-                    login.presentViewController(views, animated: true, completion: nil)
-                }
             }
         })
         task.resume()
@@ -312,10 +299,7 @@ class HTTPrequests {
             var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
             let jsonData = newdata["results"] as NSArray
             self.application.titles = jsonData as NSArray
-            self.application.Bcount = newdata["count"] as Int
             println(jsonData)
-
-            
         })
         task.resume()
     }
@@ -346,8 +330,8 @@ class HTTPrequests {
         task.resume()
     }
     
-    func getAppointments() {
-        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/")
+    func getEmployeeAppointments(id: Int) {
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/?employee=\(id)&ordering=time")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "GET"
@@ -357,7 +341,7 @@ class HTTPrequests {
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
             var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
             let jsonData = newData["results"] as NSArray
-            self.application.appointments = jsonData as NSArray
+            self.application.employeeAppointments = jsonData as NSArray
             println("Body: \(strData)\n\n")
             var err: NSError?
             if (data == nil) {
@@ -366,6 +350,38 @@ class HTTPrequests {
             else {
                 println("got Appointments")
                 dispatch_async(dispatch_get_main_queue(), {
+                    let login = LoginViewController(nibName: nil, bundle: nil)
+                    let views = ViewController(nibName: nil, bundle: nil)
+                    login.presentViewController(views, animated: true, completion: nil)
+                })
+            }
+        })
+        task.resume()
+    }
+    
+    func getClientAppointments(id: Int) {
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/?client=\(id)&ordering=time")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "GET"
+        var err: NSError?
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+            let jsonData = newData["results"] as NSArray
+            self.application.clientAppointments = jsonData as NSArray
+            println("Body: \(strData)\n\n")
+            var err: NSError?
+            if (data == nil) {
+                println(error)
+            }
+            else {
+                println("got Appointments")
+                dispatch_async(dispatch_get_main_queue(), {
+                    let login = LoginViewController(nibName: nil, bundle: nil)
+                    let views = ViewController(nibName: nil, bundle: nil)
+                    login.presentViewController(views, animated: true, completion: nil)
                 })
             }
         })
@@ -383,14 +399,14 @@ class HTTPrequests {
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
             var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
             let jsonData = newData["results"] as NSArray
-            self.application.client = jsonData as NSArray
+            self.application.employees = jsonData as NSArray
             println("Body: \(strData)\n\n")
             var err: NSError?
             if (data == nil) {
                 println(error)
             }
             else {
-                println("got Clients")
+                println("got Employees")
                 dispatch_async(dispatch_get_main_queue(), {
                 })
             }
@@ -409,15 +425,51 @@ class HTTPrequests {
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
             var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
             let jsonData = newData["results"] as NSArray
-            self.application.client = jsonData as NSArray
+            self.application.services = jsonData as NSArray
             println("Body: \(strData)\n\n")
             var err: NSError?
             if (data == nil) {
                 println(error)
             }
             else {
-                println("got Clients")
+                println("got Services")
                 dispatch_async(dispatch_get_main_queue(), {
+                })
+            }
+        })
+        task.resume()
+    }
+    
+    func getUserInfo(email: NSString) {
+        let login = LoginViewController(nibName: nil, bundle: nil)
+        let views = ViewController(nibName: nil, bundle: nil)
+        
+        let url = NSURL(string: "http://bookiao-api.herokuapp.com/user-type/?email=\(email)")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "GET"
+        var err: NSError?
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary!
+            let jsonData = newData as NSDictionary
+            self.application.userInfo = jsonData as NSDictionary
+            println(jsonData)
+            println("Body: \(strData)\n\n")
+            var err: NSError?
+            if (data == nil) {
+                println(error)
+            }
+            else {
+                println("got UserInfo")
+                dispatch_async(dispatch_get_main_queue(), {
+                    if self.application.userInfo["userType"] as String! == "client" {
+                        self.getClientAppointments(self.application.userInfo["id"] as Int!)
+                    }
+                    if self.application.userInfo["userType"] as String! == "employee" {
+                        self.getEmployeeAppointments(self.application.userInfo["id"] as Int!)
+                    }
                 })
             }
         })

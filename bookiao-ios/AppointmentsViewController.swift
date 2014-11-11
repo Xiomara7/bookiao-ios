@@ -10,12 +10,11 @@ import UIKit
 import CoreData
 
 class AppointmentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    let application = UIApplication.sharedApplication().delegate as AppDelegate
+    
     var tableView: UITableView!
     var dataSource: [[String: String]] = []
-    var names = ["Alex Santos", "Christian Rodríguez", "Xiomara Figueroa", "Ramphis Castro", "Abimael Carrasquillo"]
-    var prices = ["$14", "$8", "$22", "$12", "$10"]
-    var time = ["5", "10", "15", "20", "25"]
+    var names: NSArray! = []
     var customDesign = CustomDesign()
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
@@ -56,7 +55,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         
         for index in 0..<5 {
             var sum = (index + 1) * 5 * 6
-            rows.append(["text": names[index], "detail": "La cita comienza en \(sum) minutos"])
+            rows.append(["text": "", "detail": "La cita comienza en \(sum) minutos"])
         }
         
         dataSource = rows
@@ -69,26 +68,51 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         return 1
     }
     
-    
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if self.application.userInfo["userType"] as String! == "employee" {
+            return self.application.employeeAppointments.count
+        }
+        if self.application.userInfo["userType"] as String! == "client" {
+            return self.application.clientAppointments.count
+        }
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
         var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as CustomCell!
-        if cell == nil {
+        if  cell == nil {
             cell = CustomCell(reuseIdentifier: "Cell")
         }
         
         let cellFrame = self.view.bounds
-        
-        cell.priceLabel.text = self.prices[indexPath.row]
-        cell.titleLabel.text = self.names[indexPath.row]
-        cell.subtitleLabel.text = "la cita comienza en \(time[indexPath.row]) minutos"
-        
+        if self.application.userInfo["userType"] as String! == "employee" {
+            let clientID = self.application.employeeAppointments[indexPath.row]["client"] as? Int
+            let day  = self.application.employeeAppointments[indexPath.row]["day"] as String!
+            let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
+            for index in 0..<self.application.client.count{
+                if self.application.client[index]["id"] as Int! == clientID {
+                    cell.titleLabel.text = self.application.client[index]["name"] as String!
+                }
+            }
+            cell.subtitleLabel.text = "El \(day) a las \(time)"
+        }
+        if self.application.userInfo["userType"] as String! == "client" {
+            let employeeID = self.application.clientAppointments[indexPath.row]["employee"] as? Int
+            let day  = self.application.clientAppointments[indexPath.row]["day"] as String!
+            let time = self.application.clientAppointments[indexPath.row]["time"] as String!
+            for index in 0..<self.application.employees.count{
+                if self.application.employees[index]["id"] as Int! == employeeID {
+                    cell.titleLabel.text = self.application.employees[index]["name"] as String!
+                }
+            }
+            cell.subtitleLabel.text = "El \(day) a las \(time)"
+        }
+        if self.application.userInfo["userType"] as String! == "business" {
+            cell.titleLabel.text = ""
+            cell.subtitleLabel.text = ""
+        }
         cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel.font = UIFont.systemFontOfSize(20.0)
         cell.textLabel.numberOfLines = 0
@@ -96,9 +120,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         cell.selectionStyle = .Default
         cell.accessoryType = .None
         
-        
         cell.frame.origin.y = 4
-        
         cell.setNeedsUpdateConstraints()
         
         return cell

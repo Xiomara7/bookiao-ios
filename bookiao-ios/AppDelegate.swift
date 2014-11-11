@@ -16,9 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var token : NSString!
     var titles: NSArray! = []
     var client: NSArray! = []
-    var Bcount: Int!
+    var services: NSArray! = []
     var employees: NSArray! = []
-    var appointments: NSArray! = []
+    var employeeAppointments: NSArray! = []
+    var clientAppointments: NSArray! = []
+    var userInfo: NSDictionary! = [:]
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

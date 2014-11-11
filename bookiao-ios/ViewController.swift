@@ -11,9 +11,13 @@ import CoreData
 import Foundation
 
 class ViewController: UIViewController {
-    
     let request = HTTPrequests()
     let application = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    let customDesign = CustomDesign()
+    let appointments: UIViewController = AppointmentsViewController(nibName: nil, bundle: nil)
+    let history: UIViewController = HistoryViewController(nibName: nil, bundle: nil)
+    let profile: UIViewController = ProfileViewController(nibName: nil, bundle: nil)
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -26,11 +30,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let customDesign = CustomDesign()
-        let appointments = AppointmentsViewController(nibName: nil, bundle: nil)
-        let history = HistoryViewController(nibName: nil, bundle: nil)
-        let profile = ProfileViewController(nibName: nil, bundle: nil)
+        
         let citasTextLabel    = UITabBarItem(title: "", image: UIImage(named: "booking.png"), tag: 0)
         let historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
         let settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
@@ -49,8 +49,9 @@ class ViewController: UIViewController {
         var tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
-        tabBarAppearance.translucent = false
         tabBar.viewControllers = controllers
+        
+        tabBarAppearance.translucent = false
     
         let navBar = UINavigationController(rootViewController: tabBar)
         let navBarAppearance = UINavigationBar.appearance()

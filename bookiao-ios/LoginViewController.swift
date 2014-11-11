@@ -80,6 +80,8 @@ class LoginViewController: UIViewController {
     
         requests.getBusinesses()
         requests.getClients()
+        requests.getEmployees()
+        requests.getServices()
         
         self.view.addSubview(ingresoButton)
         self.view.addSubview(registroButton)
@@ -96,7 +98,7 @@ class LoginViewController: UIViewController {
     func buttonActionLogin() {
         let email = emailtxtField.text
         let password = passwdtxtField.text
-        
+        requests.getUserInfo(email)
         requests.loginRequest(email, password: password, usuario: "tipo de usuario")
     }
     
