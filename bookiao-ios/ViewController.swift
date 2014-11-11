@@ -77,6 +77,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     func tapPostCalendar() {
+        let calendarView = calendarViewController(nibName: nil, bundle: nil)
+        self.application.window.rootViewController = calendarView
+
     }
     
     func tapPost() {
