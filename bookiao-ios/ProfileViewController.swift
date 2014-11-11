@@ -89,8 +89,8 @@ class ProfileViewController: UIViewController {
     }
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Perfil"
-        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {

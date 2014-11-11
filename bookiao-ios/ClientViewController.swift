@@ -66,6 +66,9 @@ class ClientViewController: UIViewController {
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
+        
+        let navBar = UINavigationController(rootViewController: self)
+        let postButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
 
         // Do any additional setup after loading the view.
     }
@@ -73,12 +76,16 @@ class ClientViewController: UIViewController {
     func tapPost() {
         println("tappost")
     }
+    func dismiss() {
+        let back = LoginViewController(nibName: nil, bundle: nil)
+        self.presentViewController(back, animated: true, completion: nil)
+    }
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Cliente"
 
-        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {

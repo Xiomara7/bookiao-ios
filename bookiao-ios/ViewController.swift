@@ -39,15 +39,16 @@ class ViewController: UIViewController {
         history.tabBarItem = historyTextLabel
         profile.tabBarItem = settingsTextLabel
         
-        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
-        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
-        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, 0))
+        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -10))
+        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -10))
+        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -10))
         
         let controllers = [appointments, history, profile]
         
         let tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
+        tabBarAppearance.backgroundImage = UIImage(named: "back.png")
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         tabBar.viewControllers = controllers
         
@@ -58,7 +59,7 @@ class ViewController: UIViewController {
         navBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         navBar.tabBarController?.tabBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         navBar.navigationBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
-        
+        navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics: UIBarMetrics.Default)
         let postButton = UIBarButtonItem(image: UIImage(named: "post.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPost"))
         let calendarButton = UIBarButtonItem(image: UIImage(named: "calendar.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPostCalendar"))
 

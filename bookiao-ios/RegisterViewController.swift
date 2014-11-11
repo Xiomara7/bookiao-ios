@@ -23,10 +23,10 @@ class RegisterViewController: UIViewController {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
         
+        let application = UIApplication.sharedApplication().delegate as AppDelegate
+        
         var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
-        tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
-        
         var client   = ClientViewController()
         var employee = EmployeeViewController()
         var business = BusinessViewController()
@@ -38,14 +38,21 @@ class RegisterViewController: UIViewController {
         client.tabBarItem   = clientIcon
         business.tabBarItem = businessIcon
         employee.tabBarItem = employeeIcon
-    
+        
         var controllers = [business, employee, client]
+        
         tabBar.viewControllers = controllers
         tabBar.navigationItem.title = "Registro"
+        tabBarAppearance.backgroundImage = UIImage(named: "back.png")
+        tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
+        
+        let postButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector("dismiss"))
+        self.navigationItem.leftBarButtonItem = postButton
         
         let navBar = UINavigationController(rootViewController: tabBar)
         navBar.navigationBar.backgroundColor = UIColor.blackColor()
-        let application = UIApplication.sharedApplication().delegate as AppDelegate
+        navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics: .Default)
+        navBar.navigationItem.leftBarButtonItem = postButton
         application.window.rootViewController = navBar
 
     }
@@ -59,6 +66,10 @@ class RegisterViewController: UIViewController {
     }
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
         println(item)
+    }
+    func dismiss() {
+        let back = LoginViewController(nibName: nil, bundle: nil)
+        self.presentViewController(back, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

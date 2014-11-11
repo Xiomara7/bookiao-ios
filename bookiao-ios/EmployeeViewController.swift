@@ -113,6 +113,9 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         placetxtField.inputView = pickerView
         
         // Do any additional setup after loading the view.
+        
+        let postButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
+        self.navigationItem.leftBarButtonItem = postButton
     
     }
     
@@ -123,9 +126,14 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Empleado"
-        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.blackColor()
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         
+    }
+    
+    func dismiss() {
+        let back = LoginViewController(nibName: nil, bundle: nil)
+        self.presentViewController(back, animated: true, completion: nil)
     }
     
     func buttonAction(sender:UIButton!) {

@@ -77,10 +77,6 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         self.view.addSubview(registroButton)
         
         let navBar = UINavigationController(rootViewController: self)
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
-        navBar.tabBarController?.tabBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
-        navBar.navigationBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         
         let postButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
         
