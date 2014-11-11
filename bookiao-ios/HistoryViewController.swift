@@ -86,25 +86,17 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let check = UIImage(named: "check.png")
         
         if self.application.userInfo["userType"] as String! == "employee" {
-            let clientID = self.application.employeeAppointments[indexPath.row]["client"] as? Int
             let day  = self.application.employeeAppointments[indexPath.row]["day"] as String!
             let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
-            for index in 0..<self.application.client.count{
-                if self.application.client[index]["id"] as Int! == clientID {
-                    cell.titleLabel.text = self.application.client[index]["name"] as String!
-                }
-            }
+            
+            cell.titleLabel.text = self.application.employeeAppointments[indexPath.row]["client"] as String!
             cell.subtitleLabel.text = "El \(day) a las \(time)"
         }
         if self.application.userInfo["userType"] as String! == "client" {
-            let employeeID = self.application.clientAppointments[indexPath.row]["employee"] as? Int
             let day  = self.application.clientAppointments[indexPath.row]["day"] as String!
             let time = self.application.clientAppointments[indexPath.row]["time"] as String!
-            for index in 0..<self.application.employees.count{
-                if self.application.employees[index]["id"] as Int! == employeeID {
-                    cell.titleLabel.text = self.application.employees[index]["name"] as String!
-                }
-            }
+            
+            cell.titleLabel.text = self.application.clientAppointments[indexPath.row]["employee"] as String!
             cell.subtitleLabel.text = "El \(day) a las \(time)"
         }
         if self.application.userInfo["userType"] as String! == "business" {

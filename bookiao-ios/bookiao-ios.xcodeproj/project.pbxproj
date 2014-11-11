@@ -26,6 +26,7 @@
 		0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C375519DA726B009AD8DD /* SettingsViewController.swift */; };
 		0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378A19DA7340009AD8DD /* AppDelegate.swift */; };
 		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
+		0A7E46891A1293FE00985BF8 /* calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E46881A1293FE00985BF8 /* calendar.swift */; };
 		0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */; };
 		0ADB9E941A006010007F5539 /* json-swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADB9E931A006010007F5539 /* json-swift.swift */; };
 		0ADC179E1A098F1600FF8122 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADC17991A098EFF00FF8122 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -113,6 +114,7 @@
 		0A4C375519DA726B009AD8DD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0A4C378A19DA7340009AD8DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		0A7E46881A1293FE00985BF8 /* calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendar.swift; sourceTree = "<group>"; };
 		0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
 		0ADB9E931A006010007F5539 /* json-swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "json-swift.swift"; path = "../json-swift.swift"; sourceTree = "<group>"; };
 		0ADC17931A098EFF00FF8122 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				0A01A79119E330A70026B7E4 /* CustomCell.swift */,
 				0AFEC6101A018D8200B1B823 /* ProfileDesign.swift */,
 				0A01A7C419EC266F0026B7E4 /* CircleView.swift */,
+				0A7E46881A1293FE00985BF8 /* calendar.swift */,
 				0A01A7BC19E4D5410026B7E4 /* CustomCellProfile.swift */,
 				0A01A7B619E4CD930026B7E4 /* CustomCellHistory.swift */,
 				0A01A7BE19E4D97C0026B7E4 /* CustomCellProfileBanner.swift */,
@@ -415,6 +418,7 @@
 				0A01A79219E330A70026B7E4 /* CustomCell.swift in Sources */,
 				0A01A7AF19E4A0000026B7E4 /* CustomDesign.swift in Sources */,
 				0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */,
+				0A7E46891A1293FE00985BF8 /* calendar.swift in Sources */,
 				0AFEB8741A0570160095A951 /* BusinessViewController.swift in Sources */,
 				0AFEC6111A018D8200B1B823 /* ProfileDesign.swift in Sources */,
 			);
