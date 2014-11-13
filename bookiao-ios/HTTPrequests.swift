@@ -121,10 +121,10 @@ class HTTPrequests {
             self.getUserInfo(email)
             if(self.application.token == nil) {
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error could not parse JSON: '\(jsonStr)'")
-                login.emailtxtField.text  = ""
-                login.passwdtxtField.text = ""
-            
+                println("INVALID LOGIN")
+                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                login.view.addSubview(alert)
             }
             else {
                 dispatch_sync(dispatch_get_main_queue(), {

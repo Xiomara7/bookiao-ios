@@ -100,6 +100,8 @@ class LoginViewController: UIViewController {
         let password = passwdtxtField.text
         requests.getUserInfo(email)
         requests.loginRequest(email, password: password, usuario: "tipo de usuario")
+        emailtxtField.text = ""
+        passwdtxtField.text = ""
     }
     
     func buttonActionRegister() {
