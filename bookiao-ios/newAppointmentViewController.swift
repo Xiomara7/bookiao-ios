@@ -13,9 +13,9 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     var timeTxtField:  UITextField = UITextField()
     var serviceField:  UITextField = UITextField()
     var employeeField: UITextField = UITextField()
-    var employeeResponse: Int = Int()
     
-    let pickerView = UIPickerView()
+    let pickerUsers = UIPickerView()
+    let pickerServices = UIPickerView()
     let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -58,7 +58,12 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         employeeField.tintColor = UIColor.grayColor()
         employeeField.font = UIFont.systemFontOfSize(14.0)
         employeeField.textAlignment = .Center
-        employeeField.placeholder = "Empleado"
+        if self.application.userInfo["userType"] as String == "client" {
+            employeeField.placeholder = "Empleado"
+        }
+        if self.application.userInfo["userType"] as String == "employee" {
+            employeeField.placeholder = "Cliente"
+        }
         
         registroButton.frame = CGRectMake(20, 300, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
@@ -67,8 +72,11 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         registroButton.setTitle("Crear Cita", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
-        pickerView.delegate = self
-        employeeField.inputView = pickerView
+        pickerUsers.delegate = self
+        pickerServices.delegate = self
+        employeeField.inputView = pickerUsers
+        serviceField.inputView = pickerServices
+        
         
         self.view.addSubview(dateTxtField)
         self.view.addSubview(serviceField)
@@ -103,13 +111,18 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     func buttonAction() {
         let request = HTTPrequests()
-        let employeeID = employeeResponse
-        
-        request.createAppointment([1,2], employee:employeeField.text.toInt()!, client: 1, date: dateTxtField.text, theTime: timeTxtField.text)
+        if self.application.userInfo["userType"] as String == "client" {
+            request.createAppointment([serviceField.text], employee:employeeField.text, client: self.application.userInfo["name"] as String, date: dateTxtField.text, theTime: timeTxtField.text)
+        }
+        if self.application.userInfo["userType"] as String == "employee" {
+            request.createAppointment([serviceField.text], employee:self.application.userInfo["name"] as String, client:employeeField.text , date: dateTxtField.text, theTime: timeTxtField.text)
+        }
         let views = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(views, animated: true, completion: nil)
         
     }
+    
+    // PICKERS:
     
     // returns the number of 'columns' to display.
     func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
@@ -118,15 +131,46 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return self.application.employees.count
+        if pickerView == pickerUsers {
+            if self.application.userInfo["userType"] as String == "client" {
+                return self.application.employees.count
+            }
+            if self.application.userInfo["userType"] as String == "employee" {
+                return self.application.client.count
+            }
+        }
+        if pickerView == pickerServices {
+            return self.application.services.count
+        }
+        return 10
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return self.application.employees[row]["name"] as String
+        if pickerView == pickerUsers {
+            if self.application.userInfo["userType"] as String == "client" {
+                return self.application.employees[row]["name"] as String
+            }
+            if self.application.userInfo["userType"] as String == "employee" {
+                return self.application.client[row]["name"] as String
+            }
+        }
+        if pickerView == pickerServices {
+            return self.application.services[row]["name"] as String
+        }
+        return "None"
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
-        employeeField.text = self.application.employees[row]["name"] as String
-        employeeResponse = row + 1
+        if pickerView == pickerUsers {
+            if self.application.userInfo["userType"] as String == "client" {
+                employeeField.text = self.application.employees[row]["name"] as String
+            }
+            if self.application.userInfo["userType"] as String == "employee" {
+                employeeField.text = self.application.client[row]["name"] as String
+            }
+        }
+        if pickerView == pickerServices {
+            employeeField.text = self.application.services[row]["name"] as String
+        }
     }
 }

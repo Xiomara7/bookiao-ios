@@ -70,7 +70,7 @@ class ClientViewController: UIViewController {
         let navBar = UINavigationController(rootViewController: self)
         let postButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
         self.navigationItem.leftBarButtonItem = postButton
-        
+
         // Do any additional setup after loading the view.
     }
     
