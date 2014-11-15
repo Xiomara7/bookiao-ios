@@ -40,7 +40,7 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.tintColor = UIColor.whiteColor()
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        registroButton.setTitle("Crear Cita", forState: UIControlState.Normal)
+        registroButton.setTitle("Ver Citas de este día", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
         dateTxtField.inputView = datePicker

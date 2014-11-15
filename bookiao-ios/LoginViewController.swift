@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
         passwdtxtField.backgroundColor = UIColor.whiteColor()
         passwdtxtField.tintColor = UIColor.grayColor()
         passwdtxtField.textAlignment = .Center
+        passwdtxtField.secureTextEntry = true
         passwdtxtField.placeholder = "Contraseña"
         
         ingresoButton.frame = CGRectMake(20, 290, self.view.bounds.width - 40, 40)
