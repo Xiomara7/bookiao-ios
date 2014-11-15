@@ -13,8 +13,7 @@ import CoreData
 class LoginViewController: UIViewController {
     
     var customDesign = CustomDesign()
-    
-    
+    var loader = UIActivityIndicatorView(frame: CGRectMake(0.0, 0.0, 40.0, 40.0))
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     let requests = HTTPrequests()
     
@@ -83,12 +82,22 @@ class LoginViewController: UIViewController {
         requests.getEmployees()
         requests.getServices()
         
+        loader.hidesWhenStopped = true
+        loader.center = CGPointMake(180, 270);
+        
         self.view.addSubview(ingresoButton)
         self.view.addSubview(registroButton)
         self.view.addSubview(emailtxtField)
         self.view.addSubview(passwdtxtField)
         self.view.addSubview(nameLabel)
         self.view.addSubview(nuevoLabel)
+        self.view.addSubview(loader)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        emailtxtField.text = ""
+        passwdtxtField.text = ""
+        loader.stopAnimating()
     }
     
     func buttonAction() {
@@ -96,12 +105,13 @@ class LoginViewController: UIViewController {
     }
     
     func buttonActionLogin() {
+//        loader.startAnimating()
         let email = emailtxtField.text
         let password = passwdtxtField.text
         requests.getUserInfo(email)
         requests.loginRequest(email, password: password, usuario: "tipo de usuario")
-        emailtxtField.text = ""
-        passwdtxtField.text = ""
+
+        
     }
     
     func buttonActionRegister() {

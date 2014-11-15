@@ -9,9 +9,8 @@
 import Foundation
 
 class HTTPrequests {
-    
+
     let application = UIApplication.sharedApplication().delegate as AppDelegate
-    
     func registerRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, bID: Int, usuario: NSString) {
         self.getUserInfo(email)
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/register/")
@@ -98,8 +97,8 @@ class HTTPrequests {
     
     func loginRequest(email: NSString, password: NSString, usuario: NSString) {
         var success = Bool()
-        let login = LoginViewController(nibName: nil, bundle: nil)
         let views = ViewController(nibName: nil, bundle: nil)
+        let login = LoginViewController(nibName: nil, bundle: nil)
         
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/api-token-auth/")
         var params  = ["email":email,"password":password] as Dictionary
@@ -118,20 +117,29 @@ class HTTPrequests {
             var err: NSError?
             var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
             self.application.token = json["token"] as? String
-            self.getUserInfo(email)
             if(self.application.token == nil) {
+                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
+                alert.show()
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("INVALID LOGIN")
-                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
-                login.view.addSubview(alert)
+                
             }
             else {
                 dispatch_sync(dispatch_get_main_queue(), {
+                    self.getUserInfo(email)
                 })
             }
         })
         task.resume()
+    }
+    
+    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            println("OK")
+            let login = LoginViewController(nibName: nil, bundle: nil)
+            self.application.window.rootViewController = login
+            
+        }
     }
     
     func createClientRequest(email: NSString, name: NSString, phone: NSString) {
@@ -457,8 +465,9 @@ class HTTPrequests {
             println(jsonData)
             println("Body: \(strData)\n\n")
             var err: NSError?
-            if (response == nil) {
+            if (jsonData["userType"] as String == "none") {
                 println(error)
+                
             }
             else {
                 println("got UserInfo")
