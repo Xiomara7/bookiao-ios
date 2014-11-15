@@ -120,7 +120,7 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     lazy var dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
         
-        dateFormatter.dateStyle = .FullStyle
+        dateFormatter.dateFormat = "yyyy-MM-dd"
 
         return dateFormatter
         }()
@@ -168,6 +168,7 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     
     func buttonAction() {
+        
         let request = HTTPrequests()
         if self.application.userInfo["userType"] as String == "client" {
             request.createAppointment([serviceField.text], employee:employeeField.text, client: self.application.userInfo["name"] as String, date: dateTxtField.text, theTime: timeTxtField.text)
