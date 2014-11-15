@@ -16,7 +16,9 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     let pickerUsers = UIPickerView()
     let pickerServices = UIPickerView()
-    let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let datePicker = UIDatePicker()
+    let timePicker = UIDatePicker()
+    let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
@@ -74,8 +76,10 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         
         pickerUsers.delegate = self
         pickerServices.delegate = self
+        dateTxtField.inputView = datePicker
         employeeField.inputView = pickerUsers
         serviceField.inputView = pickerServices
+        timeTxtField.inputView = timePicker
         
         
         self.view.addSubview(dateTxtField)
@@ -91,6 +95,9 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         
         self.navigationItem.leftBarButtonItem = postButton
         application.window.rootViewController = navBar
+        
+        configureDatePicker()
+        configureTimePicker()
     }
     
     func dismiss() {
@@ -109,6 +116,57 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // A date formatter to format the `date` property of `datePicker`.
+    lazy var dateFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = .FullStyle
+
+        return dateFormatter
+        }()
+    
+    // A time formatter to format the `date` property of `timePicker`.
+    lazy var timeFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.timeStyle = .ShortStyle
+        
+        return dateFormatter
+        }()
+    
+    // MARK: Configuration
+    
+    func configureDatePicker() {
+        datePicker.datePickerMode = .Date
+        
+        // Set min/max date for the date picker.
+        // As an example we will limit the date between now and 7 days from now.
+        let now = NSDate()
+        datePicker.minimumDate = now
+        
+        let currentCalendar = NSCalendar.currentCalendar()
+        let dateComponents = NSDateComponents()
+        
+        datePicker.date = now
+        datePicker.addTarget(self, action: "updateDatePickerLabel", forControlEvents: .ValueChanged)
+    }
+    
+    func updateDatePickerLabel() {
+        dateTxtField.text = dateFormatter.stringFromDate(datePicker.date)
+    }
+    
+    func updateTimePickerLabel() {
+        timeTxtField.text = timeFormatter.stringFromDate(timePicker.date)
+    }
+    
+    func configureTimePicker() {
+        timePicker.datePickerMode = .Time
+        let now = NSTimeInterval()
+        
+        timePicker.addTarget(self, action: "updateTimePickerLabel", forControlEvents: .ValueChanged)
+    }
+    
+    
     func buttonAction() {
         let request = HTTPrequests()
         if self.application.userInfo["userType"] as String == "client" {
@@ -126,6 +184,12 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     // returns the number of 'columns' to display.
     func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
+        if pickerView == datePicker{
+            return 3
+        }
+        if pickerView == timePicker{
+            return 3
+        }
         return 1
     }
     
@@ -142,6 +206,9 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         if pickerView == pickerServices {
             return self.application.services.count
         }
+        if pickerView == datePicker{
+            return 10
+        }
         return 10
     }
     
@@ -157,6 +224,9 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         if pickerView == pickerServices {
             return self.application.services[row]["name"] as String
         }
+        if pickerView == datePicker{
+            return "hola"
+        }
         return "None"
     }
     
@@ -170,7 +240,10 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
             }
         }
         if pickerView == pickerServices {
-            employeeField.text = self.application.services[row]["name"] as String
+            serviceField.text = self.application.services[row]["name"] as String
+        }
+        if pickerView == datePicker{
+            dateTxtField.text = "hola hola :P"
         }
     }
 }
