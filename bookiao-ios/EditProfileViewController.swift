@@ -13,6 +13,9 @@ import CoreData
 class EditProfileViewController: UIViewController {
     
     var customDesign = CustomDesign()
+    var nametxtField: UITextField = UITextField()
+    var emailtxtField: UITextField = UITextField()
+    var phonetxtField: UITextField = UITextField()
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -27,7 +30,6 @@ class EditProfileViewController: UIViewController {
         let application = UIApplication.sharedApplication().delegate as AppDelegate
         super.viewDidLoad()
         
-        var nametxtField: UITextField = UITextField()
         var nameApp = UITextField.appearance()
         nametxtField.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
         nametxtField.backgroundColor = UIColor.whiteColor()
@@ -36,37 +38,19 @@ class EditProfileViewController: UIViewController {
         nametxtField.textAlignment = .Center
         nametxtField.placeholder = "Nombre"
         
-        var placetxtField: UITextField = UITextField()
-        placetxtField.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
-        placetxtField.backgroundColor = UIColor.whiteColor()
-        placetxtField.tintColor = UIColor.grayColor()
-        placetxtField.font = UIFont.systemFontOfSize(14.0)
-        placetxtField.textAlignment = .Center
-        placetxtField.placeholder = "Negocio"
+        emailtxtField.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
+        emailtxtField.backgroundColor = UIColor.whiteColor()
+        emailtxtField.tintColor = .grayColor()
+        emailtxtField.font = .systemFontOfSize(14.0)
+        emailtxtField.textAlignment = .Center
+        emailtxtField.placeholder = "Email"
         
-        var positiontxtField: UITextField = UITextField()
-        positiontxtField.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
-        positiontxtField.backgroundColor = UIColor.whiteColor()
-        positiontxtField.tintColor = UIColor.grayColor()
-        positiontxtField.font = UIFont.systemFontOfSize(14.0)
-        positiontxtField.textAlignment = .Center
-        positiontxtField.placeholder = "Posición"
-        
-        var startTimetxtField: UITextField = UITextField()
-        startTimetxtField.frame = CGRectMake(20, 370, self.view.bounds.width / 2 - 30 , 40)
-        startTimetxtField.backgroundColor = UIColor.whiteColor()
-        startTimetxtField.tintColor = UIColor.grayColor()
-        startTimetxtField.font = UIFont.systemFontOfSize(14.0)
-        startTimetxtField.textAlignment = .Center
-        startTimetxtField.placeholder = "Entrada"
-        
-        var endTimetxtField: UITextField = UITextField()
-        endTimetxtField.frame = CGRectMake(self.view.bounds.width / 2 + 10, 370, self.view.bounds.width / 2 - 30 , 40)
-        endTimetxtField.backgroundColor = UIColor.whiteColor()
-        endTimetxtField.font = UIFont.systemFontOfSize(14.0)
-        endTimetxtField.tintColor = UIColor.grayColor()
-        endTimetxtField.textAlignment = .Center
-        endTimetxtField.placeholder = "Salida"
+        phonetxtField.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
+        phonetxtField.backgroundColor = UIColor.whiteColor()
+        phonetxtField.tintColor = UIColor.grayColor()
+        phonetxtField.font = UIFont.systemFontOfSize(14.0)
+        phonetxtField.textAlignment = .Center
+        phonetxtField.placeholder = "Teléfono"
         
         let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
         registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
@@ -77,10 +61,8 @@ class EditProfileViewController: UIViewController {
         registroButton.addTarget(self, action: "dismiss", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(nametxtField)
-        self.view.addSubview(placetxtField)
-        self.view.addSubview(positiontxtField)
-        self.view.addSubview(startTimetxtField)
-        self.view.addSubview(endTimetxtField)
+        self.view.addSubview(emailtxtField)
+        self.view.addSubview(phonetxtField)
         self.view.addSubview(registroButton)
         
         let postButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
