@@ -17,6 +17,7 @@ class ClientViewController: UIViewController {
     var localTxtField: UITextField = UITextField()
     var startTimetxtField: UITextField = UITextField()
     var endTimetxtField: UITextField = UITextField()
+    
     let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     override func viewDidLoad() {
@@ -59,19 +60,24 @@ class ClientViewController: UIViewController {
         registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
+        
         self.view.addSubview(emailtxtField)
         self.view.addSubview(placetxtField)
         self.view.addSubview(passwordtxtField)
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
-
         // Do any additional setup after loading the view.
+        
     }
 
     func dismiss() {
         let back = LoginViewController(nibName: nil, bundle: nil)
         self.presentViewController(back, animated: true, completion: nil)
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -84,14 +90,6 @@ class ClientViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        let touch = UITouch()
-        if touch.view .isKindOfClass(UITextField) {
-            self.view.endEditing(true)
-        }
-        super.touchesBegan(touches, withEvent:event)
     }
     
     func buttonAction(sender:UIButton!) {

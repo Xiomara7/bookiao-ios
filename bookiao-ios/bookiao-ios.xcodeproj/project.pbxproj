@@ -545,7 +545,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8c4d685-be8c-4414-82bd-fdf38e0c8774";
+				PROVISIONING_PROFILE = "a3e643ee-0e31-4d77-95cb-3bae8b9ea5ae";
 				SWIFT_OBJC_BRIDGING_HEADER = "bookiao-ios-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -563,7 +563,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8c4d685-be8c-4414-82bd-fdf38e0c8774";
+				PROVISIONING_PROFILE = "a3e643ee-0e31-4d77-95cb-3bae8b9ea5ae";
 				SWIFT_OBJC_BRIDGING_HEADER = "bookiao-ios-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -131,6 +131,10 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     func dismiss() {
         let back = LoginViewController(nibName: nil, bundle: nil)
         self.presentViewController(back, animated: true, completion: nil)

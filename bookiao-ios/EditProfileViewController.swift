@@ -74,6 +74,10 @@ class EditProfileViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Perfil"
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()

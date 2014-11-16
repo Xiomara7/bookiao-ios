@@ -115,6 +115,10 @@ class LoginViewController: UIViewController {
         
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     func buttonActionRegister() {
         println("Button tapped")
         let register = RegisterViewController(nibName: nil, bundle: nil)

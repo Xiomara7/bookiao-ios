@@ -125,6 +125,10 @@ class BusinessViewController: UIViewController {
         self.presentViewController(views, animated: true, completion: nil)
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Negocio"
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
