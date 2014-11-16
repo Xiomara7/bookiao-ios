@@ -24,7 +24,6 @@ class ClientViewController: UIViewController {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
         
-        
         nameTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
         nameTxtField.backgroundColor = UIColor.whiteColor()
         nameTxtField.tintColor = UIColor.grayColor()
@@ -66,17 +65,10 @@ class ClientViewController: UIViewController {
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
-        
-        let navBar = UINavigationController(rootViewController: self)
-        let postButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
-        self.navigationItem.leftBarButtonItem = postButton
 
         // Do any additional setup after loading the view.
     }
-    
-    func tapPost() {
-        println("tappost")
-    }
+
     func dismiss() {
         let back = LoginViewController(nibName: nil, bundle: nil)
         self.presentViewController(back, animated: true, completion: nil)

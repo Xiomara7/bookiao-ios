@@ -54,7 +54,6 @@ class RegisterViewController: UIViewController {
         navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics: .Default)
         navBar.navigationItem.leftBarButtonItem = postButton
         application.window.rootViewController = navBar
-        
 
     }
     

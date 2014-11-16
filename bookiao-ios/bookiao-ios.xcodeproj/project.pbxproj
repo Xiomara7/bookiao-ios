@@ -28,6 +28,7 @@
 		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
 		0A7E46891A1293FE00985BF8 /* calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E46881A1293FE00985BF8 /* calendar.swift */; };
 		0A7E468C1A129CB000985BF8 /* calendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E468B1A129CB000985BF8 /* calendarViewController.swift */; };
+		0AB50E901A18187E00BE0804 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */; };
 		0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */; };
 		0ADB9E941A006010007F5539 /* json-swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADB9E931A006010007F5539 /* json-swift.swift */; };
 		0ADC179E1A098F1600FF8122 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADC17991A098EFF00FF8122 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -117,6 +118,7 @@
 		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0A7E46881A1293FE00985BF8 /* calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendar.swift; sourceTree = "<group>"; };
 		0A7E468B1A129CB000985BF8 /* calendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarViewController.swift; sourceTree = "<group>"; };
+		0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
 		0ADB9E931A006010007F5539 /* json-swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "json-swift.swift"; path = "../json-swift.swift"; sourceTree = "<group>"; };
 		0ADC17931A098EFF00FF8122 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				0AFEB8711A0570070095A951 /* ClientViewController.swift */,
 				0A7E468B1A129CB000985BF8 /* calendarViewController.swift */,
 				0A01A77519DF7D6F0026B7E4 /* ProfileViewController.swift */,
+				0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */,
 				0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */,
 				0A4C375519DA726B009AD8DD /* SettingsViewController.swift */,
 				0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */,
@@ -419,6 +422,7 @@
 				0A01A7BD19E4D5410026B7E4 /* CustomCellProfile.swift in Sources */,
 				0A01075119F1C45B004C2056 /* LoginViewController.swift in Sources */,
 				0ADC17A01A09E5CE00FF8122 /* newAppointmentViewController.swift in Sources */,
+				0AB50E901A18187E00BE0804 /* EditProfileViewController.swift in Sources */,
 				0AFEB8761A05702A0095A951 /* EmployeeViewController.swift in Sources */,
 				0A01A79219E330A70026B7E4 /* CustomCell.swift in Sources */,
 				0A01A7AF19E4A0000026B7E4 /* CustomDesign.swift in Sources */,
