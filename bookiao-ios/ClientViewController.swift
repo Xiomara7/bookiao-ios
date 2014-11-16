@@ -86,6 +86,14 @@ class ClientViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        let touch = UITouch()
+        if touch.view .isKindOfClass(UITextField) {
+            self.view.endEditing(true)
+        }
+        super.touchesBegan(touches, withEvent:event)
+    }
+    
     func buttonAction(sender:UIButton!) {
         let request = HTTPrequests()
         let name = nameTxtField.text

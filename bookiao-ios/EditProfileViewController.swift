@@ -70,8 +70,7 @@ class EditProfileViewController: UIViewController {
     }
 
     func dismiss() {
-//        let save = ProfileViewController(nibName: nil, bundle: nil)
-//        self.presentViewController(save, animated: true, completion: nil)
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

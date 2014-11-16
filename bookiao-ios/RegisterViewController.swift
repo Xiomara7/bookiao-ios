@@ -10,7 +10,7 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     var customDesign = CustomDesign()
-    
+    let application = UIApplication.sharedApplication().delegate as AppDelegate
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -22,8 +22,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
-        
-        let application = UIApplication.sharedApplication().delegate as AppDelegate
         
         var tabBar = UITabBarController()
         var tabBarAppearance = UITabBar.appearance()
@@ -46,30 +44,23 @@ class RegisterViewController: UIViewController {
         tabBarAppearance.backgroundImage = UIImage(named: "back.png")
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         
-        let postButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector("dismiss"))
-        self.navigationItem.leftBarButtonItem = postButton
+        let backButton = UIBarButtonItem(image: UIImage(named: "backButton.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("dismiss"))
+        tabBar.navigationItem.leftBarButtonItem = backButton
         
         let navBar = UINavigationController(rootViewController: tabBar)
         navBar.navigationBar.backgroundColor = UIColor.blackColor()
         navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics: .Default)
-        navBar.navigationItem.leftBarButtonItem = postButton
         application.window.rootViewController = navBar
 
     }
     
-    func tapPost() {
-        println("tappost")
-    }
-
-    func tapPostCalendar() {
-        println("calendar")
-    }
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
         println(item)
     }
     func dismiss() {
         let back = LoginViewController(nibName: nil, bundle: nil)
-        self.presentViewController(back, animated: true, completion: nil)
+//        self.presentViewController(back, animated: true, completion: nil)
+        self.application.window.rootViewController = back
     }
     
     override func didReceiveMemoryWarning() {
