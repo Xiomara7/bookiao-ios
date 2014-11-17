@@ -112,10 +112,10 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
         self.navigationItem.title = dateFormatter.stringFromDate(datePicker.date)
         application.date = dateFormatter.stringFromDate(datePicker.date)
         if application.userInfo["userType"] as String == "client" {
-            requests.getClientAppointments(application.userInfo["id"] as Int, date: application.date as String)
+            requests.getClientAppointmentsPerDay(application.userInfo["id"] as Int, date: application.date as String)
         }
         if application.userInfo["userType"] as String == "employee" {
-            requests.getEmployeeAppointments(application.userInfo["id"] as Int, date: application.date as String)
+            requests.getEmployeeAppointmentsPerDay(application.userInfo["id"] as Int, date: application.date as String)
         }
     }
     

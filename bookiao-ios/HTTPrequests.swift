@@ -256,39 +256,43 @@ class HTTPrequests {
         task.resume()
     }
     
-//    func editProfile(userType: NSString, id: NSString, nombre: NSString, email: NSString, telefono: NSString, negocio: NSString){
-//        let url = NSURL(string: "https://bookiao-api.herokuapp.com/\(userType)/\(id)")
-//        var request = NSMutableURLRequest(URL: url!)
-//        var session = NSURLSession.sharedSession()
-//        request.HTTPMethod = "POST"
-//        var params = ["nombre":nombre, "email":email, "telefono": telefono, "negocio":negocio] as Dictionary
-//        var err: NSError?
-//        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("Application/json", forHTTPHeaderField: "Accept")
-//        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-//            println("Response: \(response)")
-//            var err: NSError?
-//            if !(data == nil) {
-//                println(error)
-//            }
-//            else {
-//                var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
-//                
-//                if((err) != nil) {
-//                    println(err!.localizedDescription)
-//                }
-//                else {
-//                    var success = json["response"] as? String
-//                    println("Succes: \(success)")
-//                    println("Employee created")
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                    })
-//                }
-//            }
-//        })
-//        task.resume()
-//    }
+    func editProfile(userType: NSString, id: Int, nombre: NSString, email: NSString, telefono: NSString, negocio: Int){
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/\(userType)/\(id)/")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "PUT"
+        request.addValue("JWT \(self.application.token)", forHTTPHeaderField: "Authorization")
+        var params = ["email":email, "name":nombre, "phone_number": telefono, "business":negocio] as Dictionary
+        var err: NSError?
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Application/json", forHTTPHeaderField: "Accept")
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var err: NSError?
+            if !(data == nil) {
+                println(error)
+            }
+            else {
+                var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+    
+                if((err) != nil) {
+                    println(err!.localizedDescription)
+                }
+                else {
+                    var success = json["response"] as? String
+                    println("Succes: \(success)")
+                    println("Employee created")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.getClients()
+                        self.getEmployees()
+                        self.getUserInfo(email)
+                    })
+                }
+            }
+        })
+        task.resume()
+    }
     
     func createAppointment(services: NSArray, employee: NSString, client: NSString, date: NSString, theTime: NSString){
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/")
@@ -376,8 +380,8 @@ class HTTPrequests {
         task.resume()
     }
     
-    func getEmployeeAppointments(id: Int, date: NSString) {
-        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/?day=\(date)&employee=\(id)&ordering=time")
+    func getEmployeeAppointments(id: Int) {
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/?employee=\(id)&ordering=time")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "GET"
@@ -405,8 +409,66 @@ class HTTPrequests {
         task.resume()
     }
     
-    func getClientAppointments(id: Int, date: NSString) {
+    func getEmployeeAppointmentsPerDay(id: Int, date: NSString) {
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/?day=\(date)&employee=\(id)&ordering=time")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "GET"
+        var err: NSError?
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+            let jsonData = newData["results"] as NSArray
+            self.application.employeeAppointmentsPerDay = jsonData as NSArray
+            println("Body: \(strData)\n\n")
+            var err: NSError?
+            if (data == nil) {
+                println(error)
+            }
+            else {
+                println("got Appointments")
+                dispatch_async(dispatch_get_main_queue(), {
+                    let login = LoginViewController(nibName: nil, bundle: nil)
+                    let views = ViewController(nibName: nil, bundle: nil)
+                    login.presentViewController(views, animated: true, completion: nil)
+                })
+            }
+        })
+        task.resume()
+    }
+    
+    func getClientAppointmentsPerDay(id: Int, date: NSString) {
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/?day=\(date)&client=\(id)&ordering=time")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "GET"
+        var err: NSError?
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+            let jsonData = newData["results"] as NSArray
+            self.application.clientAppointmentsPerDay = jsonData as NSArray
+            println("Body: \(strData)\n\n")
+            var err: NSError?
+            if (data == nil) {
+                println(error)
+            }
+            else {
+                println("got Appointments")
+                dispatch_async(dispatch_get_main_queue(), {
+                    let login = LoginViewController(nibName: nil, bundle: nil)
+                    let views = ViewController(nibName: nil, bundle: nil)
+                    login.presentViewController(views, animated: true, completion: nil)
+                })
+            }
+        })
+        task.resume()
+    }
+    
+    func getClientAppointments(id: Int) {
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/appointments/?client=\(id)&ordering=time")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "GET"
@@ -513,10 +575,12 @@ class HTTPrequests {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.application.window.rootViewController = views
                     if self.application.userInfo["userType"] as String! == "client" {
-                        self.getClientAppointments(self.application.userInfo["id"] as Int, date: self.application.date as String)
+                        self.getClientAppointments(self.application.userInfo["id"] as Int)
+                        self.getClientAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date)
                     }
                     if self.application.userInfo["userType"] as String! == "employee" {
-                        self.getEmployeeAppointments(self.application.userInfo["id"] as Int, date: self.application.date as String)
+                        self.getEmployeeAppointments(self.application.userInfo["id"] as Int)
+                        self.getEmployeeAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date)
                     }
                 })
             }

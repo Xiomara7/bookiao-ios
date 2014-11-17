@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var employees: NSArray! = []
     var date: NSString!
     var employeeAppointments: NSArray! = []
+    var employeeAppointmentsPerDay: NSArray! = []
     var clientAppointments: NSArray! = []
+    var clientAppointmentsPerDay: NSArray! = []
     var userInfo: NSDictionary! = [:]
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
