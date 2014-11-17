@@ -16,6 +16,9 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
+    let views = AppointmentsViewController()
+    let requests = HTTPrequests()
+    
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -79,7 +82,7 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     lazy var dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
         
-        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         return dateFormatter
         }()
@@ -107,6 +110,13 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     
     func buttonAction() {
         self.navigationItem.title = dateFormatter.stringFromDate(datePicker.date)
+        application.date = dateFormatter.stringFromDate(datePicker.date)
+        if application.userInfo["userType"] as String == "client" {
+            requests.getClientAppointments(application.userInfo["id"] as Int, date: application.date as String)
+        }
+        if application.userInfo["userType"] as String == "employee" {
+            requests.getEmployeeAppointments(application.userInfo["id"] as Int, date: application.date as String)
+        }
     }
     
     // PICKERS:

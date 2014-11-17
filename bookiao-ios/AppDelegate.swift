@@ -18,12 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var client: NSArray! = []
     var services: NSArray! = []
     var employees: NSArray! = []
+    var date: NSString!
     var employeeAppointments: NSArray! = []
     var clientAppointments: NSArray! = []
     var userInfo: NSDictionary! = [:]
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        date = "2014-11-11"
         if let window = window {
             var login = LoginViewController(nibName: nil, bundle: nil)
             

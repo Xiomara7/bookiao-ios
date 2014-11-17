@@ -85,20 +85,21 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
             let day  = self.application.employeeAppointments[indexPath.row]["day"] as String!
             let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
             let services = self.application.employeeAppointments[indexPath.row]["services"] as NSArray!
-            
-            cell.titleLabel.text = self.application.employeeAppointments[indexPath.row]["client"] as String!
-            cell.subtitleLabel.text = "La cita comienza a las \(time)"
-            
-            cell.priceLabel.text = services[0] as? String
+            if day == application.date {
+                cell.titleLabel.text = self.application.employeeAppointments[indexPath.row]["client"] as String!
+                cell.subtitleLabel.text = "La cita comienza a las \(time)"
+                cell.priceLabel.text = services[0] as? String
+            }
         }
         if self.application.userInfo["userType"] as String! == "client" {
             let day  = self.application.clientAppointments[indexPath.row]["day"] as String!
             let time = self.application.clientAppointments[indexPath.row]["time"] as String!
             let services = self.application.clientAppointments[indexPath.row]["services"] as NSArray!
-            
-            cell.titleLabel.text = self.application.clientAppointments[indexPath.row]["employee"] as String!
-            cell.subtitleLabel.text = "La cita comienza a las \(time)"
-            cell.priceLabel.text = services[0] as? String
+            if day == application.date {
+                cell.titleLabel.text = self.application.clientAppointments[indexPath.row]["employee"] as String!
+                cell.subtitleLabel.text = "La cita comienza a las \(time)"
+                cell.priceLabel.text = services[0] as? String
+            }
         }
         if self.application.userInfo["userType"] as String! == "business" {
             cell.titleLabel.text = ""
