@@ -303,7 +303,7 @@ class HTTPrequests {
         var err: NSError?
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
-            if (data == nil) {
+            if (response == nil) {
                 println(error)
             }
             else {
@@ -440,7 +440,7 @@ class HTTPrequests {
             self.application.services = jsonData as NSArray
             println("Body: \(strData)\n\n")
             var err: NSError?
-            if (self.application.services == nil) {
+            if (data == nil) {
                 println(error)
             }
             else {

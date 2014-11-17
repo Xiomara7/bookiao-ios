@@ -9,9 +9,9 @@
 import UIKit
 
 class CustomCell: UITableViewCell {
-    
+    let custom = CustomDesign()
     struct Config {
-        static let topPadding: CGFloat = 30.0
+        static let topPadding: CGFloat = 20.0
         static let bottomPadding: CGFloat = 30.0
         static let leftPadding: CGFloat = 30.0
         static let rightPadding: CGFloat = 30.0
@@ -22,7 +22,7 @@ class CustomCell: UITableViewCell {
     let subtitleLabel: UILabel!
 
     class var defaultHeight: CGFloat {
-    return 84.0
+        return 150.0
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -36,9 +36,9 @@ class CustomCell: UITableViewCell {
         
         titleLabel = UILabel(frame: CGRectZero)
         titleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        titleLabel.font = UIFont.systemFontOfSize(18.0)
+        titleLabel.font = UIFont.systemFontOfSize(16.0)
         titleLabel.textAlignment = .Left
-        titleLabel.textColor = UIColor.blackColor()
+        titleLabel.textColor = custom.UIColorFromRGB(0x545454)
         
         contentView.addSubview(titleLabel)
         
@@ -46,15 +46,15 @@ class CustomCell: UITableViewCell {
         subtitleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         subtitleLabel.font = UIFont.systemFontOfSize(12.0)
         subtitleLabel.textAlignment = .Right
-        subtitleLabel.textColor = UIColor.grayColor()
+        subtitleLabel.textColor = custom.UIColorFromRGB(0x545454)
         
         contentView.addSubview(subtitleLabel)
         
         priceLabel = UILabel(frame: CGRectZero)
         priceLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        priceLabel.font = UIFont.systemFontOfSize(20.0)
+        priceLabel.font = UIFont.systemFontOfSize(12.0)
         priceLabel.textAlignment = .Right
-        priceLabel.textColor = UIColor.blackColor()
+        priceLabel.textColor = custom.UIColorFromRGB(0x545454)
         
         contentView.addSubview(priceLabel)
         
@@ -66,11 +66,11 @@ class CustomCell: UITableViewCell {
         titleLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
         titleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
-        subtitleLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding)
+        subtitleLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding )
         subtitleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
-        priceLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding + 10.0)
-        priceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: Config.rightPadding)
+        priceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding - 15.0)
+        priceLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
         
 //        titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: titleLabel, withOffset: 2.0)

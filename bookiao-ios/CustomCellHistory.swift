@@ -9,9 +9,9 @@
 import UIKit
 
 class CustomCellHistory: UITableViewCell {
-    
+    let custom = CustomDesign()
     struct Config {
-        static let topPadding: CGFloat = 30.0
+        static let topPadding: CGFloat = 20.0
         static let bottomPadding: CGFloat = 30.0
         static let leftPadding: CGFloat = 30.0
         static let rightPadding: CGFloat = 30.0
@@ -37,9 +37,9 @@ class CustomCellHistory: UITableViewCell {
         
         titleLabel = UILabel(frame: CGRectZero)
         titleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        titleLabel.font = UIFont.systemFontOfSize(18.0)
+        titleLabel.font = UIFont.systemFontOfSize(16.0)
         titleLabel.textAlignment = .Left
-        titleLabel.textColor = UIColor.blackColor()
+        titleLabel.textColor = custom.UIColorFromRGB(0x545454)
         
         contentView.addSubview(titleLabel)
         
@@ -47,7 +47,7 @@ class CustomCellHistory: UITableViewCell {
         subtitleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         subtitleLabel.font = UIFont.systemFontOfSize(12.0)
         subtitleLabel.textAlignment = .Right
-        subtitleLabel.textColor = UIColor.grayColor()
+        subtitleLabel.textColor = custom.UIColorFromRGB(0x545454)
         
         contentView.addSubview(subtitleLabel)
         
@@ -55,7 +55,7 @@ class CustomCellHistory: UITableViewCell {
         priceLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         priceLabel.font = UIFont.systemFontOfSize(20.0)
         priceLabel.textAlignment = .Right
-        priceLabel.textColor = UIColor.blackColor()
+        priceLabel.textColor = custom.UIColorFromRGB(0x545454)
         
         contentView.addSubview(priceLabel)
         
