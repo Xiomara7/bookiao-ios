@@ -20,14 +20,6 @@ class ProfileViewController: UIViewController {
         let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         let application = UIApplication.sharedApplication().delegate as AppDelegate
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func viewDidLoad() {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         let application = UIApplication.sharedApplication().delegate as AppDelegate

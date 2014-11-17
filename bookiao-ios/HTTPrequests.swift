@@ -303,11 +303,16 @@ class HTTPrequests {
         var err: NSError?
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
-            var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-            let jsonData = newdata["results"] as NSArray
-            self.application.titles = jsonData as NSArray
+            if (data == nil) {
+                println(error)
+            }
+            else {
+                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary!
+                let jsonData = newdata["results"] as NSArray
+                self.application.titles = jsonData as NSArray
             println(jsonData)
+            }
         })
         task.resume()
     }
@@ -430,12 +435,12 @@ class HTTPrequests {
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
-            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary!
             let jsonData = newData["results"] as NSArray
             self.application.services = jsonData as NSArray
             println("Body: \(strData)\n\n")
             var err: NSError?
-            if (data == nil) {
+            if (self.application.services == nil) {
                 println(error)
             }
             else {
@@ -472,6 +477,7 @@ class HTTPrequests {
             else {
                 println("got UserInfo")
                 dispatch_async(dispatch_get_main_queue(), {
+                    self.application.window.rootViewController = views
                     if self.application.userInfo["userType"] as String! == "client" {
                         self.getClientAppointments(self.application.userInfo["id"] as Int!)
                     }

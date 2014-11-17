@@ -45,14 +45,14 @@ class BusinessViewController: UIViewController {
         passwordtxtField.textAlignment = .Center
         passwordtxtField.placeholder = "Contraseña"
         
-        nameTxtField.frame = (CGRectMake(20, 270, self.view.bounds.width - 40, 40))
+        nameTxtField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
         nameTxtField.backgroundColor = UIColor.whiteColor()
         nameTxtField.tintColor = UIColor.grayColor()
         nameTxtField.font = UIFont.systemFontOfSize(14.0)
         nameTxtField.textAlignment = .Center
         nameTxtField.placeholder = "Nombre del dueño"
         
-        confirmtxtField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
+        confirmtxtField.frame = (CGRectMake(20, 270, self.view.bounds.width - 40, 40))
         confirmtxtField.backgroundColor = UIColor.whiteColor()
         confirmtxtField.tintColor = UIColor.grayColor()
         confirmtxtField.font = UIFont.systemFontOfSize(14.0)
@@ -90,12 +90,12 @@ class BusinessViewController: UIViewController {
         self.view.addSubview(emailtxtField)
         self.view.addSubview(placetxtField)
         self.view.addSubview(passwordtxtField)
-        self.view.addSubview(startTimetxtField)
         self.view.addSubview(localTxtField)
-        self.view.addSubview(endTimetxtField)
         self.view.addSubview(rButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
+//        self.view.addSubview(startTimetxtField)
+//        self.view.addSubview(endTimetxtField)
 
         
         // Do any additional setup after loading the view.
@@ -111,18 +111,19 @@ class BusinessViewController: UIViewController {
     
     func buttonActionBusiness() {
         let request = HTTPrequests()
-        let name = nameTxtField.text
+        let name = placetxtField.text
         let email = emailtxtField.text
         let phone = confirmtxtField.text
         let password = passwordtxtField.text
-        let location = placetxtField.text
-        let manager = ""
+        let location = localTxtField.text
+        let manager = nameTxtField.text
         let business = ""
         let usuario = "negocio"
         
+        request.getUserInfo(email)
         request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, bID:0, usuario: usuario)
-        let views = ViewController(nibName: nil, bundle: nil)
-        self.presentViewController(views, animated: true, completion: nil)
+//        let views = ViewController(nibName: nil, bundle: nil)
+//        self.presentViewController(views, animated: true, completion: nil)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

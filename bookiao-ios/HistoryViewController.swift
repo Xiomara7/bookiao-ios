@@ -18,14 +18,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func viewDidLoad() {
     
         self.view = UIView(frame: self.view.bounds)
@@ -83,7 +75,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
-        let check = UIImage(named: "check.png")
         
         if self.application.userInfo["userType"] as String! == "employee" {
             let day  = self.application.employeeAppointments[indexPath.row]["day"] as String!

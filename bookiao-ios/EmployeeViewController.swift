@@ -102,12 +102,12 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         self.view.addSubview(emailtxtField)
         self.view.addSubview(placetxtField)
         self.view.addSubview(passwordtxtField)
-        self.view.addSubview(startTimetxtField)
         self.view.addSubview(localTxtField)
-        self.view.addSubview(endTimetxtField)
         self.view.addSubview(registroButton)
         self.view.addSubview(confirmtxtField)
         self.view.addSubview(nameTxtField)
+//        self.view.addSubview(endTimetxtField)
+//        self.view.addSubview(startTimetxtField)
 
         pickerView.delegate = self
         placetxtField.inputView = pickerView
@@ -152,10 +152,11 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         let business = placetxtField.text
         let businessID = businessResponse
         let usuario  = "empleado"
-        
+
+        request.getUserInfo(email)
         request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, bID: businessID,  usuario: usuario)
-        let views = ViewController(nibName: nil, bundle: nil)
-        self.presentViewController(views, animated: true, completion: nil)
+//        let views = ViewController(nibName: nil, bundle: nil)
+//        self.presentViewController(views, animated: true, completion: nil)
     }
     // returns the number of 'columns' to display.
     func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{

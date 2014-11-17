@@ -15,9 +15,6 @@ class ViewController: UIViewController {
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     let customDesign = CustomDesign()
-    let appointments: UIViewController = AppointmentsViewController(nibName: nil, bundle: nil)
-    let history: UIViewController = HistoryViewController(nibName: nil, bundle: nil)
-    let profile: UIViewController = ProfileViewController(nibName: nil, bundle: nil)
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -31,45 +28,48 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let citasTextLabel    = UITabBarItem(title: "", image: UIImage(named: "booking.png"), tag: 0)
-        let historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
-        let settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
+        var tabBar = UITabBarController()
+        var tabBarAppearance = UITabBar.appearance()
+        var appointments: UIViewController = AppointmentsViewController()
+        var history: UIViewController = HistoryViewController()
+        var profile: UIViewController = ProfileViewController()
+        var citasTextLabel    = UITabBarItem(title: "", image: UIImage(named: "booking.png"), tag: 0)
+        var historyTextLabel  = UITabBarItem(title: "", image: UIImage(named: "history.png"), tag: 1)
+        var settingsTextLabel = UITabBarItem(title: "", image: UIImage(named: "profile.png"), tag: 2)
         
         appointments.tabBarItem = citasTextLabel
         history.tabBarItem = historyTextLabel
         profile.tabBarItem = settingsTextLabel
         
-        appointments.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -10))
-        history.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -10))
-        profile.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -10))
+        appointments.tabBarItem.imageInsets = UIEdgeInsetsMake(4, 0, -4, 0)
+        history.tabBarItem.imageInsets = UIEdgeInsetsMake(4, 0, -4, 0)
+        profile.tabBarItem.imageInsets = UIEdgeInsetsMake(4, 0, -4, 0)
         
-        let controllers = [appointments, history, profile]
+        var controllers = [appointments, history, profile]
         
-        let tabBar = UITabBarController()
-        var tabBarAppearance = UITabBar.appearance()
-        tabBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         tabBarAppearance.backgroundImage = UIImage(named: "back.png")
+        tabBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         tabBarAppearance.tintColor = customDesign.UIColorFromRGB(0x00B287)
         tabBar.viewControllers = controllers
-        
-        tabBarAppearance.translucent = false
     
         let navBar = UINavigationController(rootViewController: tabBar)
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
-        navBar.tabBarController?.tabBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
+
         navBar.navigationBar.backgroundColor = customDesign.UIColorFromRGB(0x323C3E)
         navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics:.Default)
+
         let postButton = UIBarButtonItem(image: UIImage(named: "post.png"), style:.Plain, target: self, action: Selector("tapPost"))
         let calendarButton = UIBarButtonItem(image: UIImage(named: "calendar.png"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("tapPostCalendar"))
 
         tabBar.navigationItem.rightBarButtonItem = postButton
         tabBar.navigationItem.leftBarButtonItem = calendarButton
         
-        let application = UIApplication.sharedApplication().delegate as AppDelegate
         application.window.rootViewController = navBar
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -20))
     }
 
     override func didReceiveMemoryWarning() {

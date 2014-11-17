@@ -16,14 +16,6 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     var dataSource: [[String: String]] = []
     var names: NSArray! = []
     var customDesign = CustomDesign()
-
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
     
@@ -46,6 +38,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Citas"
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -50))
     }
     
     // MARK: - Private Methods
