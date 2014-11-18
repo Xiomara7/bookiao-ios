@@ -255,7 +255,7 @@ class HTTPrequests {
     }
     
     func editProfile(userType: NSString, id: Int, nombre: NSString, email: NSString, telefono: NSString, negocio: Int){
-        let url = NSURL(string: "https://bookiao-api.herokuapp.com/\(userType)/\(id)")
+        let url = NSURL(string: "https://http://bookiao-api.herokuapp.com/\(userType)/\(id)/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "PUT"

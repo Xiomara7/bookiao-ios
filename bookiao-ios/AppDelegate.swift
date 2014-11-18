@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userInfo: NSDictionary! = [:]
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Crashlytics.startWithAPIKey("060c9c8678ed200621af5e16e3937d3d31c777be")
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let now = NSDate()
         let dateFormatter = NSDateFormatter()

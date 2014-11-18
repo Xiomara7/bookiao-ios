@@ -33,6 +33,7 @@
 		0ADB9E941A006010007F5539 /* json-swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADB9E931A006010007F5539 /* json-swift.swift */; };
 		0ADC179E1A098F1600FF8122 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADC17991A098EFF00FF8122 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ADC17A01A09E5CE00FF8122 /* newAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADC179F1A09E5CE00FF8122 /* newAppointmentViewController.swift */; };
+		0ADEBE741A1BED710051FB83 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADEBE731A1BED710051FB83 /* Crashlytics.framework */; };
 		0AFEB8721A0570070095A951 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8711A0570070095A951 /* ClientViewController.swift */; };
 		0AFEB8741A0570160095A951 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8731A0570160095A951 /* BusinessViewController.swift */; };
 		0AFEB8761A05702A0095A951 /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */; };
@@ -123,6 +124,7 @@
 		0ADB9E931A006010007F5539 /* json-swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "json-swift.swift"; path = "../json-swift.swift"; sourceTree = "<group>"; };
 		0ADC17931A098EFF00FF8122 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		0ADC179F1A09E5CE00FF8122 /* newAppointmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newAppointmentViewController.swift; sourceTree = "<group>"; };
+		0ADEBE731A1BED710051FB83 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		0AFEB8711A0570070095A951 /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		0AFEB8731A0570160095A951 /* BusinessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
 		0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ADEBE741A1BED710051FB83 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +203,7 @@
 		0A4C372519DA6DFF009AD8DD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0ADEBE731A1BED710051FB83 /* Crashlytics.framework */,
 				0A01A79719E38F880026B7E4 /* PureLayout */,
 				0ADB9E931A006010007F5539 /* json-swift.swift */,
 				0A4C372619DA6DFF009AD8DD /* Info.plist */,
@@ -289,6 +293,7 @@
 				0A4C371F19DA6DFF009AD8DD /* Frameworks */,
 				0A4C372019DA6DFF009AD8DD /* Resources */,
 				0A5FBCA81A098D6A00668ECF /* Copy Frameworks */,
+				0ADEBE711A1BED0F0051FB83 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -396,6 +401,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0ADEBE711A1BED0F0051FB83 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 060c9c8678ed200621af5e16e3937d3d31c777be 618d2d60f6068f171a4f2aa78f6657c3771c1b84b8fd945b8e2a05e812b6d63e";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A4C371E19DA6DFF009AD8DD /* Sources */ = {
@@ -541,6 +562,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/bookiao-ios",
+				);
 				INFOPLIST_FILE = "bookiao-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -559,6 +584,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/bookiao-ios",
+				);
 				INFOPLIST_FILE = "bookiao-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

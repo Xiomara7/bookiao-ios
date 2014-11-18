@@ -86,10 +86,10 @@ class EditProfileViewController: UIViewController {
 
     func dismiss() {
         if self.application.userInfo["userType"] as String == "employee" {
-            requests.editProfile("employees", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: 1)
+            requests.editProfile("employees", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: 0)
         }
         if self.application.userInfo["userType"] as String == "client" {
-            requests.editProfile("clients", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: 1)
+            requests.editProfile("clients", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: 0)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
