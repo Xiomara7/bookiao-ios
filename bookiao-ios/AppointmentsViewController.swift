@@ -15,7 +15,9 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     var tableView: UITableView!
     var dataSource: [[String: String]] = []
     var names: NSArray! = []
+    var refreshControl:UIRefreshControl!
     var customDesign = CustomDesign()
+    var requests = HTTPrequests()
     
     override func viewDidLoad() {
     
@@ -33,10 +35,27 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         self.view.addSubview(tableView)
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
+        self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        
+    }
+    
+    func refresh() {
+        if self.application.userInfo["userType"] as String == "client" {
+            self.requests.getClientAppointments(self.application.userInfo["id"] as Int)
+            self.requests.getClientAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date as String)
+        }
+        if self.application.userInfo["userType"] as String == "employee" {
+            self.requests.getEmployeeAppointments(self.application.userInfo["id"] as Int)
+            self.requests.getEmployeeAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date as String)
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.tabBarController?.navigationItem.title = "Citas"
+        self.tabBarController?.navigationItem.title = self.application.date
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -50))
     }

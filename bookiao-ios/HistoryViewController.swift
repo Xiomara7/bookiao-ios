@@ -15,6 +15,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     var dataSource: [[String: String]] = []
     var names: NSArray! = []
     var customDesign = CustomDesign()
+    var requests = HTTPrequests()
+    var refreshControl:UIRefreshControl!
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -30,6 +32,23 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.headerViewForSection(0)?.tintColor = UIColor.whiteColor()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         self.view.addSubview(tableView)
+
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
+        self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+    }
+    
+    func refresh() {
+        if self.application.userInfo["userType"] as String == "client" {
+            self.requests.getClientAppointments(self.application.userInfo["id"] as Int)
+            self.requests.getClientAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date as String)
+        }
+        if self.application.userInfo["userType"] as String == "employee" {
+            self.requests.getEmployeeAppointments(self.application.userInfo["id"] as Int)
+            self.requests.getEmployeeAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date as String)
+        }
+        
     }
     
     // MARK: - Private Methods
