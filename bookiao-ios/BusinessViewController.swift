@@ -17,6 +17,9 @@ class BusinessViewController: UIViewController {
     var localTxtField: UITextField = UITextField()
     var startTimetxtField: UITextField = UITextField()
     var endTimetxtField: UITextField = UITextField()
+    
+    var subscription: UILabel = UILabel()
+    var paragraph: UILabel = UILabel()
     var rButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     override func viewDidLoad() {
@@ -31,7 +34,7 @@ class BusinessViewController: UIViewController {
         placetxtField.textAlignment = .Center
         placetxtField.placeholder = "Nombre del negocio"
         
-        emailtxtField.frame = CGRectMake(20, 120, self.view.bounds.width - 40, 40)
+        emailtxtField.frame = CGRectMake(20, self.view.bounds.height / 2, self.view.bounds.width - 40, 40)
         emailtxtField.backgroundColor = UIColor.whiteColor()
         emailtxtField.tintColor = UIColor.grayColor()
         emailtxtField.font = UIFont.systemFontOfSize(14.0)
@@ -80,20 +83,34 @@ class BusinessViewController: UIViewController {
         endTimetxtField.textAlignment = .Center
         endTimetxtField.placeholder = "Cierra"
         
-        rButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
+        subscription.frame = CGRectMake(20, 100, self.view.bounds.width - 40, 40)
+        subscription.font = UIFont.boldSystemFontOfSize(18.0)
+        subscription.textAlignment = .Center
+        subscription.text = "Subscribete"
+        
+        paragraph.frame = CGRectMake(20, 100, self.view.bounds.width - 40, 200)
+        paragraph.font = UIFont.systemFontOfSize(14.0)
+        paragraph.textAlignment = .Center
+        paragraph.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        paragraph.numberOfLines = 0
+        paragraph.text = "Hasta este momento nuestro app tiene solo un negocio beta. Si deseas ser parte del grupo de negocios beta, por favor déjanos tu correo electrónico utilizando los campos de abajo. \r \r Atentamente H3 at Bookiao."
+        
+        rButton.frame = CGRectMake(20, self.view.bounds.height / 2 + 50, self.view.bounds.width - 40, 40)
         rButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         rButton.tintColor = UIColor.whiteColor()
         rButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        rButton.setTitle("Registrarme", forState: UIControlState.Normal)
+        rButton.setTitle("Subscribeme", forState: UIControlState.Normal)
         rButton.addTarget(self, action: "buttonActionBusiness", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(emailtxtField)
-        self.view.addSubview(placetxtField)
-        self.view.addSubview(passwordtxtField)
-        self.view.addSubview(localTxtField)
+        self.view.addSubview(subscription)
+        self.view.addSubview(paragraph)
         self.view.addSubview(rButton)
-        self.view.addSubview(confirmtxtField)
-        self.view.addSubview(nameTxtField)
+//        self.view.addSubview(placetxtField)
+//        self.view.addSubview(passwordtxtField)
+//        self.view.addSubview(localTxtField)
+//        self.view.addSubview(confirmtxtField)
+//        self.view.addSubview(nameTxtField)
 //        self.view.addSubview(startTimetxtField)
 //        self.view.addSubview(endTimetxtField)
 
@@ -119,11 +136,18 @@ class BusinessViewController: UIViewController {
         let manager = nameTxtField.text
         let business = ""
         let usuario = "negocio"
+
+        request.subscription(email)
         
-        request.getUserInfo(email)
-        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business: business, bID:0, usuario: usuario)
+//        request.getUserInfo(email)
+//        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: manager, business:  business, bID:0, usuario: usuario)
 //        let views = ViewController(nibName: nil, bundle: nil)
 //        self.presentViewController(views, animated: true, completion: nil)
+        
+        emailtxtField.text = ""
+        let alert = UIAlertView(title: "Thanks!", message: "We'll contact you soon!", delegate: self, cancelButtonTitle: "OK")
+        alert.show()
+        
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

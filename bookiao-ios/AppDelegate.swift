@@ -27,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        date = "2014-11-11"
+        let now = NSDate()
+        let dateFormatter = NSDateFormatter()
+        date = dateFormatter.stringFromDate(now)
         if let window = window {
             var login = LoginViewController(nibName: nil, bundle: nil)
             

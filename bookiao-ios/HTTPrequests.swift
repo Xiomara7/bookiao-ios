@@ -112,17 +112,15 @@ class HTTPrequests {
         request.addValue("Application/json", forHTTPHeaderField: "Accept")
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)")
-            var err: NSError?
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
-            self.application.token = json["token"] as? String
-            if(self.application.token == nil) {
+            if(response == nil) {
+                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+                println("Body: \(strData)")
+                var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+                self.application.token = json["token"] as? String
                 let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
                 alert.show()
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("INVALID LOGIN")
-                
             }
             else {
                 dispatch_sync(dispatch_get_main_queue(), {
@@ -504,19 +502,16 @@ class HTTPrequests {
         var err: NSError?
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
-            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-            let jsonData = newData["results"] as NSArray
-            self.application.employees = jsonData as NSArray
-            println("Body: \(strData)\n\n")
-            var err: NSError?
-            if (data == nil) {
+            if response == nil {
                 println(error)
             }
             else {
                 println("got Employees")
-                dispatch_async(dispatch_get_main_queue(), {
-                })
+                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+                let jsonData = newData["results"] as NSArray
+                self.application.employees = jsonData as NSArray
+                println("Body: \(strData)\n\n")
             }
         })
         task.resume()
@@ -530,19 +525,16 @@ class HTTPrequests {
         var err: NSError?
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
-            var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary!
-            let jsonData = newData["results"] as NSArray
-            self.application.services = jsonData as NSArray
-            println("Body: \(strData)\n\n")
-            var err: NSError?
-            if (data == nil) {
+            if (response == nil) {
                 println(error)
             }
             else {
                 println("got Services")
-                dispatch_async(dispatch_get_main_queue(), {
-                })
+                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary!
+                let jsonData = newData["results"] as NSArray
+                self.application.services = jsonData as NSArray
+                println("Body: \(strData)\n\n")
             }
         })
         task.resume()
@@ -566,8 +558,8 @@ class HTTPrequests {
             println(jsonData)
             println("Body: \(strData)\n\n")
             var err: NSError?
-            if (jsonData["userType"] as String == "none") {
-                println(error)
+            if (response == nil) {
+                println(response)
                 
             }
             else {
@@ -583,6 +575,43 @@ class HTTPrequests {
                         self.getEmployeeAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date)
                     }
                 })
+            }
+        })
+        task.resume()
+    }
+    
+    func subscription(email: NSString) {
+        let url = NSURL(string: "http://bookiao-api.herokuapp.com/betaemails/")
+        var request = NSMutableURLRequest(URL: url!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        var params = ["email": email] as Dictionary
+        var err: NSError?
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Application/json", forHTTPHeaderField: "Accept")
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)\n\n")
+            
+            var err: NSError?
+            if !(data == nil) {
+                println(error)
+            }
+            else {
+                var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+                
+                if((err) != nil) {
+                    println(err!.localizedDescription)
+                }
+                else {
+                    var success = json["response"] as? String
+                    println("Succes: \(success)")
+                    println("Subscription created")
+                    dispatch_async(dispatch_get_main_queue(), {
+                    })
+                }
             }
         })
         task.resume()
