@@ -89,6 +89,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
             cell.titleLabel.text = self.application.employeeAppointmentsPerDay[indexPath.row]["client"] as String!
             cell.subtitleLabel.text = "La cita comienza a las \(time)"
             cell.priceLabel.text = services[0] as? String
+            cell.phoneLabel.text = self.application.userInfo["phone_number"] as String!
         }
         if self.application.userInfo["userType"] as String! == "client" {
             let day  = self.application.clientAppointmentsPerDay[indexPath.row]["day"] as String!
@@ -98,6 +99,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
             cell.titleLabel.text = self.application.clientAppointmentsPerDay[indexPath.row]["employee"] as String!
             cell.subtitleLabel.text = "La cita comienza a las \(time)"
             cell.priceLabel.text = services[0] as? String
+            cell.phoneLabel.text = self.application.userInfo["phone_number"] as String!
         }
         if self.application.userInfo["userType"] as String! == "business" {
             cell.titleLabel.text = ""
@@ -119,7 +121,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: UITableViewDelegate Methods
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 95.0
+        return 140.0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

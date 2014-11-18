@@ -12,7 +12,7 @@ class CustomCell: UITableViewCell {
     let custom = CustomDesign()
     struct Config {
         static let topPadding: CGFloat = 20.0
-        static let bottomPadding: CGFloat = 30.0
+        static let bottomPadding: CGFloat = 50.0
         static let leftPadding: CGFloat = 30.0
         static let rightPadding: CGFloat = 30.0
     }
@@ -20,6 +20,7 @@ class CustomCell: UITableViewCell {
     let priceLabel: UILabel!
     let titleLabel: UILabel!
     let subtitleLabel: UILabel!
+    let phoneLabel: UILabel!
 
     class var defaultHeight: CGFloat {
         return 150.0
@@ -53,11 +54,18 @@ class CustomCell: UITableViewCell {
         priceLabel = UILabel(frame: CGRectZero)
         priceLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         priceLabel.font = UIFont.systemFontOfSize(12.0)
-        priceLabel.textAlignment = .Right
+        priceLabel.textAlignment = .Left
         priceLabel.textColor = custom.UIColorFromRGB(0x545454)
         
         contentView.addSubview(priceLabel)
         
+        phoneLabel = UILabel(frame: CGRectZero)
+        phoneLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        phoneLabel.font = UIFont.systemFontOfSize(12.0)
+        phoneLabel.textAlignment = .Left
+        phoneLabel.textColor = custom.UIColorFromRGB(0x545454)
+        
+        contentView.addSubview(phoneLabel)
         
     }
     
@@ -66,7 +74,10 @@ class CustomCell: UITableViewCell {
         titleLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
         titleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
-        subtitleLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding )
+        phoneLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding + 20.0)
+        phoneLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
+        
+        subtitleLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding)
         subtitleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
         priceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding - 15.0)
