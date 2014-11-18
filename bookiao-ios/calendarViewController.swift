@@ -87,6 +87,14 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
         return dateFormatter
         }()
     
+    lazy var dateFormatterLabel: NSDateFormatter = {
+        let dateFormatterLabel = NSDateFormatter()
+        
+        dateFormatterLabel.dateStyle = .MediumStyle
+        
+        return dateFormatterLabel
+        }()
+    
     // MARK: Configuration
     
     func configureDatePicker() {
@@ -111,6 +119,7 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     func buttonAction() {
         self.navigationItem.title = dateFormatter.stringFromDate(datePicker.date)
         application.date = dateFormatter.stringFromDate(datePicker.date)
+        application.dateLabel = dateFormatterLabel.stringFromDate(datePicker.date)
         if application.userInfo["userType"] as String == "client" {
             requests.getClientAppointmentsPerDay(application.userInfo["id"] as Int, date: application.date as String)
         }

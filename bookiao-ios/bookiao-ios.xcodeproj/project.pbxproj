@@ -243,7 +243,6 @@
 		0A4C375419DA7228009AD8DD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0A344A781A0AE8CA000841A2 /* HTTPrequests.swift */,
 				0A4C374E19DA7198009AD8DD /* ViewController.swift */,
 				0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */,
 				0AFEB8711A0570070095A951 /* ClientViewController.swift */,
@@ -273,6 +272,7 @@
 		0AFEC60F1A018CF900B1B823 /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
+				0A344A781A0AE8CA000841A2 /* HTTPrequests.swift */,
 				0A4C378A19DA7340009AD8DD /* AppDelegate.swift */,
 			);
 			name = Singletons;

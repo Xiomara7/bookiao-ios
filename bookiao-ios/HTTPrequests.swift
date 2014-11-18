@@ -255,7 +255,7 @@ class HTTPrequests {
     }
     
     func editProfile(userType: NSString, id: Int, nombre: NSString, email: NSString, telefono: NSString, negocio: Int){
-        let url = NSURL(string: "https://bookiao-api.herokuapp.com/\(userType)/\(id)/")
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/\(userType)/\(id)")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "PUT"
@@ -280,7 +280,7 @@ class HTTPrequests {
                 else {
                     var success = json["response"] as? String
                     println("Succes: \(success)")
-                    println("Employee created")
+                    println("User Info Updated")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.getClients()
                         self.getEmployees()

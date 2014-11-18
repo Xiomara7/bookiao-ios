@@ -55,7 +55,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.tabBarController?.navigationItem.title = self.application.date
+        self.tabBarController?.navigationItem.title = self.application.dateLabel
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -50))
     }

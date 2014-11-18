@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var services: NSArray! = []
     var employees: NSArray! = []
     var date: NSString!
+    var dateLabel: NSString!
     var employeeAppointments: NSArray! = []
     var employeeAppointmentsPerDay: NSArray! = []
     var clientAppointments: NSArray! = []
