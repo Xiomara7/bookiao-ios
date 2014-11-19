@@ -111,14 +111,14 @@ class HTTPrequests {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Application/json", forHTTPHeaderField: "Accept")
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            println("Response: \(response)")
-            if(response == nil) {
-                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Body: \(strData)")
-                var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
-                self.application.token = json["token"] as? String
-                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
-                alert.show()
+            println("Response: \(data)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)")
+            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
+            self.application.token = json["token"] as String!
+            if(self.application.token == nil) {
+//                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
+//                alert.show()
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("INVALID LOGIN")
             }
@@ -264,7 +264,7 @@ class HTTPrequests {
         var err: NSError?
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Response: \(response)")
             var err: NSError?
@@ -543,7 +543,6 @@ class HTTPrequests {
     func getUserInfo(email: NSString) {
         let login = LoginViewController(nibName: nil, bundle: nil)
         let views = ViewController(nibName: nil, bundle: nil)
-        
         let url = NSURL(string: "http://bookiao-api.herokuapp.com/user-type/?email=\(email)")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
@@ -558,9 +557,9 @@ class HTTPrequests {
             println(jsonData)
             println("Body: \(strData)\n\n")
             var err: NSError?
-            if (response == nil) {
-                println(response)
-                
+            if (self.application.userInfo["userType"] as String == "none") {
+                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
+                alert.show()
             }
             else {
                 println("got UserInfo")

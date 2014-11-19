@@ -21,7 +21,10 @@ class CustomCell: UITableViewCell {
     let titleLabel: UILabel!
     let subtitleLabel: UILabel!
     let phoneLabel: UILabel!
-
+    let superTitle: UILabel!
+    let status: UILabel!
+    let postButton: UIButton! = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    
     class var defaultHeight: CGFloat {
         return 150.0
     }
@@ -67,10 +70,29 @@ class CustomCell: UITableViewCell {
         
         contentView.addSubview(phoneLabel)
         
+        postButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        contentView.addSubview(postButton)
+        
+        superTitle = UILabel(frame: CGRectZero)
+        superTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
+        superTitle.font = UIFont.boldSystemFontOfSize(18.0)
+        superTitle.textAlignment = .Center
+        superTitle.textColor = custom.UIColorFromRGB(0x545454)
+        
+        contentView.addSubview(superTitle)
+        
+        status = UILabel(frame: CGRectZero)
+        status.setTranslatesAutoresizingMaskIntoConstraints(false)
+        status.font = UIFont.systemFontOfSize(12.0)
+        status.textAlignment = .Center
+        
+        contentView.addSubview(status)
+        
     }
     
     override func updateConstraints() {
-//        titleLabel.autoPinEdge(.Top, toEdge: .Left, ofView: titleLabel, withOffset: 3.0)
+
         titleLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
         titleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
@@ -83,9 +105,14 @@ class CustomCell: UITableViewCell {
         priceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding - 15.0)
         priceLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
+        superTitle.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
+        superTitle.autoPinEdgeToSuperviewEdge(.Left, withInset: self.bounds.width / 2 - 40.0)
         
-//        titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: titleLabel, withOffset: 2.0)
-//        priceLabel.autoPinEdge(.Right, toEdge: .Left, ofView: priceLabel, withOffset:-2.0)
+        status.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding + 20.0)
+        status.autoPinEdgeToSuperviewEdge(.Left, withInset: self.bounds.width / 2 - 100.0)
+        
+        postButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding - 15.0)
+        postButton.autoPinEdgeToSuperviewEdge(.Left, withInset: self.bounds.width / 2 - 30.0)
         
         super.updateConstraints()
     }

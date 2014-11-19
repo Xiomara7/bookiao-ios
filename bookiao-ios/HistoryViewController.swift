@@ -17,6 +17,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     var customDesign = CustomDesign()
     var requests = HTTPrequests()
     var refreshControl:UIRefreshControl!
+    var dateformatter: NSDateFormatter!
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -37,17 +38,13 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
+        
+        dateformatter = NSDateFormatter()
+        dateformatter.dateStyle = .MediumStyle
     }
     
     func refresh() {
-        if self.application.userInfo["userType"] as String == "client" {
-            self.requests.getClientAppointments(self.application.userInfo["id"] as Int)
-            self.requests.getClientAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date as String)
-        }
-        if self.application.userInfo["userType"] as String == "employee" {
-            self.requests.getEmployeeAppointments(self.application.userInfo["id"] as Int)
-            self.requests.getEmployeeAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date as String)
-        }
+        println("Refreshing")
         
     }
     
@@ -115,11 +112,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        cell.textLabel.font = UIFont.systemFontOfSize(20.0)
         cell.textLabel.numberOfLines = 0
+        cell.setNeedsUpdateConstraints()
+        cell.textLabel.font = UIFont.systemFontOfSize(20.0)
         cell.selectionStyle = .Default
         cell.accessoryType  = .None
-        cell.setNeedsUpdateConstraints()
         
         return cell
     }

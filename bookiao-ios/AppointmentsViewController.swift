@@ -35,6 +35,8 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         self.view.addSubview(tableView)
         
+        self.tabBarController?.navigationItem.title = self.application.dateLabel
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
@@ -81,6 +83,12 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.application.employeeAppointmentsPerDay.count == 0 {
+            return 1
+        }
+        if self.application.clientAppointmentsPerDay.count == 0 {
+            return 1
+        }
         if self.application.userInfo["userType"] as String! == "employee" {
             return self.application.employeeAppointmentsPerDay.count
         }
@@ -100,30 +108,43 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         
         let cellFrame = self.view.bounds
         if self.application.userInfo["userType"] as String! == "employee" {
+            if self.application.employeeAppointmentsPerDay.count == 0 && self.application.clientAppointmentsPerDay.count == 0 {
+                cell.superTitle.text = "Bookealo"
+                cell.status.text = "No tienes citas para hoy. Crea una cita."
+                cell.postButton.setBackgroundImage(UIImage(named: "newPost.png"), forState: UIControlState.Normal)
+                
+            }
+            else {
+                let day  = self.application.employeeAppointmentsPerDay[indexPath.row]["day"] as String!
+                let time = self.application.employeeAppointmentsPerDay[indexPath.row]["time"] as String!
+                let services = self.application.employeeAppointmentsPerDay[indexPath.row]["services"] as NSArray!
             
-            let day  = self.application.employeeAppointmentsPerDay[indexPath.row]["day"] as String!
-            let time = self.application.employeeAppointmentsPerDay[indexPath.row]["time"] as String!
-            let services = self.application.employeeAppointmentsPerDay[indexPath.row]["services"] as NSArray!
+                cell.titleLabel.text = self.application.employeeAppointmentsPerDay[indexPath.row]["client"] as String!
+                cell.subtitleLabel.text = "La cita comienza a las \(time)"
+                cell.priceLabel.text = services[0] as? String
+                cell.phoneLabel.text = self.application.userInfo["phone_number"] as String!
+            }
+        }
+        else if self.application.userInfo["userType"] as String! == "client" {
+            if self.application.clientAppointmentsPerDay.count == 0 && self.application.employeeAppointmentsPerDay.count == 0 {
+                cell.superTitle.text = "Bookealo"
+                cell.status.text = "No tienes citas para hoy. Crea una cita."
+                cell.postButton.setBackgroundImage(UIImage(named: "newPost.png"), forState: UIControlState.Normal)
+                cell.postButton.addTarget(self, action:"post", forControlEvents: UIControlEvents.TouchUpInside)
+                
+            }
+            else {
+                let day  = self.application.clientAppointmentsPerDay[indexPath.row]["day"] as String!
+                let time = self.application.clientAppointmentsPerDay[indexPath.row]["time"] as String!
+                let services = self.application.clientAppointmentsPerDay[indexPath.row]["services"] as NSArray!
             
-            cell.titleLabel.text = self.application.employeeAppointmentsPerDay[indexPath.row]["client"] as String!
-            cell.subtitleLabel.text = "La cita comienza a las \(time)"
-            cell.priceLabel.text = services[0] as? String
-            cell.phoneLabel.text = self.application.userInfo["phone_number"] as String!
+                cell.titleLabel.text = self.application.clientAppointmentsPerDay[indexPath.row]["employee"] as String!
+                cell.subtitleLabel.text = "La cita comienza a las \(time)"
+                cell.priceLabel.text = services[0] as? String
+                cell.phoneLabel.text = self.application.userInfo["phone_number"] as String!
+            }
         }
-        if self.application.userInfo["userType"] as String! == "client" {
-            let day  = self.application.clientAppointmentsPerDay[indexPath.row]["day"] as String!
-            let time = self.application.clientAppointmentsPerDay[indexPath.row]["time"] as String!
-            let services = self.application.clientAppointmentsPerDay[indexPath.row]["services"] as NSArray!
-            
-            cell.titleLabel.text = self.application.clientAppointmentsPerDay[indexPath.row]["employee"] as String!
-            cell.subtitleLabel.text = "La cita comienza a las \(time)"
-            cell.priceLabel.text = services[0] as? String
-            cell.phoneLabel.text = self.application.userInfo["phone_number"] as String!
-        }
-        if self.application.userInfo["userType"] as String! == "business" {
-            cell.titleLabel.text = ""
-            cell.subtitleLabel.text = ""
-        }
+        
         cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         cell.textLabel.font = UIFont.systemFontOfSize(20.0)
         cell.textLabel.numberOfLines = 0
@@ -149,6 +170,11 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!){
         println(item)
+    }
+    
+    func post() {
+        let newPost = newAppointmentViewController()
+        self.presentViewController(newPost, animated: true, completion: nil)
     }
     
     
