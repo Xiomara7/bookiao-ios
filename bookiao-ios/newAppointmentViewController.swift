@@ -9,17 +9,17 @@
 import Foundation
 
 class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
-    var dateTxtField:  UITextField = UITextField()
-    var timeTxtField:  UITextField = UITextField()
-    var serviceField:  UITextField = UITextField()
-    var employeeField: UITextField = UITextField()
+    var dateTxtField:  UITextField = CustomDesign.getNameTxtField
+    var timeTxtField:  UITextField = CustomDesign.getNameTxtField
+    var serviceField:  UITextField = CustomDesign.getNameTxtField
+    var employeeField: UITextField = CustomDesign.getNameTxtField
     
-    let pickerUsers = UIPickerView()
-    let pickerServices = UIPickerView()
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
-    let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let pickerUsers = UIPickerView()
     let application = UIApplication.sharedApplication().delegate as AppDelegate
+    let pickerServices = UIPickerView()
+    let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,31 +27,15 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
         dateTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
-        dateTxtField.backgroundColor = UIColor.whiteColor()
-        dateTxtField.tintColor = UIColor.grayColor()
-        dateTxtField.font = UIFont.systemFontOfSize(14.0)
-        dateTxtField.textAlignment = .Center
         dateTxtField.placeholder = "Fecha"
         
         timeTxtField.frame = CGRectMake(20, 120, self.view.bounds.width - 40, 40)
-        timeTxtField.backgroundColor = UIColor.whiteColor()
-        timeTxtField.tintColor = UIColor.grayColor()
-        timeTxtField.font = UIFont.systemFontOfSize(14.0)
-        timeTxtField.textAlignment = .Center
         timeTxtField.placeholder = "Hora"
         
         serviceField.frame = CGRectMake(20, 170, self.view.bounds.width - 40, 40)
-        serviceField.backgroundColor = UIColor.whiteColor()
-        serviceField.tintColor = UIColor.grayColor()
-        serviceField.font = UIFont.systemFontOfSize(14.0)
-        serviceField.textAlignment = .Center
         serviceField.placeholder = "Servicios"
         
         employeeField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
-        employeeField.backgroundColor = UIColor.whiteColor()
-        employeeField.tintColor = UIColor.grayColor()
-        employeeField.font = UIFont.systemFontOfSize(14.0)
-        employeeField.textAlignment = .Center
         if self.application.userInfo["userType"] as String == "client" {
             employeeField.placeholder = "Empleado"
         }

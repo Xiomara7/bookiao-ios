@@ -129,7 +129,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
             if self.application.clientAppointmentsPerDay.count == 0 && self.application.employeeAppointmentsPerDay.count == 0 {
                 cell.superTitle.text = "Bookealo"
                 cell.status.text = "No tienes citas para hoy. Crea una cita."
-                cell.postButton.setBackgroundImage(UIImage(named: "newPost.png"), forState: UIControlState.Normal)
+//                cell.postButton.setBackgroundImage(UIImage(named: "newPost.png"), forState: UIControlState.Normal)
                 cell.postButton.addTarget(self, action:"post", forControlEvents: UIControlEvents.TouchUpInside)
                 
             }

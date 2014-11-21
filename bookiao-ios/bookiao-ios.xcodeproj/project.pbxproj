@@ -15,18 +15,13 @@
 		0A01A7A419E38FAF0026B7E4 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A79E19E38FAF0026B7E4 /* NSLayoutConstraint+PureLayout.m */; };
 		0A01A7AF19E4A0000026B7E4 /* CustomDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7AE19E4A0000026B7E4 /* CustomDesign.swift */; };
 		0A01A7B719E4CD930026B7E4 /* CustomCellHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7B619E4CD930026B7E4 /* CustomCellHistory.swift */; };
-		0A01A7BD19E4D5410026B7E4 /* CustomCellProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7BC19E4D5410026B7E4 /* CustomCellProfile.swift */; };
-		0A01A7BF19E4D97C0026B7E4 /* CustomCellProfileBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7BE19E4D97C0026B7E4 /* CustomCellProfileBanner.swift */; };
-		0A01A7C519EC266F0026B7E4 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01A7C419EC266F0026B7E4 /* CircleView.swift */; };
 		0A344A791A0AE8CA000841A2 /* HTTPrequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A344A781A0AE8CA000841A2 /* HTTPrequests.swift */; };
 		0A4C372B19DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C372919DA6DFF009AD8DD /* bookiao_ios.xcdatamodeld */; };
 		0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C373119DA6DFF009AD8DD /* Images.xcassets */; };
 		0A4C374119DA6DFF009AD8DD /* bookiao_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */; };
 		0A4C375019DA7198009AD8DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C374E19DA7198009AD8DD /* ViewController.swift */; };
-		0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C375519DA726B009AD8DD /* SettingsViewController.swift */; };
 		0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378A19DA7340009AD8DD /* AppDelegate.swift */; };
 		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
-		0A7E46891A1293FE00985BF8 /* calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E46881A1293FE00985BF8 /* calendar.swift */; };
 		0A7E468C1A129CB000985BF8 /* calendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E468B1A129CB000985BF8 /* calendarViewController.swift */; };
 		0AB50E901A18187E00BE0804 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */; };
 		0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */; };
@@ -34,11 +29,9 @@
 		0ADC179E1A098F1600FF8122 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADC17991A098EFF00FF8122 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ADC17A01A09E5CE00FF8122 /* newAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADC179F1A09E5CE00FF8122 /* newAppointmentViewController.swift */; };
 		0ADEBE741A1BED710051FB83 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADEBE731A1BED710051FB83 /* Crashlytics.framework */; };
-		0ADEBE781A1BF6EB0051FB83 /* newPost.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADEBE771A1BF6EB0051FB83 /* newPost.png */; };
 		0AFEB8721A0570070095A951 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8711A0570070095A951 /* ClientViewController.swift */; };
 		0AFEB8741A0570160095A951 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8731A0570160095A951 /* BusinessViewController.swift */; };
 		0AFEB8761A05702A0095A951 /* EmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */; };
-		0AFEC6111A018D8200B1B823 /* ProfileDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6101A018D8200B1B823 /* ProfileDesign.swift */; };
 		0AFEC6131A019A6800B1B823 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFEC6121A019A6800B1B823 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,9 +96,6 @@
 		0A01A7A119E38FAF0026B7E4 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		0A01A7AE19E4A0000026B7E4 /* CustomDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDesign.swift; sourceTree = "<group>"; };
 		0A01A7B619E4CD930026B7E4 /* CustomCellHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellHistory.swift; sourceTree = "<group>"; };
-		0A01A7BC19E4D5410026B7E4 /* CustomCellProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellProfile.swift; sourceTree = "<group>"; };
-		0A01A7BE19E4D97C0026B7E4 /* CustomCellProfileBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellProfileBanner.swift; sourceTree = "<group>"; };
-		0A01A7C419EC266F0026B7E4 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		0A344A781A0AE8CA000841A2 /* HTTPrequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPrequests.swift; sourceTree = "<group>"; };
 		0A4C372219DA6DFF009AD8DD /* bookiao-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bookiao-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4C372619DA6DFF009AD8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,10 +105,8 @@
 		0A4C373F19DA6DFF009AD8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A4C374019DA6DFF009AD8DD /* bookiao_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookiao_iosTests.swift; sourceTree = "<group>"; };
 		0A4C374E19DA7198009AD8DD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0A4C375519DA726B009AD8DD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0A4C378A19DA7340009AD8DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		0A7E46881A1293FE00985BF8 /* calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendar.swift; sourceTree = "<group>"; };
 		0A7E468B1A129CB000985BF8 /* calendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarViewController.swift; sourceTree = "<group>"; };
 		0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
@@ -126,11 +114,9 @@
 		0ADC17931A098EFF00FF8122 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		0ADC179F1A09E5CE00FF8122 /* newAppointmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newAppointmentViewController.swift; sourceTree = "<group>"; };
 		0ADEBE731A1BED710051FB83 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		0ADEBE771A1BF6EB0051FB83 /* newPost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newPost.png; sourceTree = "<group>"; };
 		0AFEB8711A0570070095A951 /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		0AFEB8731A0570160095A951 /* BusinessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
 		0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewController.swift; sourceTree = "<group>"; };
-		0AFEC6101A018D8200B1B823 /* ProfileDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDesign.swift; sourceTree = "<group>"; };
 		0AFEC6121A019A6800B1B823 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,14 +220,8 @@
 		0A4C375319DA721A009AD8DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0ADEBE771A1BF6EB0051FB83 /* newPost.png */,
 				0A01A79119E330A70026B7E4 /* CustomCell.swift */,
-				0AFEC6101A018D8200B1B823 /* ProfileDesign.swift */,
-				0A01A7C419EC266F0026B7E4 /* CircleView.swift */,
-				0A7E46881A1293FE00985BF8 /* calendar.swift */,
-				0A01A7BC19E4D5410026B7E4 /* CustomCellProfile.swift */,
 				0A01A7B619E4CD930026B7E4 /* CustomCellHistory.swift */,
-				0A01A7BE19E4D97C0026B7E4 /* CustomCellProfileBanner.swift */,
 				0A01A7AE19E4A0000026B7E4 /* CustomDesign.swift */,
 			);
 			name = Views;
@@ -257,7 +237,6 @@
 				0A01A77519DF7D6F0026B7E4 /* ProfileViewController.swift */,
 				0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */,
 				0AFEB8751A05702A0095A951 /* EmployeeViewController.swift */,
-				0A4C375519DA726B009AD8DD /* SettingsViewController.swift */,
 				0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */,
 				0AFEB8731A0570160095A951 /* BusinessViewController.swift */,
 				0AFEC6121A019A6800B1B823 /* RegisterViewController.swift */,
@@ -392,7 +371,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ADEBE781A1BF6EB0051FB83 /* newPost.png in Resources */,
 				0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,27 +412,21 @@
 				0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */,
 				0A01A7A419E38FAF0026B7E4 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				0A01A7A319E38FAF0026B7E4 /* NSArray+PureLayout.m in Sources */,
-				0A01A7BF19E4D97C0026B7E4 /* CustomCellProfileBanner.swift in Sources */,
 				0AFEB8721A0570070095A951 /* ClientViewController.swift in Sources */,
 				0A01A7A219E38FAF0026B7E4 /* ALView+PureLayout.m in Sources */,
-				0A01A7C519EC266F0026B7E4 /* CircleView.swift in Sources */,
 				0A01A77719DF7D6F0026B7E4 /* ProfileViewController.swift in Sources */,
 				0AFEC6131A019A6800B1B823 /* RegisterViewController.swift in Sources */,
 				0A01A7B719E4CD930026B7E4 /* CustomCellHistory.swift in Sources */,
 				0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */,
 				0A344A791A0AE8CA000841A2 /* HTTPrequests.swift in Sources */,
 				0A7E468C1A129CB000985BF8 /* calendarViewController.swift in Sources */,
-				0A01A7BD19E4D5410026B7E4 /* CustomCellProfile.swift in Sources */,
 				0A01075119F1C45B004C2056 /* LoginViewController.swift in Sources */,
 				0ADC17A01A09E5CE00FF8122 /* newAppointmentViewController.swift in Sources */,
 				0AB50E901A18187E00BE0804 /* EditProfileViewController.swift in Sources */,
 				0AFEB8761A05702A0095A951 /* EmployeeViewController.swift in Sources */,
 				0A01A79219E330A70026B7E4 /* CustomCell.swift in Sources */,
 				0A01A7AF19E4A0000026B7E4 /* CustomDesign.swift in Sources */,
-				0A4C375719DA726B009AD8DD /* SettingsViewController.swift in Sources */,
-				0A7E46891A1293FE00985BF8 /* calendar.swift in Sources */,
 				0AFEB8741A0570160095A951 /* BusinessViewController.swift in Sources */,
-				0AFEC6111A018D8200B1B823 /* ProfileDesign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 import Foundation
 
 class calendarViewController: UIViewController, UIPickerViewDelegate {
-    var dateTxtField:  UITextField = UITextField()
+    var dateTxtField: UITextField = CustomDesign.getNameTxtField
     
     let datePicker = UIDatePicker()
 
@@ -19,24 +19,12 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     let views = AppointmentsViewController()
     let requests = HTTPrequests()
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let customDesign = CustomDesign()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
         dateTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
-        dateTxtField.backgroundColor = UIColor.whiteColor()
-        dateTxtField.tintColor = UIColor.grayColor()
-        dateTxtField.font = UIFont.systemFontOfSize(14.0)
-        dateTxtField.textAlignment = .Center
         dateTxtField.placeholder = "Fecha"
         
         registroButton.frame = CGRectMake(20, 300, self.view.bounds.width - 40, 40)
@@ -143,7 +131,6 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
         
         if pickerView == datePicker{
-            return "hola"
         }
         return "None"
     }
@@ -151,7 +138,6 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
 
         if pickerView == datePicker{
-            dateTxtField.text = "hola hola :P"
         }
     }
 }

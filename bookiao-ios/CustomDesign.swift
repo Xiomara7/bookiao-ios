@@ -18,5 +18,39 @@ class CustomDesign {
             alpha: CGFloat(1.0)
         )
     }
+    
+    class var getNameTxtField: UITextField {
+        
+        var nameTxtField: UITextField = UITextField()
+        nameTxtField.frame = CGRectZero
+        nameTxtField.backgroundColor = UIColor.whiteColor()
+        nameTxtField.tintColor = UIColor.grayColor()
+        nameTxtField.font = UIFont.systemFontOfSize(14.0)
+        nameTxtField.textAlignment = .Center
+        
+        return nameTxtField
+        
+    }
+    
+    class var getNameLabel: UILabel {
+        
+        var subscription: UILabel = UILabel()
+        subscription.font = UIFont.boldSystemFontOfSize(18.0)
+        subscription.textAlignment = .Center
+        
+        return subscription
+    }
+    
+    class var getProfileLabel: UILabel {
+        
+        var nameLabel: UILabel = UILabel()
+        nameLabel.backgroundColor = UIColor.whiteColor()
+        nameLabel.tintColor = UIColor.grayColor()
+        nameLabel.font = UIFont.systemFontOfSize(14.0)
+        nameLabel.textAlignment = .Center
+        
+        return nameLabel
+    }
+
 }
 

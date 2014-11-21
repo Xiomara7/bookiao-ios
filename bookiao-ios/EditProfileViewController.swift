@@ -14,54 +14,30 @@ class EditProfileViewController: UIViewController {
     
     var customDesign = CustomDesign()
     var requests = HTTPrequests()
-    var nametxtField: UITextField = UITextField()
-    var emailtxtField: UITextField = UITextField()
-    var phonetxtField: UITextField = UITextField()
-    var businesstxtField: UITextField = UITextField()
+    var nametxtField: UITextField = CustomDesign.getNameTxtField
+    var emailtxtField: UITextField = CustomDesign.getNameTxtField
+    var phonetxtField: UITextField = CustomDesign.getNameTxtField
+    var businesstxtField: UITextField = CustomDesign.getNameTxtField
     
     let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let application = UIApplication.sharedApplication().delegate as AppDelegate
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         let application = UIApplication.sharedApplication().delegate as AppDelegate
         super.viewDidLoad()
         
-        var nameApp = UITextField.appearance()
         nametxtField.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
-        nametxtField.backgroundColor = UIColor.whiteColor()
-        nametxtField.tintColor = UIColor.grayColor()
-        nametxtField.font = UIFont.systemFontOfSize(14.0)
-        nametxtField.textAlignment = .Center
         nametxtField.text = self.application.userInfo["name"] as? String
         
         emailtxtField.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
-        emailtxtField.backgroundColor = UIColor.whiteColor()
-        emailtxtField.tintColor = .grayColor()
-        emailtxtField.font = .systemFontOfSize(14.0)
-        emailtxtField.textAlignment = .Center
         emailtxtField.text = self.application.userInfo["email"] as? String
         
         phonetxtField.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
-        phonetxtField.backgroundColor = UIColor.whiteColor()
-        phonetxtField.tintColor = UIColor.grayColor()
-        phonetxtField.font = UIFont.systemFontOfSize(14.0)
-        phonetxtField.textAlignment = .Center
         phonetxtField.text = self.application.userInfo["phone_number"] as? String
         
         if self.application.userInfo["userType"] as String == "employee" {
             businesstxtField.frame = CGRectMake(20, 370, self.view.bounds.width - 40, 40)
-            businesstxtField.backgroundColor = UIColor.whiteColor()
-            businesstxtField.tintColor = UIColor.grayColor()
-            businesstxtField.font = UIFont.systemFontOfSize(14.0)
-            businesstxtField.textAlignment = .Center
             businesstxtField.placeholder = "Negocio"
             
             self.view.addSubview(businesstxtField)

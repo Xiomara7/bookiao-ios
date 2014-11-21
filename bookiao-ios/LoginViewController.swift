@@ -12,25 +12,18 @@ import CoreData
 
 class LoginViewController: UIViewController {
     
-    var customDesign = CustomDesign()
-    var loader = UIActivityIndicatorView(frame: CGRectMake(0.0, 0.0, 40.0, 40.0))
-    let application = UIApplication.sharedApplication().delegate as AppDelegate
+    let loader = UIActivityIndicatorView(frame: CGRectMake(0.0, 0.0, 40.0, 40.0))
     let requests = HTTPrequests()
+    let customDesign = CustomDesign()
+    let application  = UIApplication.sharedApplication().delegate as AppDelegate
     
-    let nameLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-    var emailtxtField: UITextField = UITextField()
-    var passwdtxtField: UITextField = UITextField()
-    let ingresoButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-    let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-    let nuevoLabel   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    var emailtxtField:  UITextField = CustomDesign.getNameTxtField
+    var passwdtxtField: UITextField = CustomDesign.getNameTxtField
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    let nameLabel  = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let nuevoLabel = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let ingresoButton  = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     override func viewDidLoad() {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0x224656)
@@ -43,17 +36,10 @@ class LoginViewController: UIViewController {
         nameLabel.setTitle("Bookiao", forState: UIControlState.Normal)
         nameLabel.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
-        var emailApp = UITextField.appearance()
         emailtxtField.frame = CGRectMake(20, 160, self.view.bounds.width - 40, 40)
-        emailtxtField.backgroundColor = UIColor.whiteColor()
-        emailtxtField.tintColor = UIColor.grayColor()
-        emailtxtField.textAlignment = .Center
         emailtxtField.placeholder = "Correo electrónico"
         
         passwdtxtField.frame = CGRectMake(20, 215, self.view.bounds.width - 40, 40)
-        passwdtxtField.backgroundColor = UIColor.whiteColor()
-        passwdtxtField.tintColor = UIColor.grayColor()
-        passwdtxtField.textAlignment = .Center
         passwdtxtField.secureTextEntry = true
         passwdtxtField.placeholder = "Contraseña"
         
@@ -106,12 +92,12 @@ class LoginViewController: UIViewController {
     }
     
     func buttonActionLogin() {
-//        loader.startAnimating()
+        
         let email = emailtxtField.text
         let password = passwdtxtField.text
+        
         requests.getUserInfo(email)
         requests.loginRequest(email, password: password, usuario: "tipo de usuario")
-
         
     }
     

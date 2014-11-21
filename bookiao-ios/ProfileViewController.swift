@@ -14,39 +14,27 @@ class ProfileViewController: UIViewController {
     
     var customDesign = CustomDesign()
     
-        var nametxtField: UILabel = UILabel()
-        var emailtxtField: UILabel = UILabel()
-        var phonetxtField: UILabel = UILabel()
+        var nameLabel: UILabel = CustomDesign.getProfileLabel
+        var emailLabel: UILabel = CustomDesign.getProfileLabel
+        var phoneLabel: UILabel = CustomDesign.getProfileLabel
+    
         let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
+        
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         let application = UIApplication.sharedApplication().delegate as AppDelegate
         super.viewDidLoad()
         
-        var nameApp = UILabel.appearance()
-        nametxtField.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
-        nametxtField.backgroundColor = UIColor.whiteColor()
-        nametxtField.tintColor = UIColor.grayColor()
-        nametxtField.font = UIFont.systemFontOfSize(14.0)
-        nametxtField.textAlignment = .Center
-        nametxtField.text = self.application.userInfo["name"] as? String
+        nameLabel.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
+        nameLabel.text = self.application.userInfo["name"] as? String
         
-        emailtxtField.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
-        emailtxtField.backgroundColor = UIColor.whiteColor()
-        emailtxtField.tintColor = UIColor.grayColor()
-        emailtxtField.font = .systemFontOfSize(14.0)
-        emailtxtField.textAlignment = .Center
-        emailtxtField.text = self.application.userInfo["email"] as? String
+        emailLabel.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
+        emailLabel.text = self.application.userInfo["email"] as? String
         
-        phonetxtField.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
-        phonetxtField.backgroundColor = UIColor.whiteColor()
-        phonetxtField.tintColor = UIColor.grayColor()
-        phonetxtField.font = UIFont.systemFontOfSize(14.0)
-        phonetxtField.textAlignment = .Center
-        phonetxtField.text = self.application.userInfo["phone_number"] as? String
-        
+        phoneLabel.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
+        phoneLabel.text = self.application.userInfo["phone_number"] as? String
         
         registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
@@ -55,9 +43,9 @@ class ProfileViewController: UIViewController {
         registroButton.setTitle("Editar", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(nametxtField)
-        self.view.addSubview(phonetxtField)
-        self.view.addSubview(emailtxtField)
+        self.view.addSubview(nameLabel)
+        self.view.addSubview(phoneLabel)
+        self.view.addSubview(emailLabel)
         self.view.addSubview(registroButton)
     }
     

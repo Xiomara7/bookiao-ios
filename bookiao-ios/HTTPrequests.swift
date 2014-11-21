@@ -11,6 +11,7 @@ import Alamofire
 class HTTPrequests {
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
+    
     func registerRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, bID: Int, usuario: NSString) {
         self.getUserInfo(email)
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/register/")
