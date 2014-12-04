@@ -111,10 +111,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.subtitleLabel.text = ""
         }
         
-        cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        cell.textLabel.numberOfLines = 0
+//        cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        cell.textLabel.numberOfLines = 0
+//        cell.textLabel.font = UIFont.systemFontOfSize(20.0)
         cell.setNeedsUpdateConstraints()
-        cell.textLabel.font = UIFont.systemFontOfSize(20.0)
+
         cell.selectionStyle = .Default
         cell.accessoryType  = .None
         

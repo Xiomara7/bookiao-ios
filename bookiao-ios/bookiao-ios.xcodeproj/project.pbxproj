@@ -23,6 +23,7 @@
 		0A4C378B19DA7340009AD8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378A19DA7340009AD8DD /* AppDelegate.swift */; };
 		0A4C378E19DA738A009AD8DD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */; };
 		0A7E468C1A129CB000985BF8 /* calendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7E468B1A129CB000985BF8 /* calendarViewController.swift */; };
+		0A876F7A1A2FDF9B00A49B48 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A876F791A2FDF9B00A49B48 /* icon.png */; };
 		0AB50E901A18187E00BE0804 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */; };
 		0AD4219E19DE2717002CE4B2 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */; };
 		0ADB9E941A006010007F5539 /* json-swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADB9E931A006010007F5539 /* json-swift.swift */; };
@@ -108,6 +109,7 @@
 		0A4C378A19DA7340009AD8DD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A4C378C19DA738A009AD8DD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0A7E468B1A129CB000985BF8 /* calendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calendarViewController.swift; sourceTree = "<group>"; };
+		0A876F791A2FDF9B00A49B48 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0AB50E8F1A18187E00BE0804 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		0AD4219C19DE2717002CE4B2 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
 		0ADB9E931A006010007F5539 /* json-swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "json-swift.swift"; path = "../json-swift.swift"; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		0A4C375319DA721A009AD8DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A876F791A2FDF9B00A49B48 /* icon.png */,
 				0A01A79119E330A70026B7E4 /* CustomCell.swift */,
 				0A01A7B619E4CD930026B7E4 /* CustomCellHistory.swift */,
 				0A01A7AE19E4A0000026B7E4 /* CustomDesign.swift */,
@@ -371,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A876F7A1A2FDF9B00A49B48 /* icon.png in Resources */,
 				0A4C373219DA6DFF009AD8DD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

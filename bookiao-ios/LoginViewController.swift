@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     var emailtxtField:  UITextField = CustomDesign.getNameTxtField
     var passwdtxtField: UITextField = CustomDesign.getNameTxtField
     
+    let iconImage  = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let nameLabel  = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let nuevoLabel = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let ingresoButton  = UIButton.buttonWithType(UIButtonType.System) as UIButton
@@ -29,7 +30,10 @@ class LoginViewController: UIViewController {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0x224656)
         super.viewDidLoad()
         
-        nameLabel.frame = CGRectMake(self.view.bounds.width / 12, 70, self.view.bounds.width - 40, 40)
+        iconImage.frame = CGRectMake(self.view.bounds.width / 2 - 40, 40, 80, 80)
+        iconImage.setBackgroundImage(UIImage(named: "icon.png"), forState: .Normal)
+        
+        nameLabel.frame = CGRectMake(self.view.bounds.width / 12, 110, self.view.bounds.width - 40, 40)
         nameLabel.backgroundColor = customDesign.UIColorFromRGB(0x224656)
         nameLabel.tintColor = UIColor.whiteColor()
         nameLabel.titleLabel?.font = UIFont.boldSystemFontOfSize(40.0)
@@ -72,6 +76,7 @@ class LoginViewController: UIViewController {
         loader.hidesWhenStopped = true
         loader.center = CGPointMake(180, 270);
         
+        self.view.addSubview(iconImage)
         self.view.addSubview(ingresoButton)
         self.view.addSubview(registroButton)
         self.view.addSubview(emailtxtField)

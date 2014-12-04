@@ -23,8 +23,9 @@ class BusinessViewController: UIViewController {
         emailtxtField.frame = CGRectMake(20, self.view.bounds.height / 2, self.view.bounds.width - 40, 40)
         emailtxtField.placeholder = "Correo Electrónico"
         
-        subscription.frame = CGRectMake(20, 100, self.view.bounds.width - 40, 40)
+        subscription.frame = CGRectMake(self.view.bounds.width / 3 , 100, self.view.bounds.width - 40, 40)
         subscription.text = "Subscribete"
+        subscription.font = UIFont.boldSystemFontOfSize(20.0)
         
         paragraph.frame = CGRectMake(20, 100, self.view.bounds.width - 40, 200)
         paragraph.font = UIFont.systemFontOfSize(14.0)
