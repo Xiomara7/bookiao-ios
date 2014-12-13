@@ -557,7 +557,7 @@ class HTTPrequests {
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)!
             var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary!
             let jsonData = newData as NSDictionary
-            self.application.userInfo = jsonData as NSDictionary
+            self.application.userInfo = jsonData as NSDictionary!
             println(jsonData)
             println("Body: \(strData)\n\n")
             var err: NSError?
