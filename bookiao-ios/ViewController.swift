@@ -60,6 +60,11 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        if self.application.userInfo["token"] == nil{
+            let login = LoginViewController()
+            self.presentViewController(login, animated: true, completion: nil)
+        }
+        
         self.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -20))
     }
 

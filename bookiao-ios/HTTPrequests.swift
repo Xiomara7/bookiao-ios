@@ -11,9 +11,8 @@ import Alamofire
 class HTTPrequests {
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
-    
+    var alertView = UIAlertView()
     func registerRequest(email: NSString, name: NSString, phone: NSString, password: NSString, location: NSString, manager: NSString, business: NSString, bID: Int, usuario: NSString) {
-        self.getUserInfo(email)
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/register/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
@@ -43,6 +42,7 @@ class HTTPrequests {
                     var success = json["response"] as? String
                     println("Succes: \(success)")
                     dispatch_async(dispatch_get_main_queue(), {
+                        self.getUserInfo(email)
                     })
                 }
             }
@@ -96,7 +96,7 @@ class HTTPrequests {
         task.resume()
     }
     
-    func loginRequest(email: NSString, password: NSString, usuario: NSString) {
+    func loginRequest(email: NSString, password: NSString) {
         var success = Bool()
         let views = ViewController(nibName: nil, bundle: nil)
         let login = LoginViewController(nibName: nil, bundle: nil)
@@ -118,8 +118,9 @@ class HTTPrequests {
             var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as NSDictionary
             self.application.token = json["token"] as String!
             if(self.application.token == nil) {
-//                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
-//                alert.show()
+                self.alertView = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
+                self.alertView.show()
+                
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("INVALID LOGIN")
             }
@@ -137,7 +138,6 @@ class HTTPrequests {
             println("OK")
             let login = LoginViewController(nibName: nil, bundle: nil)
             self.application.window.rootViewController = login
-            
         }
     }
     
@@ -256,7 +256,7 @@ class HTTPrequests {
     }
     
     func editProfile(userType: NSString, id: Int, nombre: NSString, email: NSString, telefono: NSString, negocio: Int){
-        let url = NSURL(string: "https://http://bookiao-api.herokuapp.com/\(userType)/\(id)/")
+        let url = NSURL(string: "https://bookiao-api.herokuapp.com/\(userType)/\(id)/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "PUT"
@@ -267,8 +267,10 @@ class HTTPrequests {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            println("Response: \(response)")
             var err: NSError?
+            if (response == nil) {
+                println(error)
+            }
             if !(data == nil) {
                 println(error)
             }
@@ -559,13 +561,10 @@ class HTTPrequests {
             println("Body: \(strData)\n\n")
             var err: NSError?
             if (self.application.userInfo["userType"] as String == "none") {
-                let alert = UIAlertView(title: "INVALID LOGIN", message: "try again!", delegate: login, cancelButtonTitle: "OK")
-                alert.show()
             }
             else {
                 println("got UserInfo")
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.application.window.rootViewController = views
                     if self.application.userInfo["userType"] as String! == "client" {
                         self.getClientAppointments(self.application.userInfo["id"] as Int)
                         self.getClientAppointmentsPerDay(self.application.userInfo["id"] as Int, date: self.application.date)

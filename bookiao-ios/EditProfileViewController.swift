@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIPickerViewDelegate {
     
     var customDesign = CustomDesign()
     var requests = HTTPrequests()
@@ -18,6 +18,9 @@ class EditProfileViewController: UIViewController {
     var emailtxtField: UITextField = CustomDesign.getNameTxtField
     var phonetxtField: UITextField = CustomDesign.getNameTxtField
     var businesstxtField: UITextField = CustomDesign.getNameTxtField
+    var businessResponse: Int!
+    
+    let pickerView = UIPickerView()
     
     let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let application = UIApplication.sharedApplication().delegate as AppDelegate
@@ -39,7 +42,8 @@ class EditProfileViewController: UIViewController {
         if self.application.userInfo["userType"] as String == "employee" {
             businesstxtField.frame = CGRectMake(20, 370, self.view.bounds.width - 40, 40)
             businesstxtField.placeholder = "Negocio"
-            
+            pickerView.delegate = self
+            businesstxtField.inputView = pickerView
             self.view.addSubview(businesstxtField)
             
         }
@@ -62,10 +66,10 @@ class EditProfileViewController: UIViewController {
 
     func dismiss() {
         if self.application.userInfo["userType"] as String == "employee" {
-            requests.editProfile("employees", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: 0)
+            requests.editProfile("employees", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: businessResponse)
         }
         if self.application.userInfo["userType"] as String == "client" {
-            requests.editProfile("clients", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: 0)
+            requests.editProfile("clients", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: businessResponse)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -83,5 +87,24 @@ class EditProfileViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // returns the number of 'columns' to display.
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+        return self.application.titles.count
+    }
+    
+    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
+        return self.application.titles[row]["name"] as String
+    }
+    
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        businesstxtField.text = self.application.titles[row]["name"] as String
+        businessResponse = row + 1
     }
 }

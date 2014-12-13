@@ -9,6 +9,28 @@
 import UIKit
 import CoreData
 
+extension String {
+    func toDate() -> NSDate? {
+        var formatter:NSDateFormatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.timeZone = NSTimeZone()
+        formatter.dateStyle = .MediumStyle
+        formatter.dateFormat = "EEEE-MM-dd"
+        return formatter.dateFromString(self)
+    }
+}
+
+extension NSDate {
+    func toS() -> String? {
+        var formatter:NSDateFormatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.timeZone = NSTimeZone()
+        formatter.dateStyle = .MediumStyle
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.stringFromDate(self)
+    }
+}
+
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView: UITableView!
@@ -17,7 +39,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     var customDesign = CustomDesign()
     var requests = HTTPrequests()
     var refreshControl:UIRefreshControl!
-    var dateformatter: NSDateFormatter!
     
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -38,9 +59,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
-        
-        dateformatter = NSDateFormatter()
-        dateformatter.dateStyle = .MediumStyle
+    
     }
     
     func refresh() {
@@ -93,18 +112,18 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
         
         if self.application.userInfo["userType"] as String! == "employee" {
-            let day  = self.application.employeeAppointments[indexPath.row]["day"] as String!
+            let day = self.application.employeeAppointments[indexPath.row]["day"] as String!
             let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
             
             cell.titleLabel.text = self.application.employeeAppointments[indexPath.row]["client"] as String!
-            cell.subtitleLabel.text = "El \(day) a las \(time)"
+            cell.subtitleLabel.text = "En \(day) a las \(time)"
         }
         if self.application.userInfo["userType"] as String! == "client" {
-            let day  = self.application.clientAppointments[indexPath.row]["day"] as String!
+            let day = self.application.employeeAppointments[indexPath.row]["day"] as String!
             let time = self.application.clientAppointments[indexPath.row]["time"] as String!
             
             cell.titleLabel.text = self.application.clientAppointments[indexPath.row]["employee"] as String!
-            cell.subtitleLabel.text = "El \(day) a las \(time)"
+            cell.subtitleLabel.text = "En \(day) a las \(time)"
         }
         if self.application.userInfo["userType"] as String! == "business" {
             cell.titleLabel.text = ""

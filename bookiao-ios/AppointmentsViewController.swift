@@ -112,6 +112,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
                 cell.superTitle.text = "Bookealo"
                 cell.status.text = "No tienes citas para hoy. Crea una cita."
 //                cell.postButton.setBackgroundImage(UIImage(named: "newPost.png"), forState: UIControlState.Normal)
+
                 
             }
             else {

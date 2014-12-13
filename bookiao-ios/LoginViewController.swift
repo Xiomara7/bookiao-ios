@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 import CoreData
 
+
+extension String {
+    func isEmail() -> Bool {
+        let regex = NSRegularExpression(pattern: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", options: .CaseInsensitive, error: nil)
+        return regex?.firstMatchInString(self, options: nil, range: NSMakeRange(0, countElements(self))) != nil
+    }
+}
+
 class LoginViewController: UIViewController {
     
     let loader = UIActivityIndicatorView(frame: CGRectMake(0.0, 0.0, 40.0, 40.0))
@@ -41,6 +49,7 @@ class LoginViewController: UIViewController {
         nameLabel.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
         emailtxtField.frame = CGRectMake(20, 160, self.view.bounds.width - 40, 40)
+        emailtxtField.keyboardType = UIKeyboardType.EmailAddress
         emailtxtField.placeholder = "Correo electrónico"
         
         passwdtxtField.frame = CGRectMake(20, 215, self.view.bounds.width - 40, 40)
@@ -74,7 +83,7 @@ class LoginViewController: UIViewController {
         requests.getServices()
         
         loader.hidesWhenStopped = true
-        loader.center = CGPointMake(180, 270);
+        loader.center = CGPointMake(170, 270);
         
         self.view.addSubview(iconImage)
         self.view.addSubview(ingresoButton)
@@ -97,13 +106,19 @@ class LoginViewController: UIViewController {
     }
     
     func buttonActionLogin() {
-        
         let email = emailtxtField.text
         let password = passwdtxtField.text
         
-        requests.getUserInfo(email)
-        requests.loginRequest(email, password: password, usuario: "tipo de usuario")
-        
+        if email.isEmail() {
+            requests.loginRequest((email as NSString).lowercaseString, password: password)
+        }
+        else {
+            let alert = UIAlertView(title: "Invalid email", message: "Try again", delegate: self, cancelButtonTitle: "OK")
+            alert.show()
+            emailtxtField.text = ""
+            passwdtxtField.text = ""
+            
+        }
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
