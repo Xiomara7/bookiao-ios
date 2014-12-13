@@ -112,18 +112,25 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
         
         if self.application.userInfo["userType"] as String! == "employee" {
-            let day = self.application.employeeAppointments[indexPath.row]["day"] as String!
-            let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
+            if self.application.employeeAppointments.count != 0 {
+                let day = self.application.employeeAppointments[indexPath.row]["day"] as String!
+                let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
             
-            cell.titleLabel.text = self.application.employeeAppointments[indexPath.row]["client"] as String!
-            cell.subtitleLabel.text = "En \(day) a las \(time)"
+            
+                cell.titleLabel.text = self.application.employeeAppointments[indexPath.row]["client"] as String!
+        
+                cell.subtitleLabel.text = "En \(day) a las \(time)"
+            }
         }
         if self.application.userInfo["userType"] as String! == "client" {
-            let day = self.application.employeeAppointments[indexPath.row]["day"] as String!
-            let time = self.application.clientAppointments[indexPath.row]["time"] as String!
+            if self.application.clientAppointments.count != 0 {
+                let day = self.application.clientAppointments[indexPath.row]["day"] as String!
+                let time = self.application.clientAppointments[indexPath.row]["time"] as String!
             
-            cell.titleLabel.text = self.application.clientAppointments[indexPath.row]["employee"] as String!
-            cell.subtitleLabel.text = "En \(day) a las \(time)"
+            
+                cell.titleLabel.text = self.application.clientAppointments[indexPath.row]["employee"] as String!
+                cell.subtitleLabel.text = "En \(day) a las \(time)"
+            }
         }
         if self.application.userInfo["userType"] as String! == "business" {
             cell.titleLabel.text = ""

@@ -31,13 +31,13 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate {
         super.viewDidLoad()
         
         nametxtField.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
-        nametxtField.text = self.application.userInfo["name"] as? String
+        nametxtField.text = self.application.userInfo["name"] as String!
         
         emailtxtField.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
-        emailtxtField.text = self.application.userInfo["email"] as? String
+        emailtxtField.text = self.application.userInfo["email"] as String!
         
         phonetxtField.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
-        phonetxtField.text = self.application.userInfo["phone_number"] as? String
+        phonetxtField.text = self.application.userInfo["phone_number"] as String!
         
         if self.application.userInfo["userType"] as String == "employee" {
             businesstxtField.frame = CGRectMake(20, 370, self.view.bounds.width - 40, 40)
@@ -66,10 +66,11 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate {
 
     func dismiss() {
         if self.application.userInfo["userType"] as String == "employee" {
-            requests.editProfile("employees", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: businessResponse)
+            requests.editProfile("employees", id: self.application.userInfo["id"] as Int!, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: businessResponse!)
         }
         if self.application.userInfo["userType"] as String == "client" {
-            requests.editProfile("clients", id: self.application.userInfo["id"] as Int, nombre: nametxtField.text, email: emailtxtField.text, telefono: phonetxtField.text, negocio: businessResponse)
+            println("EDIT")
+            requests.editProfile("clients", id: 11, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: 1)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }

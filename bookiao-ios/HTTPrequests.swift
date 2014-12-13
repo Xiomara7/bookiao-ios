@@ -256,6 +256,7 @@ class HTTPrequests {
     }
     
     func editProfile(userType: NSString, id: Int, nombre: NSString, email: NSString, telefono: NSString, negocio: Int){
+        println("EDITANDO PERFIL")
         let url = NSURL(string: "https://bookiao-api.herokuapp.com/\(userType)/\(id)/")
         var request = NSMutableURLRequest(URL: url!)
         var session = NSURLSession.sharedSession()
@@ -281,7 +282,7 @@ class HTTPrequests {
                     println(err!.localizedDescription)
                 }
                 else {
-                    var success = json["response"] as? String
+                    var success = json["response"] as? String!
                     println("Succes: \(success)")
                     println("User Info Updated")
                     dispatch_async(dispatch_get_main_queue(), {
@@ -605,8 +606,8 @@ class HTTPrequests {
                     println(err!.localizedDescription)
                 }
                 else {
-                    var success = json["response"] as? String
-                    println("Succes: \(success)")
+//                    var success = json["response"] as String!
+//                    println("Succes: \(success)")
                     println("Subscription created")
                     dispatch_async(dispatch_get_main_queue(), {
                     })
