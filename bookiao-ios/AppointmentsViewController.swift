@@ -45,17 +45,17 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func refresh() {
-        let ut = DataManager.sharedManager.userInfo["userType"] as String
-        let id = DataManager.sharedManager.userInfo["id"] as Int
-        
-        if ut == "client" {
-            self.requests.getClientAppointments(id)
-            self.requests.getClientAppointmentsPerDay(id, date: DataManager.sharedManager.date)
-        }
-        if ut == "employee" {
-            self.requests.getEmployeeAppointments(id)
-            self.requests.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date)
-        }
+//        let ut = DataManager.sharedManager.userInfo["userType"] as String
+//        let id = DataManager.sharedManager.userInfo["id"] as Int
+//        
+//        if ut == "client" {
+//            self.requests.getClientAppointments(id)
+//            self.requests.getClientAppointmentsPerDay(id, date: DataManager.sharedManager.date)
+//        }
+//        if ut == "employee" {
+//            self.requests.getEmployeeAppointments(id)
+//            self.requests.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date)
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
