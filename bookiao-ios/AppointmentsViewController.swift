@@ -109,8 +109,8 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         let CellIdentifier = "Cell"
         
         let ut = DataManager.sharedManager.userInfo["userType"] as String!
-        let eAppointments = DataManager.sharedManager.employeeAppointmentsPerDay
-        let cAppointments = DataManager.sharedManager.clientAppointmentsPerDay
+        let eAppointments = DataManager.sharedManager.employeeAppointmentsPerDay as NSArray!
+        let cAppointments = DataManager.sharedManager.clientAppointmentsPerDay as NSArray!
         
         var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as CustomCell!
         if  cell == nil {

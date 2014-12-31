@@ -64,12 +64,20 @@ class BusinessViewController: UIViewController {
         let email = emailtxtField.text
 
         emailtxtField.text = ""
-        request.subscription(email)
-        
-        let alert = UIAlertView(title: "Thanks!", message: "We'll contact you soon!", delegate: self, cancelButtonTitle: "OK")
-        alert.show()
-        
-    }
+        request.subscription(email) { (str, error) -> Void in
+        if let err = error {
+            let alert = UIAlertView(title: "Trata otra vez!", message: "Ha ocurrido un error", delegate: self, cancelButtonTitle: "OK")
+            dispatch_async(dispatch_get_main_queue(), {
+                alert.show()
+            })
+        }
+        else {
+            let alert = UIAlertView(title: "Gracias!", message: "HTe contactaremos pronto!", delegate: self, cancelButtonTitle: "OK")
+            dispatch_async(dispatch_get_main_queue(), {
+                alert.show()
+            })
+        }
+    }}
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
