@@ -19,7 +19,7 @@ class HTTPrequests {
         return Singleton.instance
     }
     
-    let baseURL: NSString = "https://bookiao-api.herokuapp.com"
+    let baseURL: NSString = "https://bookiao-api-staging.herokuapp.com"
     
     func initRequest(method: String!, url: NSURL!, params: NSDictionary?) -> NSMutableURLRequest {
         
@@ -53,9 +53,14 @@ class HTTPrequests {
     
     func registerRequest(email: NSString, name: NSString, phone: NSString, passwd: NSString, loc: NSString, man: NSString, bus: NSString, bID: Int, user: NSString) {
         var params  = ["email":email, "name":name, "phone_number": phone,"password":passwd] as Dictionary
-        var request = self.initRequest("POST", url: NSURL(string: "\(baseURL)/register/")!, params: params)
+
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/register/")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+
         var session = NSURLSession.sharedSession()
-        
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 self.authRequest(email, name: name, phone: phone, passwd: passwd, loc: loc, man: man, bus: bus, bID: bID, user: user)
@@ -70,9 +75,14 @@ class HTTPrequests {
 
     func authRequest(email: NSString, name: NSString, phone: NSString, passwd: NSString, loc: NSString, man: NSString, bus: NSString, bID: Int, user: NSString) {
         var params  = ["email":email,"password":passwd] as Dictionary
-        var request = self.initRequest("POST", url: NSURL(string: "\(baseURL)/api-token-auth/")!, params: params)
-        var session = NSURLSession.sharedSession()
 
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/api-token-auth/")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+
+        var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: nil) as NSDictionary
@@ -106,7 +116,7 @@ class HTTPrequests {
         var params  = ["email" : email,"password" : password] as Dictionary
         var request = self.initRequest("POST", url: NSURL(string: "\(baseURL)/api-token-auth/")!, params: params)
         var session = NSURLSession.sharedSession()
-        
+
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error:nil) as NSDictionary
@@ -120,9 +130,13 @@ class HTTPrequests {
 
     func createClientRequest(email: NSString, name: NSString, phone: NSString, completion: ((str: String?, error:NSError?)-> Void)?)  {
         var params  = ["email":email, "name":name, "phone_number":phone] as Dictionary
-        var request = self.initRequest("POST", url: NSURL(string: "\(baseURL)/clients/")!, params: params)
+
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/clients/")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
         var session = NSURLSession.sharedSession()
-        
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -134,9 +148,13 @@ class HTTPrequests {
     
     func createBusinessRequest(email: NSString, name: NSString, phone: NSString, man: NSString, loc: NSString, completion: ((str: String?, error:NSError?)-> Void)?) {
         var params  = ["email":email, "name":name, "phone_number":phone, "manager_name": man, "location":loc] as Dictionary
-        var request = self.initRequest("POST", url: NSURL(string: "\(baseURL)/businesses/")!, params: params)
-        var session = NSURLSession.sharedSession()
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/businesses/")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
         
+        var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -148,9 +166,14 @@ class HTTPrequests {
 
     func createEmployeeRequest(email: NSString, name: NSString, phone: NSString, business: Int, completion: ((str: String?, error:NSError?)-> Void)?) {
         var params  = ["email":email, "name":name, "phone_number":phone, "business": business] as Dictionary
-        var request = self.initRequest("POST", url: NSURL(string: "\(baseURL)/employees/")!, params: params)
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/employees/")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+        
         var session = NSURLSession.sharedSession()
-
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -162,9 +185,14 @@ class HTTPrequests {
 
     func editProfile(userType: NSString, id: Int, nombre: NSString, email: NSString, telefono: NSString, negocio: Int){
         var params = ["email":email, "name":nombre, "phone_number": telefono, "business":negocio] as Dictionary
-        var request = self.initRequest("PUT", url: NSURL(string: "\(baseURL)/\(userType)/\(id)/")!, params: params)
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/\(userType)/\(id)/")!)
+        request.HTTPMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+        
         var session = NSURLSession.sharedSession()
-
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error:nil) as NSDictionary
@@ -182,9 +210,14 @@ class HTTPrequests {
 
     func createAppointment(services: NSArray, employee: NSString, client: NSString, date: NSString, theTime: NSString){
         var params = ["day":date, "time": theTime, "services": services, "employee":employee, "client":client] as Dictionary
-        var request = self.initRequest("POST", url: NSURL(string: "\(baseURL)/appointments/")!, params: params)
-        var session = NSURLSession.sharedSession()
         
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/")!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+        
+        var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -229,7 +262,10 @@ class HTTPrequests {
     }
 
     func getEmployeeAppointments(id: Int) {
-        var request = self.initRequest("GET", url: NSURL(string: "\(baseURL)/appointments/?employee=\(id)&ordering=time")!, params: nil)
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?employee=\(id)&ordering=time")!)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         var session = NSURLSession.sharedSession()
 
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
@@ -242,9 +278,12 @@ class HTTPrequests {
     }
 
     func getEmployeeAppointmentsPerDay(id: Int, date: NSString) {
-        var request = self.initRequest("GET", url: NSURL(string: "\(baseURL)/appointments/?day=\(date)&employee=\(id)&ordering=time")!, params: nil)
-        var session = NSURLSession.sharedSession()
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?day=\(date)&employee=\(id)&ordering=time")!)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
@@ -255,9 +294,12 @@ class HTTPrequests {
     }
 
     func getClientAppointmentsPerDay(id: Int, date: NSString) {
-        var request = self.initRequest("GET", url: NSURL(string: "\(baseURL)/appointments/?day=\(date)&client=\(id)&ordering=time")!, params: nil)
-        var session = NSURLSession.sharedSession()
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?day=\(date)&client=\(id)&ordering=time")!)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary
@@ -268,9 +310,12 @@ class HTTPrequests {
     }
 
     func getClientAppointments(id: Int) {
-        var request = self.initRequest("GET", url: NSURL(string: "\(baseURL)/appointments/?client=\(id)&ordering=time")!, params: nil)
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?client=\(id)&ordering=time")!)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
         var session = NSURLSession.sharedSession()
-    
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary
@@ -357,10 +402,12 @@ class HTTPrequests {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
 
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
+                println(response)
                 if let block = completion {block (str: "ok", error: nil)}
                 else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
             }
