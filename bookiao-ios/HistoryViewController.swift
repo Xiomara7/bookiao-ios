@@ -92,17 +92,22 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.application.userInfo["userType"] as String! == "employee" {
-            return self.application.employeeAppointments.count
+        let ut = DataManager.sharedManager.userInfo["userType"] as String!
+        if ut == "employee" {
+            return DataManager.sharedManager.employeeAppointments.count
         }
-        if self.application.userInfo["userType"] as String! == "client" {
-            return self.application.clientAppointments.count
+        if ut == "client" {
+            return DataManager.sharedManager.clientAppointments.count
         }
         return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
+        
+        let ut = DataManager.sharedManager.userInfo["userType"] as String!
+        let eAppointments = DataManager.sharedManager.employeeAppointments
+        let cAppointments = DataManager.sharedManager.clientAppointments
         
         var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as CustomCellHistory!
         if  cell == nil {
@@ -111,37 +116,30 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let cellFrame = CGRectMake(0.0, 0.0, 320.0, 200.0)
         
-        if self.application.userInfo["userType"] as String! == "employee" {
-            if self.application.employeeAppointments.count != 0 {
-                let day = self.application.employeeAppointments[indexPath.row]["day"] as String!
-                let time = self.application.employeeAppointments[indexPath.row]["time"] as String!
-            
-            
-                cell.titleLabel.text = self.application.employeeAppointments[indexPath.row]["client"] as String!
+        if ut == "employee" {
+            if DataManager.sharedManager.employeeAppointments.count != 0 {
+                let day  = eAppointments[indexPath.row]["day"]  as String!
+                let time = eAppointments[indexPath.row]["time"] as String!
         
+                cell.titleLabel.text = eAppointments[indexPath.row]["client"] as String!
                 cell.subtitleLabel.text = "En \(day) a las \(time)"
             }
         }
-        if self.application.userInfo["userType"] as String! == "client" {
-            if self.application.clientAppointments.count != 0 {
-                let day = self.application.clientAppointments[indexPath.row]["day"] as String!
-                let time = self.application.clientAppointments[indexPath.row]["time"] as String!
+        if ut == "client" {
+            if cAppointments.count != 0 {
+                let day  = cAppointments[indexPath.row]["day"]  as String!
+                let time = cAppointments[indexPath.row]["time"] as String!
             
-            
-                cell.titleLabel.text = self.application.clientAppointments[indexPath.row]["employee"] as String!
+                cell.titleLabel.text = cAppointments[indexPath.row]["employee"] as String!
                 cell.subtitleLabel.text = "En \(day) a las \(time)"
             }
         }
-        if self.application.userInfo["userType"] as String! == "business" {
+        if ut == "business" {
             cell.titleLabel.text = ""
             cell.subtitleLabel.text = ""
         }
-        
-//        cell.textLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        cell.textLabel.numberOfLines = 0
-//        cell.textLabel.font = UIFont.systemFontOfSize(20.0)
-        cell.setNeedsUpdateConstraints()
 
+        cell.setNeedsUpdateConstraints()
         cell.selectionStyle = .Default
         cell.accessoryType  = .None
         

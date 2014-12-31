@@ -20,7 +20,6 @@ extension String {
 
 class LoginViewController: UIViewController {
     
-    let loader = UIActivityIndicatorView(frame: CGRectMake(0.0, 0.0, 40.0, 40.0))
     let requests = HTTPrequests()
     let customDesign = CustomDesign()
     let application  = UIApplication.sharedApplication().delegate as AppDelegate
@@ -33,6 +32,8 @@ class LoginViewController: UIViewController {
     let nuevoLabel = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let ingresoButton  = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    
+    let indicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         self.view.backgroundColor = customDesign.UIColorFromRGB(0x224656)
@@ -82,9 +83,6 @@ class LoginViewController: UIViewController {
         requests.getEmployees()
         requests.getServices()
         
-        loader.hidesWhenStopped = true
-        loader.center = CGPointMake(170, 270);
-        
         self.view.addSubview(iconImage)
         self.view.addSubview(ingresoButton)
         self.view.addSubview(registroButton)
@@ -92,13 +90,12 @@ class LoginViewController: UIViewController {
         self.view.addSubview(passwdtxtField)
         self.view.addSubview(nameLabel)
         self.view.addSubview(nuevoLabel)
-        self.view.addSubview(loader)
+        self.view.addSubview(indicator)
     }
     
     override func viewWillAppear(animated: Bool) {
         emailtxtField.text = ""
         passwdtxtField.text = ""
-        loader.stopAnimating()
     }
     
     func buttonAction() {
@@ -110,14 +107,21 @@ class LoginViewController: UIViewController {
         let password = passwdtxtField.text
         
         if email.isEmail() {
-            requests.loginRequest((email as NSString).lowercaseString, password: password)
-        }
-        else {
-            let alert = UIAlertView(title: "Invalid email", message: "Try again", delegate: self, cancelButtonTitle: "OK")
-            alert.show()
-            emailtxtField.text = ""
-            passwdtxtField.text = ""
-            
+            requests.loginRequest(email, password: password, completion: { (str, error) -> Void in
+                println("Error: \(error)")
+                println("STR: \(str)")
+                if let token = str {
+                    DataManager.sharedManager.token = str!
+                }
+                else {
+                    let alert = UIAlertView(title: "Error!", message: "Verifica tus credenciales y tu conección al internet!", delegate: nil, cancelButtonTitle: "OK")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        alert.show()
+                        self.emailtxtField.text  = ""
+                        self.passwdtxtField.text = ""
+                    });
+                }
+            })
         }
     }
     

@@ -11,6 +11,14 @@ import CoreData
 import Foundation
 
 class ViewController: UIViewController {
+    
+    class var sharedManager: ViewController {
+        struct Singleton {
+            static let instance = ViewController()
+        }
+        return Singleton.instance
+    }
+    
     let request = HTTPrequests()
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
@@ -60,10 +68,10 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if self.application.userInfo["token"] == nil{
-            let login = LoginViewController()
-            self.presentViewController(login, animated: true, completion: nil)
-        }
+//        if DataManager.sharedManager.token == nil{
+//            let login = LoginViewController()
+//            self.presentViewController(login, animated: true, completion: nil)
+//        }
         
         self.tabBarItem.setTitlePositionAdjustment(UIOffsetMake(0, -20))
     }

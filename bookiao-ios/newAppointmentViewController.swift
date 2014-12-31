@@ -24,6 +24,8 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let customDesign = CustomDesign()
+        let ut = DataManager.sharedManager.userInfo["userType"] as String!
+        
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
         dateTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
@@ -36,10 +38,12 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         serviceField.placeholder = "Servicios"
         
         employeeField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
-        if self.application.userInfo["userType"] as String == "client" {
+        
+        
+        if ut == "client" {
             employeeField.placeholder = "Empleado"
         }
-        if self.application.userInfo["userType"] as String == "employee" {
+        if ut == "employee" {
             employeeField.placeholder = "Cliente"
         }
         
@@ -146,11 +150,13 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     func buttonAction() {
         
         let request = HTTPrequests()
-        if self.application.userInfo["userType"] as String == "client" {
-            request.createAppointment([serviceField.text], employee:employeeField.text, client: self.application.userInfo["name"] as String, date: dateTxtField.text, theTime: timeTxtField.text)
+        let ut = DataManager.sharedManager.userInfo
+        
+        if ut["userType"] as String! == "client" {
+            request.createAppointment([serviceField.text], employee:employeeField.text, client: ut["name"] as String, date: dateTxtField.text, theTime: timeTxtField.text)
         }
-        if self.application.userInfo["userType"] as String == "employee" {
-            request.createAppointment([serviceField.text], employee:self.application.userInfo["name"] as String, client:employeeField.text , date: dateTxtField.text, theTime: timeTxtField.text)
+        if ut["userType"] as String! == "employee" {
+            request.createAppointment([serviceField.text], employee:ut["name"] as String, client:employeeField.text , date: dateTxtField.text, theTime: timeTxtField.text)
         }
         let views = ViewController(nibName: nil, bundle: nil)
         self.presentViewController(views, animated: true, completion: nil)
@@ -172,16 +178,18 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
+        let ut = DataManager.sharedManager.userInfo
+        
         if pickerView == pickerUsers {
-            if self.application.userInfo["userType"] as String == "client" {
-                return self.application.employees.count
+            if ut["userType"] as String == "client" {
+                return DataManager.sharedManager.employees.count
             }
-            if self.application.userInfo["userType"] as String == "employee" {
-                return self.application.client.count
+            if ut["userType"] as String == "employee" {
+                return DataManager.sharedManager.client.count
             }
         }
         if pickerView == pickerServices {
-            return self.application.services.count
+            return DataManager.sharedManager.services.count
         }
         if pickerView == datePicker{
             return 10
@@ -190,16 +198,17 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
+        let ut = DataManager.sharedManager.userInfo
         if pickerView == pickerUsers {
-            if self.application.userInfo["userType"] as String == "client" {
-                return self.application.employees[row]["name"] as String
+            if ut["userType"] as String == "client" {
+                return DataManager.sharedManager.employees[row]["name"] as String
             }
-            if self.application.userInfo["userType"] as String == "employee" {
-                return self.application.client[row]["name"] as String
+            if ut["userType"] as String == "employee" {
+                return DataManager.sharedManager.client[row]["name"] as String
             }
         }
         if pickerView == pickerServices {
-            return self.application.services[row]["name"] as String
+            return DataManager.sharedManager.services[row]["name"] as String
         }
         if pickerView == datePicker{
             return "hola"
@@ -208,16 +217,17 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        let ut = DataManager.sharedManager.userInfo
         if pickerView == pickerUsers {
-            if self.application.userInfo["userType"] as String == "client" {
-                employeeField.text = self.application.employees[row]["name"] as String
+            if ut["userType"] as String == "client" {
+                employeeField.text = DataManager.sharedManager.employees[row]["name"] as String
             }
-            if self.application.userInfo["userType"] as String == "employee" {
-                employeeField.text = self.application.client[row]["name"] as String
+            if ut["userType"] as String == "employee" {
+                employeeField.text = DataManager.sharedManager.client[row]["name"] as String
             }
         }
         if pickerView == pickerServices {
-            serviceField.text = self.application.services[row]["name"] as String
+            serviceField.text = DataManager.sharedManager.services[row]["name"] as String
         }
         if pickerView == datePicker{
             dateTxtField.text = "hola hola :P"

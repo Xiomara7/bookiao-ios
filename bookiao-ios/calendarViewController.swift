@@ -106,13 +106,16 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
     
     func buttonAction() {
         self.navigationItem.title = dateFormatter.stringFromDate(datePicker.date)
-        application.date = dateFormatter.stringFromDate(datePicker.date)
-        application.dateLabel = dateFormatterLabel.stringFromDate(datePicker.date)
-        if application.userInfo["userType"] as String == "client" {
-            requests.getClientAppointmentsPerDay(application.userInfo["id"] as Int, date: application.date as String)
+        DataManager.sharedManager.date = dateFormatter.stringFromDate(datePicker.date)
+        DataManager.sharedManager.dateLabel = dateFormatterLabel.stringFromDate(datePicker.date)
+        
+        let ut = DataManager.sharedManager.userInfo["userType"] as String!
+        let id = DataManager.sharedManager.userInfo["id"] as Int
+        if ut == "client" {
+            requests.getClientAppointmentsPerDay(id, date: DataManager.sharedManager.date)
         }
-        if application.userInfo["userType"] as String == "employee" {
-            requests.getEmployeeAppointmentsPerDay(application.userInfo["id"] as Int, date: application.date as String)
+        if ut == "employee" {
+            requests.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date)
         }
     }
     

@@ -26,20 +26,21 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate {
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         let application = UIApplication.sharedApplication().delegate as AppDelegate
-        super.viewDidLoad()
+        let ut = DataManager.sharedManager.userInfo
         
         nametxtField.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
-        nametxtField.text = self.application.userInfo["name"] as String!
+        nametxtField.text  = ut["name"] as String!
         
         emailtxtField.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
-        emailtxtField.text = self.application.userInfo["email"] as String!
+        emailtxtField.text  = ut["email"] as String!
         
         phonetxtField.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
-        phonetxtField.text = self.application.userInfo["phone_number"] as String!
+        phonetxtField.text  = ut["phone_number"] as String!
         
-        if self.application.userInfo["userType"] as String == "employee" {
+        if ut["userType"] as String == "employee" {
             businesstxtField.frame = CGRectMake(20, 370, self.view.bounds.width - 40, 40)
             businesstxtField.placeholder = "Negocio"
             pickerView.delegate = self
@@ -65,10 +66,11 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate {
     }
 
     func dismiss() {
-        if self.application.userInfo["userType"] as String == "employee" {
-            requests.editProfile("employees", id: self.application.userInfo["id"] as Int!, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: businessResponse!)
+        let ut = DataManager.sharedManager.userInfo
+        if ut["userType"] as String == "employee" {
+            requests.editProfile("employees", id: ut["id"] as Int!, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: businessResponse!)
         }
-        if self.application.userInfo["userType"] as String == "client" {
+        if ut["userType"] as String == "client" {
             println("EDIT")
             requests.editProfile("clients", id: 11, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: 1)
         }
@@ -97,15 +99,15 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate {
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return self.application.titles.count
+        return DataManager.sharedManager.titles.count
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return self.application.titles[row]["name"] as String
+        return DataManager.sharedManager.titles[row]["name"] as String
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
-        businesstxtField.text = self.application.titles[row]["name"] as String
+        businesstxtField.text = DataManager.sharedManager.titles[row]["name"] as String
         businessResponse = row + 1
     }
 }

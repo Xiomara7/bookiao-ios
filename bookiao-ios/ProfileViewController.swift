@@ -27,14 +27,16 @@ class ProfileViewController: UIViewController {
         let application = UIApplication.sharedApplication().delegate as AppDelegate
         super.viewDidLoad()
         
+        let userinfo = DataManager.sharedManager.userInfo
+        
         nameLabel.frame = CGRectMake(20, 205, self.view.bounds.width - 40, 40)
-        nameLabel.text = self.application.userInfo["name"] as String!
+        nameLabel.text  = userinfo["name"] as String!
         
         emailLabel.frame = CGRectMake(20, 260, self.view.bounds.width - 40, 40)
-        emailLabel.text = self.application.userInfo["email"] as String!
+        emailLabel.text  = userinfo["email"] as String!
         
         phoneLabel.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
-        phoneLabel.text = self.application.userInfo["phone_number"] as String!
+        phoneLabel.text  = userinfo["phone_number"] as String!
         
         registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)

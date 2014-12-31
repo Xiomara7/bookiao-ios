@@ -121,15 +121,15 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int {
-        return self.application.titles.count
+        return DataManager.sharedManager.titles.count
     }
     
     func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return self.application.titles[row]["name"] as String
+        return DataManager.sharedManager.titles[row]["name"] as String
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
-        placetxtField.text = self.application.titles[row]["name"] as String
+        placetxtField.text = DataManager.sharedManager.titles[row]["name"] as String
         businessResponse = row + 1
     }
 }

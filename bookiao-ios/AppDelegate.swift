@@ -14,26 +14,16 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow!
-    var token : NSString!
-    var titles: NSArray! = []
-    var client: NSArray! = []
-    var services: NSArray! = []
-    var employees: NSArray! = []
-    var date: NSString!
-    var dateLabel: NSString!
-    var employeeAppointments: NSArray! = []
-    var employeeAppointmentsPerDay: NSArray! = []
-    var clientAppointments: NSArray! = []
-    var clientAppointmentsPerDay: NSArray! = []
-    var userInfo: NSDictionary! = [:]
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Crashlytics.startWithAPIKey("060c9c8678ed200621af5e16e3937d3d31c777be")
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
         let now = NSDate()
-        println(now)
         let dateFormatter = NSDateFormatter()
-        date = dateFormatter.stringFromDate(now)
+        
+        DataManager.sharedManager.date = dateFormatter.stringFromDate(now)
+        
         if let window = window {
             var login = LoginViewController(nibName: nil, bundle: nil)
             
