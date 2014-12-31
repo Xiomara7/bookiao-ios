@@ -134,7 +134,7 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
                 cell.phoneLabel.text = DataManager.sharedManager.userInfo["phone_number"] as String!
             }
         }
-        else if ut == "client" {
+        else if ut! == "client" {
             if cAppointments.count == 0 && eAppointments.count == 0 {
                 cell.superTitle.text = "Bookealo"
                 cell.status.text = "No tienes citas para hoy. Crea una cita."

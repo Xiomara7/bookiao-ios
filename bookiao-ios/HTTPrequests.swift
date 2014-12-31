@@ -324,9 +324,10 @@ class HTTPrequests {
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
+                println("UserInfo Resp: \(response)")
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary!
-
                 DataManager.sharedManager.userInfo = newData as NSDictionary!
+                println("Userinfo: \(DataManager.sharedManager.userInfo)")
                 let id = DataManager.sharedManager.userInfo["id"] as Int!
                 let ut = DataManager.sharedManager.userInfo["userType"] as String!
                 if ut == "client" {

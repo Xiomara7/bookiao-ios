@@ -72,7 +72,7 @@ class BusinessViewController: UIViewController {
             })
         }
         else {
-            let alert = UIAlertView(title: "Gracias!", message: "HTe contactaremos pronto!", delegate: self, cancelButtonTitle: "OK")
+            let alert = UIAlertView(title: "Gracias!", message: "Te contactaremos pronto!", delegate: self, cancelButtonTitle: "OK")
             dispatch_async(dispatch_get_main_queue(), {
                 alert.show()
             })
