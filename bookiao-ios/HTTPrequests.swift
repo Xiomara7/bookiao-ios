@@ -60,7 +60,9 @@ class HTTPrequests {
             if self.isRequestValid(response) {
                 self.authRequest(email, name: name, phone: phone, passwd: passwd, loc: loc, man: man, bus: bus, bID: bID, user: user)
 
-                self.getUserInfo(email)
+                self.getUserInfo(email, completion: { (str, error) -> Void in
+                    println("HELLO")
+                })
             }
         })
         task.resume()
@@ -170,7 +172,9 @@ class HTTPrequests {
                 println("Succes: \(success)")
                 self.getClients()
                 self.getEmployees()
-                self.getUserInfo(email)
+                self.getUserInfo(email, completion: { (str, error) -> Void in
+                    println("HELO")
+                })
             }
         })
         task.resume()
@@ -315,7 +319,7 @@ class HTTPrequests {
         task.resume()
     }
 
-    func getUserInfo(email: NSString) {
+    func getUserInfo(email: NSString, completion: ((str: String?, error:NSError?)-> Void)?)  {
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/user-type/?email=\(email)")!)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -338,7 +342,10 @@ class HTTPrequests {
                     self.getEmployeeAppointments(id)
                     self.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date)
                 }
+                if let block = completion {block (str: "ok" as String!, error: nil)}
+                else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
             }
+            else {if let block = completion {block (str: nil, error: nil)}}
         })
         task.resume()
     }

@@ -74,7 +74,9 @@ class ClientViewController: UIViewController {
         let phone = confirmtxtField.text
         let password = passwordtxtField.text
         
-        request.getUserInfo(email)
+        request.getUserInfo(email, completion: { (str, error) -> Void in
+            println("hello")
+        })
         request.registerRequest(email, name: name, phone: phone, passwd: password, loc: "", man: "", bus: "", bID:0, user: "cliente")
         
     }

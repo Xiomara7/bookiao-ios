@@ -103,23 +103,29 @@ class LoginViewController: UIViewController {
     }
     
     func buttonActionLogin() {
-        let email = emailtxtField.text
-        let password = passwdtxtField.text
+        let email  = emailtxtField.text
+        let passwd = passwdtxtField.text
         
         if email.isEmail() {
-            requests.loginRequest(email, password: password, completion: { (str, error) -> Void in
+            requests.loginRequest(email, password: passwd, completion: { (str, error) -> Void in
                 println("Error: \(error)")
                 println("STR: \(str)")
                 if let token = str {
                     DataManager.sharedManager.token = str!
                     dispatch_async(dispatch_get_main_queue(), {
-                        let views = ViewController(nibName: nil, bundle: nil)
-//                        self.presentViewController(views, animated: true, completion: nil)
-                    HTTPrequests.sharedManager.getUserInfo(email)});
+                        HTTPrequests.sharedManager.getUserInfo(email, completion: { (str, error) -> Void in
+                            if let ok = str {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    let views = ViewController()
+                                    self.presentViewController(views, animated: true, completion: nil)
+                                })
+                            }
+                        })
+                    })
                 }
                 else {
                     let alert = UIAlertView(title: "Error!", message: "Verifica tus credenciales y tu conección al internet!", delegate: nil, cancelButtonTitle: "OK")
-                    dispatch_async(dispatch_get_main_queue(), {
+                        dispatch_async(dispatch_get_main_queue(), {
                         alert.show()
                         self.emailtxtField.text  = ""
                         self.passwdtxtField.text = ""

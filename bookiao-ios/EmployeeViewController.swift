@@ -111,7 +111,9 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         let business = placetxtField.text
         let businessID = businessResponse
 
-        request.getUserInfo(email)
+        request.getUserInfo(email, completion: { (str, error) -> Void in
+            println("holita")
+        })
         request.registerRequest(email, name: name, phone: phone, passwd: password, loc: location, man: "", bus: business, bID: businessID,  user: "empleado")
     }
     // returns the number of 'columns' to display.
