@@ -112,6 +112,10 @@ class LoginViewController: UIViewController {
                 println("STR: \(str)")
                 if let token = str {
                     DataManager.sharedManager.token = str!
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let views = ViewController(nibName: nil, bundle: nil)
+                        self.presentViewController(views, animated: true, completion: nil)
+                    });
                 }
                 else {
                     let alert = UIAlertView(title: "Error!", message: "Verifica tus credenciales y tu conección al internet!", delegate: nil, cancelButtonTitle: "OK")

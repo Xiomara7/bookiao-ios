@@ -75,7 +75,7 @@ class ClientViewController: UIViewController {
         let password = passwordtxtField.text
         
         request.getUserInfo(email)
-        request.registerRequest(email, name: name, phone: phone, password: password, location: "", manager: "", business: "", bID:0, usuario: "cliente")
+        request.registerRequest(email, name: name, phone: phone, passwd: password, loc: "", man: "", bus: "", bID:0, user: "cliente")
         
     }
     

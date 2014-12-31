@@ -112,7 +112,7 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         let businessID = businessResponse
 
         request.getUserInfo(email)
-        request.registerRequest(email, name: name, phone: phone, password: password, location: location, manager: "", business: business, bID: businessID,  usuario: "empleado")
+        request.registerRequest(email, name: name, phone: phone, passwd: password, loc: location, man: "", bus: business, bID: businessID,  user: "empleado")
     }
     // returns the number of 'columns' to display.
     func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
