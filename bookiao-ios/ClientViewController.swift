@@ -77,8 +77,13 @@ class ClientViewController: UIViewController {
         request.getUserInfo(email, completion: { (str, error) -> Void in
             println("hello")
         })
-        request.registerRequest(email, name: name, phone: phone, passwd: password, loc: "", man: "", bus: "", bID:0, user: "cliente")
-        
+        request.registerRequest(email, name: name, phone: phone, passwd: password) {  (str, error) -> Void in
+            if let ok = str {request.authRequest(email, passwd: password, completion:{(str, error) -> Void in
+            if let ok = str {request.createClientRequest(email, name: name, phone: phone, completion: { (str, error) -> Void in
+            if let ok = str {
+                let views = ViewController()
+                self.presentViewController(views, animated: true, completion: nil)
+            }})}})}
+        }
     }
-    
 }

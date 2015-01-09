@@ -51,7 +51,7 @@ class HTTPrequests {
         return false
     }
     
-    func registerRequest(email: NSString, name: NSString, phone: NSString, passwd: NSString, loc: NSString, man: NSString, bus: NSString, bID: Int, user: NSString) {
+    func registerRequest(email: NSString, name: NSString, phone: NSString, passwd: NSString, completion: ((str: String?, error:NSError?)-> Void)?)  {
         var params  = ["email":email, "name":name, "phone_number": phone,"password":passwd] as Dictionary
 
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/register/")!)
@@ -63,17 +63,15 @@ class HTTPrequests {
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
-                self.authRequest(email, name: name, phone: phone, passwd: passwd, loc: loc, man: man, bus: bus, bID: bID, user: user)
-
-                self.getUserInfo(email, completion: { (str, error) -> Void in
-                    println("HELLO")
-                })
+                if let block = completion {block (str: "ok", error: nil)}
+                else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
             }
+            else {if let block = completion {block (str: nil, error: nil)}}
         })
         task.resume()
     }
 
-    func authRequest(email: NSString, name: NSString, phone: NSString, passwd: NSString, loc: NSString, man: NSString, bus: NSString, bID: Int, user: NSString) {
+    func authRequest(email: NSString, passwd: NSString, completion: ((str: String?, error:NSError?)-> Void)?)  {
         var params  = ["email":email,"password":passwd] as Dictionary
 
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/api-token-auth/")!)
@@ -87,26 +85,14 @@ class HTTPrequests {
             if self.isRequestValid(response) {
                 var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: nil) as NSDictionary
                 DataManager.sharedManager.token = json["token"] as String!
-                
-                    if user == "cliente" {
-                        println("is client")
-                        self.createClientRequest(email, name: name, phone: phone, completion: { (str, error) -> Void in
-                            
-                        })
+                dispatch_async(dispatch_get_main_queue(), {
+                    if self.isRequestValid(response) {
+                        if let block = completion {block (str: "ok", error: nil)}
+                        else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
                     }
-                    if user == "negocio" {
-                        println("is business")
-                        self.createBusinessRequest(email, name: name, phone: phone, man: man, loc: loc, completion: { (str, error) -> Void in
-                            return
-                        })
-                    }
-                    if user == "empleado" {
-                        println("is employee")
-                        self.createEmployeeRequest(email, name: name, phone: phone, business: 1, completion: { (str, error) -> Void in
-                            return
-                        })
-                    }
-                }
+                    else {if let block = completion {block (str: nil, error: nil)}}
+                })
+            }
 
         })
         task.resume()
@@ -135,9 +121,13 @@ class HTTPrequests {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
+        
+        println("token : \(DataManager.sharedManager.token)")
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Client response: \(response)")
             if self.isRequestValid(response) {
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("Body: \(strData)\n\n")
@@ -152,10 +142,12 @@ class HTTPrequests {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
-        
+
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println(response)
             if self.isRequestValid(response) {
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("Body: \(strData)\n\n")
@@ -171,6 +163,7 @@ class HTTPrequests {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
         
         var session = NSURLSession.sharedSession()
@@ -190,6 +183,7 @@ class HTTPrequests {
         request.HTTPMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
         
         var session = NSURLSession.sharedSession()
@@ -215,6 +209,7 @@ class HTTPrequests {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: nil)
         
         var session = NSURLSession.sharedSession()
