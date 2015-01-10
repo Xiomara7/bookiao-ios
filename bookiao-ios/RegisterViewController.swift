@@ -17,7 +17,6 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
         var tabBar = UITabBarController()
-        var tabBarAppearance = UITabBar.appearance()
         var client   = ClientViewController()
         var employee = EmployeeViewController()
         var business = BusinessViewController()
@@ -25,6 +24,7 @@ class RegisterViewController: UIViewController {
         var clientIcon   = UITabBarItem(title: "cliente" , image: UIImage(named: "cliente.png") , tag: 0)
         var employeeIcon = UITabBarItem(title: "empleado", image: UIImage(named: "empleado.png"), tag: 1)
         var businessIcon = UITabBarItem(title: "negocio" , image: UIImage(named: "negocio.png") , tag: 2)
+        var tabBarAppearance = UITabBar.appearance()
         
         client.tabBarItem   = clientIcon
         business.tabBarItem = businessIcon
@@ -52,7 +52,6 @@ class RegisterViewController: UIViewController {
     }
     func dismiss() {
         let back = LoginViewController(nibName: nil, bundle: nil)
-//        self.presentViewController(back, animated: true, completion: nil)
         self.application.window.rootViewController = back
     }
     

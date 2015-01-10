@@ -111,10 +111,18 @@ class calendarViewController: UIViewController, UIPickerViewDelegate {
         let ut = DataManager.sharedManager.userInfo["userType"] as String!
         let id = DataManager.sharedManager.userInfo["id"] as Int
         if ut == "client" {
-            requests.getClientAppointmentsPerDay(id, date: DataManager.sharedManager.date)
+            requests.getClientAppointmentsPerDay(id, date: DataManager.sharedManager.date, completion: { (str, error) -> Void in
+            if let ok = str {dispatch_async(dispatch_get_main_queue(), {
+                let views = ViewController()
+                self.presentViewController(views, animated: true, completion: nil)
+            })}})
         }
         if ut == "employee" {
-            requests.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date)
+            requests.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date, completion: { (str, error) -> Void in
+            if let ok = str {dispatch_async(dispatch_get_main_queue(), {
+                let views = ViewController()
+                self.presentViewController(views, animated: true, completion: nil)
+            })}})
         }
     }
     

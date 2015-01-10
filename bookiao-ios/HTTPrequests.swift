@@ -257,66 +257,82 @@ class HTTPrequests {
         })
     }
 
-    func getEmployeeAppointments(id: Int) {
+    func getEmployeeAppointments(id: Int, completion: ((str: String?, error:NSError?)-> Void)?) {
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?employee=\(id)&ordering=time")!)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        var session = NSURLSession.sharedSession()
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
 
+        var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary
                 DataManager.sharedManager.employeeAppointments = newData["results"] as NSArray
+                if let block = completion {block (str: "ok" as String!, error: nil)}
+                else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
             }
+            else {if let block = completion {block (str: nil, error: nil)}}
         })
         task.resume()
     }
 
-    func getEmployeeAppointmentsPerDay(id: Int, date: NSString) {
+    func getEmployeeAppointmentsPerDay(id: Int, date: NSString, completion: ((str: String?, error:NSError?)-> Void)?) {
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?day=\(date)&employee=\(id)&ordering=time")!)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
                 DataManager.sharedManager.employeeAppointmentsPerDay = newData["results"] as NSArray
+                if let block = completion {block (str: "ok" as String!, error: nil)}
+                else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
             }
+            else {if let block = completion {block (str: nil, error: nil)}}
         })
         task.resume()
     }
 
-    func getClientAppointmentsPerDay(id: Int, date: NSString) {
+    func getClientAppointmentsPerDay(id: Int, date: NSString, completion: ((str: String?, error:NSError?)-> Void)?) {
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?day=\(date)&client=\(id)&ordering=time")!)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary
                 DataManager.sharedManager.clientAppointmentsPerDay = newData["results"] as NSArray
+                if let block = completion {block (str: "ok" as String!, error: nil)}
+                else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
             }
+            else {if let block = completion {block (str: nil, error: nil)}}
         })
         task.resume()
     }
 
-    func getClientAppointments(id: Int) {
+    func getClientAppointments(id: Int, completion: ((str: String?, error:NSError?)-> Void)?) {
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/appointments/?client=\(id)&ordering=time")!)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-
+        request.addValue("JWT \(DataManager.sharedManager.token)", forHTTPHeaderField: "Authorization")
+        
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary
                 DataManager.sharedManager.clientAppointments = newData["results"] as NSArray
+                if let block = completion {block (str: "ok" as String!, error: nil)}
+                else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
             }
+            else {if let block = completion {block (str: nil, error: nil)}}
         })
         task.resume()
     }
@@ -376,12 +392,16 @@ class HTTPrequests {
                 let id = DataManager.sharedManager.userInfo["id"] as Int!
                 let ut = DataManager.sharedManager.userInfo["userType"] as String!
                 if ut == "client" {
-                    self.getClientAppointments(id)
-                    self.getClientAppointmentsPerDay(id, date: DataManager.sharedManager.date)
+                    self.getClientAppointments(id, completion: { (str, error) -> Void in
+                    })
+                    self.getClientAppointmentsPerDay(id, date: DataManager.sharedManager.date, completion: { (str, error) -> Void in
+                    })
                 }
                 if ut == "employee" {
-                    self.getEmployeeAppointments(id)
-                    self.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date)
+                    self.getEmployeeAppointments(id, completion: { (str, error) -> Void in
+                    })
+                    self.getEmployeeAppointmentsPerDay(id, date: DataManager.sharedManager.date, completion: { (str, error) -> Void in
+                    })
                 }
                 if let block = completion {block (str: "ok" as String!, error: nil)}
                 else {if let block = completion { block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
