@@ -14,9 +14,10 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate {
     
     var customDesign = CustomDesign()
     var requests = HTTPrequests()
-    var nametxtField: UITextField = CustomDesign.getNameTxtField
+    var nametxtField: UITextField  = CustomDesign.getNameTxtField
     var emailtxtField: UITextField = CustomDesign.getNameTxtField
     var phonetxtField: UITextField = CustomDesign.getNameTxtField
+
     var businesstxtField: UITextField = CustomDesign.getNameTxtField
     var businessResponse: Int!
     
@@ -68,11 +69,10 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate {
     func dismiss() {
         let ut = DataManager.sharedManager.userInfo
         if ut["userType"] as String == "employee" {
-            requests.editProfile("employees", id: ut["id"] as Int!, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: businessResponse!)
+            requests.editProfile("employees", id: ut["id"] as Int!, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: 1)
         }
         if ut["userType"] as String == "client" {
-            println("EDIT")
-            requests.editProfile("clients", id: 11, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: 1)
+            requests.editProfile("clients", id: ut["id"] as Int!, nombre: nametxtField.text!, email: emailtxtField.text!, telefono: phonetxtField.text!, negocio: 1)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }

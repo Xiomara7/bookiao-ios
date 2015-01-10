@@ -23,12 +23,12 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     
     var placetxtField: UITextField = CustomDesign.getNameTxtField
     var emailtxtField: UITextField = CustomDesign.getNameTxtField
-    var passwordtxtField: UITextField = CustomDesign.getNameTxtField
-    var confirmtxtField: UITextField = CustomDesign.getNameTxtField
-    var nameTxtField: UITextField = CustomDesign.getNameTxtField
+    var passwtxtField: UITextField = CustomDesign.getNameTxtField
+    var confirmsField: UITextField = CustomDesign.getNameTxtField
+    var nameTextField: UITextField = CustomDesign.getNameTxtField
     var localTxtField: UITextField = CustomDesign.getNameTxtField
     
-    let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let registerButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     override func viewDidLoad() {
         let customDesign = CustomDesign()
@@ -36,17 +36,17 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     
         super.viewDidLoad()
         
-        nameTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
-        nameTxtField.placeholder = "Nombre"
+        nameTextField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
+        nameTextField.placeholder = "Nombre"
         
         emailtxtField.frame = CGRectMake(20, 120, self.view.bounds.width - 40, 40)
         emailtxtField.placeholder = "Correo electrónico"
         
-        passwordtxtField.frame = CGRectMake(20, 170, self.view.bounds.width - 40, 40)
-        passwordtxtField.placeholder = "Contraseña"
+        passwtxtField.frame = CGRectMake(20, 170, self.view.bounds.width - 40, 40)
+        passwtxtField.placeholder = "Contraseña"
         
-        confirmtxtField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
-        confirmtxtField.placeholder = "Número telefónico"
+        confirmsField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
+        confirmsField.placeholder = "Número telefónico"
         
         placetxtField.frame = CGRectMake(20, 270, self.view.bounds.width - 40, 40)
         placetxtField.placeholder = "Negocio"
@@ -54,20 +54,20 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         localTxtField.frame = (CGRectMake(20, 320, self.view.bounds.width - 40, 40))
         localTxtField.placeholder = "Localización"
         
-        registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
-        registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
-        registroButton.tintColor = UIColor.whiteColor()
-        registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        registerButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
+        registerButton.tintColor = UIColor.whiteColor()
+        registerButton.backgroundColor  = customDesign.UIColorFromRGB(0x34A3DB)
+        registerButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
+        registerButton.setTitle("Registrarme", forState: UIControlState.Normal)
+        registerButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(emailtxtField)
-        self.view.addSubview(placetxtField)
-        self.view.addSubview(passwordtxtField)
-        self.view.addSubview(localTxtField)
-        self.view.addSubview(registroButton)
-        self.view.addSubview(confirmtxtField)
-        self.view.addSubview(nameTxtField)
+        self.view.addSubview( emailtxtField)
+        self.view.addSubview( placetxtField)
+        self.view.addSubview( passwtxtField)
+        self.view.addSubview( localTxtField)
+        self.view.addSubview( confirmsField)
+        self.view.addSubview( nameTextField)
+        self.view.addSubview(registerButton)
 
         pickerView.delegate = self
         placetxtField.inputView = pickerView
@@ -81,14 +81,12 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Empleado"
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
-        
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -103,12 +101,14 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     func buttonAction(sender:UIButton!) {
         let request = HTTPrequests()
         
-        let name  = nameTxtField.text
+        let name  = nameTextField.text
         let email = emailtxtField.text
-        let phone = confirmtxtField.text
-        let password = passwordtxtField.text
+        let phone = confirmsField.text
+        
+        let password = passwtxtField.text
         let location = localTxtField.text
         let business = placetxtField.text
+        
         let businessID = businessResponse
         
         request.registerRequest(email, name: name, phone: phone, passwd: password) {(str, error) -> Void in

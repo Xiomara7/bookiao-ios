@@ -11,33 +11,32 @@ import Foundation
 class calendarViewController: UIViewController, UIPickerViewDelegate {
     var dateTxtField: UITextField = CustomDesign.getNameTxtField
     
-    let datePicker = UIDatePicker()
+    let datePicker  = UIDatePicker()
 
-    let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let regButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     let views = AppointmentsViewController()
     let requests = HTTPrequests()
+    let customDesign = CustomDesign()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let customDesign = CustomDesign()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         
-        dateTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
+        dateTxtField.frame = CGRectMake(20, 70, self.view.bounds.width - 40, 40)
+        dateTxtField.inputView   = datePicker
         dateTxtField.placeholder = "Fecha"
         
-        registroButton.frame = CGRectMake(20, 300, self.view.bounds.width - 40, 40)
-        registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
-        registroButton.tintColor = UIColor.whiteColor()
-        registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        registroButton.setTitle("Ver Citas de este día", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
+        regButton.frame = CGRectMake(20, 300, self.view.bounds.width - 40, 40)
+        regButton.tintColor = UIColor.whiteColor()
+        regButton.backgroundColor  = customDesign.UIColorFromRGB(0x34A3DB)
+        regButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
+        regButton.setTitle("Ver Citas de este día", forState: UIControlState.Normal)
+        regButton.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
-        dateTxtField.inputView = datePicker
-        
+        self.view.addSubview(regButton)
         self.view.addSubview(dateTxtField)
-        self.view.addSubview(registroButton)
         
         let navBar = UINavigationController(rootViewController: self)
         navBar.navigationBar.setBackgroundImage(UIImage(named: "menubar.png"), forBarMetrics: .Default)

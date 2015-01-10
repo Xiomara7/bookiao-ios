@@ -14,11 +14,11 @@ class ProfileViewController: UIViewController {
     
     var customDesign = CustomDesign()
     
-        var nameLabel: UILabel = CustomDesign.getProfileLabel
+        var nameLabel:  UILabel = CustomDesign.getProfileLabel
         var emailLabel: UILabel = CustomDesign.getProfileLabel
         var phoneLabel: UILabel = CustomDesign.getProfileLabel
     
-        let registroButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let rButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
         let application = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
@@ -38,17 +38,17 @@ class ProfileViewController: UIViewController {
         phoneLabel.frame = CGRectMake(20, 315, self.view.bounds.width - 40, 40)
         phoneLabel.text  = userinfo["phone_number"] as String!
         
-        registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
-        registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
-        registroButton.tintColor = UIColor.whiteColor()
-        registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        registroButton.setTitle("Editar", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        rButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
+        rButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
+        rButton.tintColor = UIColor.whiteColor()
+        rButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
+        rButton.setTitle("Editar", forState: UIControlState.Normal)
+        rButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(nameLabel)
         self.view.addSubview(phoneLabel)
         self.view.addSubview(emailLabel)
-        self.view.addSubview(registroButton)
+        self.view.addSubview(rButton)
     }
     
     func buttonAction(sender:UIButton!){
