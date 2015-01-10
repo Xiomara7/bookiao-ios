@@ -9,40 +9,40 @@
 import Alamofire
 
 class ClientViewController: UIViewController {
-    var emailtxtField: UITextField = CustomDesign.getNameTxtField
-    var passwordtxtField: UITextField = CustomDesign.getNameTxtField
-    var confirmtxtField: UITextField = CustomDesign.getNameTxtField
-    var nameTxtField: UITextField = CustomDesign.getNameTxtField
+    var emailTxtField: UITextField = CustomDesign.getNameTxtField
+    var passwTxtField: UITextField = CustomDesign.getNameTxtField
+    var confirmsField: UITextField = CustomDesign.getNameTxtField
+    var nameTextField: UITextField = CustomDesign.getNameTxtField
     
-    let registroButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let registerButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     override func viewDidLoad() {
         let customDesign = CustomDesign()
         self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
         super.viewDidLoad()
         
-        nameTxtField.frame = (CGRectMake(20, 70, self.view.bounds.width - 40, 40))
-        emailtxtField.frame = CGRectMake(20, 120, self.view.bounds.width - 40, 40)
-        passwordtxtField.frame = CGRectMake(20, 170, self.view.bounds.width - 40, 40)
-        confirmtxtField.frame = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
-
-        nameTxtField.placeholder = "Nombre"
-        emailtxtField.placeholder = "Correo Electrónico"
-        passwordtxtField.placeholder = "Contraseña"
-        confirmtxtField.placeholder = "Número de teléfono"
+        nameTextField.frame  = CGRectMake(20,  70, self.view.bounds.width - 40, 40)
+        emailTxtField.frame  = CGRectMake(20, 120, self.view.bounds.width - 40, 40)
+        passwTxtField.frame  = CGRectMake(20, 170, self.view.bounds.width - 40, 40)
+        confirmsField.frame  = CGRectMake(20, 220, self.view.bounds.width - 40, 40)
+        registerButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         
-        registroButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
-        registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
-        registroButton.tintColor = UIColor.whiteColor()
-        registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
-        registroButton.setTitle("Registrarme", forState: UIControlState.Normal)
-        registroButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        nameTextField.placeholder = "Nombre"
+        emailTxtField.placeholder = "Correo Electrónico"
+        passwTxtField.placeholder = "Contraseña"
+        confirmsField.placeholder = "Número de teléfono"
         
-        self.view.addSubview(emailtxtField)
-        self.view.addSubview(passwordtxtField)
-        self.view.addSubview(registroButton)
-        self.view.addSubview(confirmtxtField)
-        self.view.addSubview(nameTxtField)
+        registerButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
+        registerButton.tintColor = UIColor.whiteColor()
+        registerButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
+        registerButton.setTitle("Registrarme", forState: UIControlState.Normal)
+        registerButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.view.addSubview( emailTxtField)
+        self.view.addSubview( passwTxtField)
+        self.view.addSubview( confirmsField)
+        self.view.addSubview( nameTextField)
+        self.view.addSubview(registerButton)
         
     }
 
@@ -69,14 +69,15 @@ class ClientViewController: UIViewController {
     
     func buttonAction(sender:UIButton!) {
         let request = HTTPrequests()
-        let name = nameTxtField.text
-        let email = emailtxtField.text
-        let phone = confirmtxtField.text
-        let password = passwordtxtField.text
         
-        request.registerRequest(email, name: name, phone: phone, passwd: password) {  (str, error) -> Void in
-            if let ok = str {request.authRequest(email, passwd: password, completion:{(str, error) -> Void in
-            if let ok = str {request.createClientRequest(email, name: name, phone: phone, completion: { (str, error) -> Void in
+        let name  = nameTextField.text
+        let email = emailTxtField.text
+        let phone = confirmsField.text
+        let passw = passwTxtField.text
+        
+        request.registerRequest(email, name: name, phone: phone, passwd: passw) {(str, error) -> Void in
+            if let ok = str {request.authRequest(email, passwd: passw, completion:{(str, error) -> Void in
+            if let ok = str {request.clientsReq (email, name: name, phone: phone, completion: {(str, error) -> Void in
             if let ok = str {request.getUserInfo(email, completion: { (str, error) -> Void in
             if let ok = str {
             dispatch_async(dispatch_get_main_queue(), {

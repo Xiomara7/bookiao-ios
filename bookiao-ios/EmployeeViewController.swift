@@ -110,12 +110,16 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
         let location = localTxtField.text
         let business = placetxtField.text
         let businessID = businessResponse
-
-        request.getUserInfo(email, completion: { (str, error) -> Void in
-            println("holita")
-        })
-        request.registerRequest(email, name: name, phone: phone, passwd: password) { (str, error) -> Void in
-            println("Empleado")
+        
+        request.registerRequest(email, name: name, phone: phone, passwd: password) {(str, error) -> Void in
+            if let ok = str {request.authRequest(email, passwd: password) {(str, error) -> Void in
+            if let ok = str {request.employeeReq(email, name: name, phone: phone, business: 1) {(str, error) -> Void in
+            if let ok = str {request.getUserInfo(email, completion: { (str, error) -> Void in
+            if let ok = str {
+            dispatch_async(dispatch_get_main_queue(), {
+                let views = ViewController()
+                self.presentViewController(views, animated: true, completion: nil)
+            })}})}}}}}
         }
     }
     // returns the number of 'columns' to display.

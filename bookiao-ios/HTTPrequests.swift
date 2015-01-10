@@ -114,7 +114,7 @@ class HTTPrequests {
         task.resume()
     }
 
-    func createClientRequest(email: NSString, name: NSString, phone: NSString, completion: ((str: String?, error:NSError?)-> Void)?)  {
+    func clientsReq(email: NSString, name: NSString, phone: NSString, completion: ((str: String?, error:NSError?)-> Void)?)  {
         var params  = ["email":email, "name":name, "phone_number":phone] as Dictionary
 
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/clients/")!)
@@ -155,7 +155,7 @@ class HTTPrequests {
         task.resume()
     }
 
-    func createEmployeeRequest(email: NSString, name: NSString, phone: NSString, business: Int, completion: ((str: String?, error:NSError?)-> Void)?) {
+    func employeeReq(email: NSString, name: NSString, phone: NSString, business: Int, completion: ((str: String?, error:NSError?)-> Void)?) {
         var params  = ["email":email, "name":name, "phone_number":phone, "business": business] as Dictionary
         
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/employees/")!)
