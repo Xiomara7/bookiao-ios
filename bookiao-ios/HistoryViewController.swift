@@ -12,10 +12,12 @@ import CoreData
 extension String {
     func toDate() -> NSDate? {
         var formatter:NSDateFormatter = NSDateFormatter()
-        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        formatter.timeZone = NSTimeZone()
-        formatter.dateStyle = .MediumStyle
+
+        formatter.locale     = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.timeZone   = NSTimeZone()
+        formatter.dateStyle  = .MediumStyle
         formatter.dateFormat = "EEEE-MM-dd"
+        
         return formatter.dateFromString(self)
     }
 }
@@ -23,19 +25,21 @@ extension String {
 extension NSDate {
     func toS() -> String? {
         var formatter:NSDateFormatter = NSDateFormatter()
-        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        formatter.timeZone = NSTimeZone()
-        formatter.dateStyle = .MediumStyle
+        
+        formatter.locale     = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.timeZone   = NSTimeZone()
+        formatter.dateStyle  = .MediumStyle
         formatter.dateFormat = "yyyy-MM-dd"
+        
         return formatter.stringFromDate(self)
     }
 }
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var names: NSArray! = []
     var tableView: UITableView!
     var dataSource: [[String: String]] = []
-    var names: NSArray! = []
     var customDesign = CustomDesign()
     var requests = HTTPrequests()
     var refreshControl:UIRefreshControl!
@@ -64,19 +68,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func refresh() {
         println("Refreshing")
-        
     }
     
     // MARK: - Private Methods
     
     func updateDataSource() {
-        var rows = [[String: String]]()
-        for index in 0..<5 {
-            var sum = (index + 1) * 5 * 6
-            rows.append(["text": "", "detail": "Hace \(sum) minutos"])
-        }
-        
-        dataSource = rows
         tableView.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
@@ -121,7 +117,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
                 let day  = eAppointments[indexPath.row]["day"]  as String!
                 let time = eAppointments[indexPath.row]["time"] as String!
         
-                cell.titleLabel.text = eAppointments[indexPath.row]["client"] as String!
+                cell.titleLabel.text    = eAppointments[indexPath.row]["client"] as String!
                 cell.subtitleLabel.text = "En \(day) a las \(time)"
             }
         }
@@ -135,7 +131,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         if ut == "business" {
-            cell.titleLabel.text = ""
+            cell.titleLabel.text    = ""
             cell.subtitleLabel.text = ""
         }
 

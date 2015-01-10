@@ -46,13 +46,13 @@ class CustomCell: UITableViewCell {
         
         contentView.addSubview(titleLabel)
         
-        subtitleLabel = UILabel(frame: CGRectZero)
-        subtitleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        subtitleLabel.font = UIFont.systemFontOfSize(12.0)
-        subtitleLabel.textAlignment = .Right
-        subtitleLabel.textColor = custom.UIColorFromRGB(0x545454)
+        stitleLabel = UILabel(frame: CGRectZero)
+        stitleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        stitleLabel.font = UIFont.systemFontOfSize(12.0)
+        stitleLabel.textAlignment = .Right
+        stitleLabel.textColor = custom.UIColorFromRGB(0x545454)
         
-        contentView.addSubview(subtitleLabel)
+        contentView.addSubview(stitleLabel)
         
         priceLabel = UILabel(frame: CGRectZero)
         priceLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -74,13 +74,13 @@ class CustomCell: UITableViewCell {
         
         contentView.addSubview(postButton)
         
-        superTitle = UILabel(frame: CGRectZero)
-        superTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
-        superTitle.font = UIFont.boldSystemFontOfSize(18.0)
-        superTitle.textAlignment = .Center
-        superTitle.textColor = custom.UIColorFromRGB(0x545454)
+        sTitle = UILabel(frame: CGRectZero)
+        sTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
+        sTitle.font = UIFont.boldSystemFontOfSize(18.0)
+        sTitle.textAlignment = .Center
+        sTitle.textColor = custom.UIColorFromRGB(0x545454)
         
-        contentView.addSubview(superTitle)
+        contentView.addSubview(sTitle)
         
         status = UILabel(frame: CGRectZero)
         status.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -99,14 +99,14 @@ class CustomCell: UITableViewCell {
         phoneLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding + 20.0)
         phoneLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
-        subtitleLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding)
-        subtitleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
+        stitleLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding)
+        stitleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
         priceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: Config.bottomPadding - 15.0)
         priceLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: Config.leftPadding)
         
-        superTitle.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
-        superTitle.autoPinEdgeToSuperviewEdge(.Left, withInset: self.bounds.width / 2 - 40.0)
+        sTitle.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding)
+        sTitle.autoPinEdgeToSuperviewEdge(.Left, withInset: self.bounds.width / 2 - 40.0)
         
         status.autoPinEdgeToSuperviewEdge(.Top, withInset: Config.topPadding + 20.0)
         status.autoPinEdgeToSuperviewEdge(.Left, withInset: self.bounds.width / 2 - 100.0)

@@ -137,6 +137,7 @@ class EmployeeViewController: UIViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+        println("titles: \(DataManager.sharedManager.titles)")
         placetxtField.text = DataManager.sharedManager.titles[row]["name"] as String
         businessResponse = row + 1
     }

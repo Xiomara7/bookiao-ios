@@ -223,13 +223,14 @@ class HTTPrequests {
 
     func getBusinesses() {
 
-        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/businesess/")!)
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/businesses/")!)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println(response)
             if self.isRequestValid(response) {
                 var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary!
                 DataManager.sharedManager.titles = newdata["results"] as NSArray!
@@ -247,6 +248,7 @@ class HTTPrequests {
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println(response)
             if self.isRequestValid(response) {
                 var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary!
                 DataManager.sharedManager.client = newdata["results"] as NSArray!
