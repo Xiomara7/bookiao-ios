@@ -28,6 +28,8 @@ class DataManager {
     var status = "No tienes citas para hoy. Crea una cita."
     var alertm = "Verifica tus credenciales y tu conección al internet!"
     
+    var paragraph = "Hasta este momento nuestro app tiene solo un negocio beta. Si deseas ser parte del grupo de negocios beta, por favor déjanos tu correo electrónico utilizando los campos de abajo. \r \r Atentamente H3 at Bookiao."
+    
     var titles = AnyArray()
     var client = AnyArray()
     var services  = AnyArray()

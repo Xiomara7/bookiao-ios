@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     var passwtxtField: UITextField = CustomDesign.getNameTxtField
     
     let iconImage  = UIButton.buttonWithType(UIButtonType.System) as UIButton
-    let thename_Label  = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let thename_Label = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let isitnew_Label = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let ingresoButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
     let registrButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
