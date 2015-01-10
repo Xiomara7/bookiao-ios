@@ -28,8 +28,8 @@ class ClientViewController: UIViewController {
         registerButton.frame = CGRectMake(20, 440, self.view.bounds.width - 40, 40)
         
         nameTextField.placeholder = "Nombre"
-        emailTxtField.placeholder = "Correo Electrónico"
         passwTxtField.placeholder = "Contraseña"
+        emailTxtField.placeholder = "Correo Electrónico"
         confirmsField.placeholder = "Número de teléfono"
         
         registerButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
@@ -57,14 +57,12 @@ class ClientViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.navigationItem.title = "Cliente"
-
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tabBarController?.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func buttonAction(sender:UIButton!) {
