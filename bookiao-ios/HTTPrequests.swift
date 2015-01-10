@@ -129,8 +129,7 @@ class HTTPrequests {
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             println("Client response: \(response)")
             if self.isRequestValid(response) {
-                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Body: \(strData)\n\n")
+                if let block = completion {block (str: "ok", error: nil)}
             } else {if let block = completion {block (str: nil, error: NSError(domain: "Error", code: 0, userInfo: nil))}}
         })
         task.resume()
