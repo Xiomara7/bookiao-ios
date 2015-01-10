@@ -26,6 +26,7 @@ class DataManager {
     var Title  = "Bookealo"
     var phrase = "La cita comienza a las"
     var status = "No tienes citas para hoy. Crea una cita."
+    var alertm = "Verifica tus credenciales y tu conección al internet!"
     
     var titles = AnyArray()
     var client = AnyArray()
