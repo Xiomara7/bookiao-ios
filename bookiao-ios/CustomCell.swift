@@ -17,11 +17,11 @@ class CustomCell: UITableViewCell {
         static let rightPadding: CGFloat = 30.0
     }
     
-    let priceLabel: UILabel!
-    let titleLabel: UILabel!
-    let subtitleLabel: UILabel!
-    let phoneLabel: UILabel!
-    let superTitle: UILabel!
+    let priceLabel:  UILabel!
+    let titleLabel:  UILabel!
+    let phoneLabel:  UILabel!
+    let stitleLabel: UILabel!
+    let sTitle: UILabel!
     let status: UILabel!
     let postButton: UIButton! = UIButton.buttonWithType(UIButtonType.System) as UIButton
     

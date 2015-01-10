@@ -23,6 +23,10 @@ class DataManager {
     var token = String()
     var dateLabel = String()
     
+    var Title  = "Bookealo"
+    var phrase = "La cita comienza a las"
+    var status = "No tienes citas para hoy. Crea una cita."
+    
     var titles = AnyArray()
     var client = AnyArray()
     var services  = AnyArray()

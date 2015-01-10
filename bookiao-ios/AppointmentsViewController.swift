@@ -12,10 +12,11 @@ import CoreData
 class AppointmentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let application = UIApplication.sharedApplication().delegate as AppDelegate
     
+    var names: NSArray! = []
     var tableView: UITableView!
     var dataSource: [[String: String]] = []
-    var names: NSArray! = []
     var refreshControl:UIRefreshControl!
+    
     var customDesign = CustomDesign()
     var requests = HTTPrequests()
     
@@ -26,15 +27,13 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         let tableAppearance = UITableView.appearance()
         
         tableView = UITableView(frame: CGRectMake(0, -40, self.view.frame.width, self.view.frame.height), style: .Grouped)
+        tableView.delegate   = self
         tableView.dataSource = self
-        tableView.delegate = self
-        tableView.tintColor = UIColor.whiteColor()
-        tableView.showsVerticalScrollIndicator = true
-        tableView.separatorColor = UIColor.grayColor()
+        tableView.tintColor  = UIColor.whiteColor()
+        tableView.separatorColor  = UIColor.grayColor()
         tableView.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
-        self.view.backgroundColor = customDesign.UIColorFromRGB(0xE4E4E4)
+        tableView.showsVerticalScrollIndicator = true
         self.view.addSubview(tableView)
-        
         self.tabBarController?.navigationItem.title = DataManager.sharedManager.dateLabel
         
         self.refreshControl = UIRefreshControl()
@@ -67,14 +66,6 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: - Private Methods
     
     func updateDataSource() {
-        var rows = [[String: String]]()
-        
-        for index in 0..<5 {
-            var sum = (index + 1) * 5 * 6
-            rows.append(["text": "", "detail": "La cita comienza en \(sum) minutos"])
-        }
-        
-        dataSource = rows
         tableView.reloadData()
     }
     
@@ -88,7 +79,6 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         let ut = DataManager.sharedManager.userInfo["userType"] as String!
         let eAppointments = DataManager.sharedManager.employeeAppointmentsPerDay
         let cAppointments = DataManager.sharedManager.clientAppointmentsPerDay
-        
         
         if eAppointments.count == 0 {
             return 1
@@ -120,35 +110,35 @@ class AppointmentsViewController: UIViewController, UITableViewDataSource, UITab
         let cellFrame = self.view.bounds
         if ut == "employee" {
             if eAppointments.count == 0 && cAppointments.count == 0 {
-                cell.superTitle.text = "Bookealo"
-                cell.status.text = "No tienes citas para hoy. Crea una cita."
+                cell.sTitle.text = DataManager.sharedManager.Title
+                cell.status.text = DataManager.sharedManager.status
             }
             else {
                 let day  = eAppointments[indexPath.row]["day"] as String!
                 let time = eAppointments[indexPath.row]["time"] as String!
-                let services = eAppointments[indexPath.row]["services"] as NSArray!
+                let serv = eAppointments[indexPath.row]["services"] as NSArray!
             
-                cell.titleLabel.text = eAppointments[indexPath.row]["client"] as String!
-                cell.subtitleLabel.text = "La cita comienza a las \(time)"
-                cell.priceLabel.text = services[0] as? String
-                cell.phoneLabel.text = DataManager.sharedManager.userInfo["phone_number"] as String!
+                cell.priceLabel.text  = serv[0] as? String
+                cell.titleLabel.text  = eAppointments[indexPath.row]["client"] as String!
+                cell.phoneLabel.text  = DataManager.sharedManager.userInfo["phone_number"] as String!
+                cell.stitleLabel.text = "\(DataManager.sharedManager.phrase) \(time)"
             }
         }
         else if ut! == "client" {
             if cAppointments.count == 0 && eAppointments.count == 0 {
-                cell.superTitle.text = "Bookealo"
-                cell.status.text = "No tienes citas para hoy. Crea una cita."
+                cell.sTitle.text = DataManager.sharedManager.Title
+                cell.status.text = DataManager.sharedManager.status
                 
             }
             else {
                 let day  = cAppointments[indexPath.row]["day"] as String!
                 let time = cAppointments[indexPath.row]["time"] as String!
-                let services = cAppointments[indexPath.row]["services"] as NSArray!
+                let serv = cAppointments[indexPath.row]["services"] as NSArray!
             
-                cell.titleLabel.text = cAppointments[indexPath.row]["employee"] as String!
-                cell.subtitleLabel.text = "La cita comienza a las \(time)"
-                cell.priceLabel.text = services[0] as? String
-                cell.phoneLabel.text = DataManager.sharedManager.userInfo["phone_number"] as String!
+                cell.priceLabel.text  = serv[0] as? String
+                cell.titleLabel.text  = cAppointments[indexPath.row]["employee"] as String!
+                cell.phoneLabel.text  = DataManager.sharedManager.userInfo["phone_number"] as String!
+                cell.stitleLabel.text = "\(DataManager.sharedManager.phrase) \(time)"
             }
         }
         
