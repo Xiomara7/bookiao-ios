@@ -234,13 +234,13 @@ class HTTPrequests {
             if self.isRequestValid(response) {
                 var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary!
                 DataManager.sharedManager.titles = newdata["results"] as NSArray!
-                println(DataManager.sharedManager.titles)
             }
         })
         task.resume()
     }
 
     func getClients() {
+        println("am I doing this request?? HELLO")
         var request = NSMutableURLRequest(URL: NSURL(string: "\(baseURL)/clients/")!)
         request.HTTPMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -251,10 +251,10 @@ class HTTPrequests {
             println(response)
             if self.isRequestValid(response) {
                 var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary!
-                DataManager.sharedManager.client = newdata["results"] as NSArray!
-                println(DataManager.sharedManager.client)
+                DataManager.sharedManager.titles = newdata["results"] as NSArray!
             }
         })
+        task.resume()
     }
 
     func getEmployeeAppointments(id: Int, completion: ((str: String?, error:NSError?)-> Void)?) {

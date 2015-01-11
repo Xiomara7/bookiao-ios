@@ -82,8 +82,8 @@ class LoginViewController: UIViewController {
         emailtxtField.keyboardType = UIKeyboardType.EmailAddress
         passwtxtField.secureTextEntry = true
     
-        requests.getBusinesses()
         requests.getClients()
+        requests.getBusinesses()
         requests.getEmployees()
         requests.getServices()
         
