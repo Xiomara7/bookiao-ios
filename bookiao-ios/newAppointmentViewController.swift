@@ -48,18 +48,21 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         }
         
         registroButton.frame = CGRectMake(20, 300, self.view.bounds.width - 40, 40)
-        registroButton.backgroundColor = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.tintColor = UIColor.whiteColor()
+
+        registroButton.backgroundColor  = customDesign.UIColorFromRGB(0x34A3DB)
         registroButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
+        
         registroButton.setTitle("Crear Cita", forState: UIControlState.Normal)
         registroButton.addTarget(self, action: "buttonAction", forControlEvents: UIControlEvents.TouchUpInside)
         
         pickerUsers.delegate = self
         pickerServices.delegate = self
-        dateTxtField.inputView = datePicker
+        
+        dateTxtField.inputView  = datePicker
         employeeField.inputView = pickerUsers
-        serviceField.inputView = pickerServices
-        timeTxtField.inputView = timePicker
+        serviceField.inputView  = pickerServices
+        timeTxtField.inputView  = timePicker
         
         
         self.view.addSubview(dateTxtField)
@@ -93,7 +96,6 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // A date formatter to format the `date` property of `datePicker`.
@@ -201,36 +203,40 @@ class newAppointmentViewController: UIViewController, UIPickerViewDelegate {
         let ut = DataManager.sharedManager.userInfo
         if pickerView == pickerUsers {
             if ut["userType"] as String == "client" {
-                return DataManager.sharedManager.employees[row]["name"] as String
+                if DataManager.sharedManager.client.count == 0 { employeeField.text = "No hay empleados disponibles"}
+                else {employeeField.text = DataManager.sharedManager.employees[row]["name"] as String}
             }
             if ut["userType"] as String == "employee" {
-                return DataManager.sharedManager.client[row]["name"] as String
+                if DataManager.sharedManager.employees.count == 0 { employeeField.text = "Noy hay clientes disponibles"}
+                else {employeeField.text = DataManager.sharedManager.client[row]["name"] as String}
             }
         }
         if pickerView == pickerServices {
             return DataManager.sharedManager.services[row]["name"] as String
         }
         if pickerView == datePicker{
-            return "hola"
+            return ""
         }
-        return "None"
+        return ""
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
         let ut = DataManager.sharedManager.userInfo
         if pickerView == pickerUsers {
             if ut["userType"] as String == "client" {
-                employeeField.text = DataManager.sharedManager.employees[row]["name"] as String
+                if DataManager.sharedManager.employees.count == 0 { employeeField.text = "No hay clientes disponibles"}
+                else {employeeField.text = DataManager.sharedManager.employees[row]["name"] as String}
             }
             if ut["userType"] as String == "employee" {
-                employeeField.text = DataManager.sharedManager.client[row]["name"] as String
+                if DataManager.sharedManager.client.count == 0 { employeeField.text = "Noy hay empleados disponibles"}
+                else {employeeField.text = DataManager.sharedManager.client[row]["name"] as String}
             }
         }
         if pickerView == pickerServices {
             serviceField.text = DataManager.sharedManager.services[row]["name"] as String
         }
         if pickerView == datePicker{
-            dateTxtField.text = "hola hola :P"
+            dateTxtField.text = ""
         }
     }
 }

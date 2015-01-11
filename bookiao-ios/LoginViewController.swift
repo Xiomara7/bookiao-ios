@@ -107,7 +107,7 @@ class LoginViewController: UIViewController {
     }
     
     func buttonActionLogin() {
-        let email  = emailtxtField.text
+        let email  = emailtxtField.text.lowercaseString
         let passwd = passwtxtField.text
         
         if email.isEmail() {

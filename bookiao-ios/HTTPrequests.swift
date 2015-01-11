@@ -213,6 +213,7 @@ class HTTPrequests {
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println(response)
             if self.isRequestValid(response) {
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("Body: \(strData)\n\n")
@@ -251,7 +252,9 @@ class HTTPrequests {
             println(response)
             if self.isRequestValid(response) {
                 var newdata : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary!
-                DataManager.sharedManager.titles = newdata["results"] as NSArray!
+                DataManager.sharedManager.client = newdata["results"] as NSArray!
+                println( newdata["results"] as NSArray!)
+                
             }
         })
         task.resume()
@@ -286,6 +289,7 @@ class HTTPrequests {
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println(response)
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
                 DataManager.sharedManager.employeeAppointmentsPerDay = newData["results"] as NSArray
@@ -306,6 +310,7 @@ class HTTPrequests {
         
         var session = NSURLSession.sharedSession()
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println(response)
             if self.isRequestValid(response) {
                 var newData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as NSDictionary
                 DataManager.sharedManager.clientAppointmentsPerDay = newData["results"] as NSArray
